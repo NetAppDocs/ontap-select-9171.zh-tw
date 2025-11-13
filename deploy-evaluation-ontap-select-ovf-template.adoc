@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: deploy-evaluation-ontap-select-ovf-template.html 
+keywords: ontap, select, ovf, template, deployment, evaluation, license 
+summary: 您可以使用 VMware ESXi 上的 OVF 範本快速部署單節點ONTAP Select叢集的 90 天評估實例。 
+---
+= 部署ONTAP Select叢集的 90 天評估實例
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以使用 VMware ESXi 上的 OVF 範本快速部署單節點ONTAP Select叢集的 90 天評估實例。
+
+.關於此任務
+* 您不需要從NetApp取得序號或儲存容量許可證。
+* 您可以為使用者資料分配與購買的許可證相同數量的儲存空間。
+* 您無法將節點從評估許可證升級到購買許可證。
+* 您只能使用 vCenter 帳戶部署 OVF 範本。目前不支援直接安裝到 ESXi 主機。
+* 您必須使用 vSphere 獨立用戶端或 vSphere Web 用戶端（ESXi 6.5 及更高版本的唯一選項）安裝 OVF 範本（包含在 ova 檔案中）。請勿使用ONTAP Select Deploy 管理實用程式。
+
+
+
+
+== 準備ONTAP Select集群主機
+
+請根據以下要求準備部署ONTAP Select叢集的 ESXi 主機。平台描述基於標準或小型實例類型配置，該配置具有使用 VMFS-5 或 VMFS-6 檔案系統格式化的本機直連儲存 (DAS)。
+
+image:prepare_ESXi_host_requirements.png["準備 ESXi 主機的要求"]
+
+有關主機配置選項的更多信息，請參閱link:esxi-host-configuration-and-preparation-checklist.html["ONTAP Select安裝文檔"]。
+
+
+
+== 使用 OVF 範本部署單節點ONTAP Select集群
+
+在支援的 64 位元 ESXi 主機伺服器上完成下列步驟。
+
+.步驟
+. 前往NetApp評估產品計畫頁面並選擇 * ONTAP Select* 將ONTAP Select OVF 範本下載到您的本機工作站。
+. 使用具有管理權限的帳戶Sign inVMware vSphere Web 用戶端。
+. 使用下列選項之一選擇主機：
++
+** 選擇“檔案”>“部署 OVF 範本”。
+** 選擇“數據中心”。然後右鍵單擊並選擇“部署 OVF 模板”。
+
+
+. 在本機工作站上選擇ONTAP Select來源 OVA 文件，然後選擇*下一步*。
+. 查看 OVF 範本詳細資訊並選擇*下一步*。
+. 查看 EULA 詳情並選擇“接受”。然後選擇“下一步”。
+. 輸入新虛擬機器的名稱並選擇“下一步”。
+. 如果有多個資料儲存可用，請選擇該資料儲存並選擇*下一步*。
+. 選擇“Thick Provision Lazy Zeroed”，然後選擇“Next”。
+. 選擇資料和管理網絡，然後選擇*下一步*。
+. 在“*屬性*”頁面上，提供所有必要的值並選擇“*下一步*”。
+. 查看部署詳情並選擇*部署後開機*。
+. 選擇“*完成*”開始部署程序。
+. 部署ONTAP Select叢集後，您可以使用 System Manager 或 CLI 介面設定該叢集。您必須使用標準ONTAP *diskassign* 操作指派磁碟。
+
+
+.相關資訊
+link:http://mysupport.netapp.com/matrix["互通性矩陣工具"^]

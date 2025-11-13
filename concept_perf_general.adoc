@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: concept_perf_general.html 
+keywords: ontap select, performance 
+summary: ONTAP Select叢集的效能會根據硬體配置而有所不同。 
+---
+= ONTAP Select效能概述
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+由於底層硬體和配置的特性， ONTAP Select叢集的效能可能會有很大差異。具體的硬體配置是影響特定ONTAP Select實例效能的最大因素。以下是一些影響特定ONTAP Select實例效能的因素：
+
+* *核心頻率*。一般來說，頻率越高越好。
+* *單插槽與多插槽*。 ONTAPONTAP Select不使用多插槽功能，但支援多插槽配置的虛擬機器管理程式開銷會導致整體效能出現一定程度的偏差。
+* *RAID 卡配置和相關的虛擬機器管理程式驅動程式*。虛擬機器管理程式提供的預設驅動程式可能需要替換為硬體供應商的驅動程式。
+* *RAID 群組中的磁碟機類型和磁碟機數量*。
+* *虛擬機器管理程式版本和修補程式等級*。
+

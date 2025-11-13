@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_mcc_sds.html 
+keywords: plan, planning, metrocluster, metrocluster sds 
+summary: 在規劃ONTAP Select部署時，您應該考慮MetroCluster SDS 的幾個要求。 
+---
+= 準備ONTAP Select MetroCluster SDS 部署
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+MetroCluster SDS 是建立雙節點ONTAP Select叢集時的一個設定選項。它類似於遠端辦公室/分支機構 (ROBO) 部署，但兩個節點之間的距離最長可達 10 公里。這種增強型雙節點部署提供了更多使用案例場景。在準備部署MetroCluster SDS 時，您應該了解相關要求和限制。
+
+在部署MetroCluster SDS 之前，請先驗證是否符合以下要求。
+
+.授權
+每個節點都必須具有高級或更高級別的ONTAP Select許可證。
+
+.虛擬機器管理程式平台
+MetroCluster SDS 可以部署在與 ROBO 環境中的雙節點叢集支援的相同的 VMware ESXi 和 KVM 虛擬機器管理程式上。
+
+[NOTE]
+====
+從ONTAP Select 9.14.1 開始，已復原對 KVM 虛擬機器管理程式的支援。先前， ONTAP Select 9.10.1 中已移除在 KVM 虛擬機管理程式上部署新叢集的支持，而ONTAP Select 9.11.1 中已移除對管理現有 KVM 叢集和主機（離線或移除除外）的支援。
+
+====
+.網路設定
+參與站點之間需要建立第 2 層連線。支援 10GbE 和 1GbE，包括以下配置：
+
+* 1 個 10GbE
+* 4 個 1GbE
+
+
+
+NOTE: 資料服務連接埠和互連連接埠必須連接到同一個第一個交換器。
+
+.節點之間的延遲
+兩個節點之間的網路必須支援 5 毫秒的平均延遲以及額外的 5 毫秒週期性抖動。在部署叢集之前，必須按照以下步驟測試網路：link:concept_nw_concepts_chars.html["深入網路"]部分。
+
+.仲介服務
+與所有雙節點ONTAP Select叢集一樣，Deploy 虛擬機器中包含一個單獨的調解器服務，用於監控節點並協助管理故障。借助MetroCluster SDS 提供的增強距離，這將在網路拓撲中創建三個不同的站點。調解器與節點之間的連結延遲應為 125 毫秒（往返）或更短。
+
+.儲存
+支援使用 HDD 和 SSD 磁碟的直接連接儲存 (DAS)。也支援 vNAS，包括外部儲存陣列和 VMware 環境中的 vSAN。
+
+
+NOTE: 部署MetroCluster SDS 時，不能在分散式或「延伸」拓樸中使用 vSAN。
+
+.指派給 Deploy 的靜態 IP 位址
+您必須為 Deploy 管理公用程式指派一個靜態 IP 位址。此要求適用於管理一個或多個ONTAP Select雙節點叢集的所有 Deploy 實例。

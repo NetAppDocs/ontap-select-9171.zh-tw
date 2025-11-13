@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: task_cli_security.html 
+keywords: administer, administering, cli, security 
+summary: 在保護ONTAP Select部署的過程中，您可以執行多項相關任務。 
+---
+= 保護ONTAP Select部署
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在保護ONTAP Select部署的過程中，您可以執行多項相關任務。
+
+
+
+= 更改 Deploy 管理員密碼
+
+您可以根據需要使用命令列介面變更 Deploy 虛擬機器管理員帳戶的密碼。
+
+.步驟
+. 使用管理員帳戶Sign inDeploy 實用程式 CLI。
+. 更改密碼：
+`password modify`
+. 根據您的環境對所有提示做出適當的回應。
+

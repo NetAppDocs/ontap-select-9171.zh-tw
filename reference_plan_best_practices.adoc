@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_best_practices.html 
+keywords: plan, planning, best practices, recommendations 
+summary: 在規劃ONTAP Select部署時，您應該考慮一些最佳實務。 
+---
+= ONTAP Select部署最佳實務摘要
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在規劃ONTAP Select部署時，您應該考慮一些最佳實務。
+
+
+
+== 儲存
+
+您應該考慮以下最佳儲存做法。
+
+
+
+=== 全快閃或通用快閃記憶體陣列
+
+使用全快閃 VSAN 或通用快閃記憶體陣列的ONTAP Select虛擬 NAS (vNAS) 部署應遵循具有非 SSD DAS 儲存的ONTAP Select的最佳實務。
+
+
+
+=== 外部存儲
+
+您應該遵循以下建議：
+
+* 為ONTAP Select網路和外部儲存定義專用網路連接埠、頻寬和 vSwitch 配置
+* 配置容量選項以限制儲存使用率（ONTAP Select不能消耗外部儲存池的全部容量）
+* 驗證所有外部儲存陣列是否盡可能使用可用的冗餘和 HA 功能
+
+
+
+
+=== 虛擬機器管理程式核心硬體
+
+單一ONTAP Select聚合中的所有磁碟機應為相同類型。例如，不應在同一個聚合中混用 HDD 驅動器和 SSD 驅動器。
+
+
+
+=== RAID 控制器
+
+伺服器 RAID 控制器應配置為以寫回模式運作。如果發現寫入工作負載效能問題，請檢查控制器設定並確保未啟用 writethrough 或 writearound。
+
+如果實體伺服器包含管理所有本機連接磁碟的 RAID 控制器， NetApp建議為伺服器作業系統建立一個單獨的 LUN，並為ONTAP Select建立一個或多個 LUN。如果啟動磁碟損壞，此最佳實務允許管理員重新建立作業系統 LUN，而不會影響ONTAP Select。
+
+RAID 控制器快取用於儲存所有傳入的區塊更改，而不僅僅是針對NVRAM分割區的變更。因此，選擇 RAID 控制器時，請選擇具有最大可用快取的控制器。較大的快取可以降低磁碟刷新頻率，並提高ONTAP Select虛擬機器、虛擬機器管理程式以及伺服器上共置的任何計算虛擬機器的效能。
+
+
+
+=== RAID 群組
+
+最佳 RAID 群組大小為 8 到 12 個磁碟機。每個 RAID 群組的最大磁碟機數量為 24 個。
+
+每個ONTAP Select節點支援的 NVME 驅動器最大數量為 14 個。
+
+備用磁碟是可選的，但建議使用。 NetApp也建議每個 RAID 群組使用一個備用磁碟；不過，所有 RAID 群組都可以使用全域備用磁碟。例如，每三個 RAID 群組可以使用兩個備用磁碟，每個 RAID 群組包含 8 到 12 個磁碟機。
+
+ONTAP Select不會透過增加 RAID 群組中的 LUN 數量來獲得效能提升。僅應在遵循 SATA/NL-SAS 配置的最佳實務或繞過虛擬機器管理程式檔案系統限制時使用多個 LUN。
+
+
+
+=== VMware ESXi 主機
+
+NetApp建議使用 ESX 6.5 U2 或更高版本以及 NVMe 磁碟作為託管系統磁碟的資料儲存。此配置可為NVRAM分區提供最佳效能。
+
+
+NOTE: 在 ESX 6.5 U2 及更高版本上安裝時，無論系統磁碟位於 SSD 或 NVMe 磁碟上， ONTAP Select都會使用 vNVMEe 驅動程式。這會將虛擬機器硬體等級設為 13，與 ESX 6.5 及更高版本相容。
+
+為ONTAP Select網路和外部儲存（使用 iSCSI 或 NFS 時為 VMware vSAN 和通用儲存陣列流量）定義專用網路連接埠、頻寬和 vSwitch 配置。
+
+配置容量選項以限制儲存利用率（ONTAP Select不能消耗外部 vNAS 資料儲存的全部容量）。
+
+確保所有通用外部儲存陣列盡可能使用可用的冗餘和 HA 功能。
+
+
+
+=== VMware 儲存空間 vMotion
+
+在決定是否將 VMware Storage vMotion 與ONTAP Select節點結合使用時，新主機上的可用容量並非唯一因素。底層儲存類型、主機配置和網路功能應能承受與原始主機相同的工作負載。
+
+
+
+== 聯網
+
+您應該考慮以下網路最佳實踐。
+
+
+
+=== 重複的 MAC 位址
+
+為了消除多個 Deploy 實例指派重複 MAC 位址的可能性，每個第 2 層網路應使用一個 Deploy 實例來建立或管理ONTAP Select叢集或節點。
+
+
+
+=== EMS 郵件
+
+應仔細監控ONTAP Select雙節點叢集中是否存在指示儲存故障轉移已停用的 EMS 訊息。這些訊息表示與調解器服務的連線已斷開，應立即修正。
+
+
+
+=== 節點之間的延遲
+
+兩個節點之間的網路必須支援 5 毫秒的平均延遲以及額外的 5 毫秒週期性抖動。在部署叢集之前，請按照ONTAP Select產品架構和最佳實務技術報告中所述的步驟測試網路。
+
+
+
+=== 負載平衡
+
+若要最佳化內部和外部ONTAP Select網路之間的負載平衡，請使用基於來源虛擬連接埠的路由負載平衡策略。
+
+
+
+=== 多個二層網絡
+
+如果資料流量跨越多個第 2 層網路並且需要使用 VLAN 端口，或者當您使用多個 IP 空間時，應使用 VGT。
+
+
+
+=== 實體交換器配置
+
+VMware 建議將連接到 ESXi 主機的交換器連接埠上的 STP 設定為 Portfast。如果未將交換器連接埠上的 STP 設定為 Portfast，則會影響ONTAP Select容忍上行鏈路故障的能力。使用 LACP 時，LACP 計時器應設定為快速（1 秒）。連接埠群組上的負載平衡策略應設定為“基於 IP 雜湊的路由”，LAG 上的負載平衡策略應設定為“基於來源和目標 IP 位址以及 TCP/UDP 連接埠和 VLAN”。
+
+
+
+=== KVM 的虛擬交換器選項
+
+您必須在每個ONTAP Select主機上設定虛擬交換機，以支援外部網路和內部網路（僅限多節點叢集）。在部署多節點叢集的過程中，您應該測試內部叢集網路上的網路連線。
+
+要了解有關如何在虛擬機管理程式主機上配置 Open vSwitch 的更多信息，請參閱link:https://www.netapp.com/media/13134-tr4613.pdf["ONTAP Select on KVM 產品架構和最佳實踐"^]技術報告。
+
+
+
+== 哈
+
+您應該考慮以下高可用性最佳實務。
+
+
+
+=== 部署備份
+
+定期備份 Deploy 設定資料（包括建立叢集後）是最佳實踐。這對於雙節點叢集尤其重要，因為備份中包含了中介器配置資料。
+
+建立或部署集群後，您應該link:task_cli_clusters.html["備份ONTAP Select Deploy 配置數據"]。
+
+
+
+=== 鏡像聚合
+
+雖然需要鏡像聚合來提供主聚合的最新 (RPO 0) 副本，但請注意不要讓主聚合的可用空間不足。主聚合中的低空間情況可能會導致ONTAP刪除用作儲存恢復基準的通用 Snapshot 副本。此操作旨在適應客戶端寫入。但是，由於故障復原時缺少通用 Snapshot 副本，因此ONTAP Select節點需要從鏡像聚合執行完整的基準。在無共享環境中，此操作可能需要大量時間。
+
+
+NOTE: NetApp建議您為鏡像聚合保留至少 20% 的可用空間，以實現最佳儲存效能和可用性。雖然建議非鏡像聚合保留 10% 的可用空間，但檔案系統可以使用這額外的 10% 空間來吸收增量變更。由於 ONTAP 採用基於寫入時複製快照的架構，因此增量變更會增加鏡像聚合的空間利用率。不遵循這些最佳實踐可能會對性能產生負面影響。僅當資料聚合配置為鏡像聚合時，才支援高可用性接管。
+
+
+
+=== NIC 聚合、組合和故障轉移
+
+ONTAP Select支援雙節點叢集的單一 10Gb 連結；但是， NetApp 的最佳實務是在ONTAP Select叢集的內部和外部網路上透過 NIC 聚合或 NIC 組合實現硬體冗餘。
+
+如果網卡有多個ASIC（Application Specific Integrated Circuit），透過NIC Teaming組成內外網網路時，需要從每個ASIC中選擇一個網口。
+
+NetApp建議在 ESX 和實體交換器上均啟用 LACP 模式。此外，應將實體交換器、連接埠、連接埠通道介面以及 VMNIC 上的 LACP 計時器設定為「快速」（1 秒）。
+
+當使用具有 LACP 的分散式 vSwitch 時， NetApp建議您將負載平衡策略配置為基於連接埠群組上的 IP 雜湊、來源和目標 IP 位址、TCP/UDP 連接埠以及 LAG 上的 VLAN 進行路由。
+
+
+
+=== 雙節點擴展 HA (MetroCluster SDS) 最佳實踐
+
+在建立MetroCluster SDS 之前，請使用ONTAP Deploy 連線檢查器確保兩個資料中心之間的網路延遲在可接受範圍內。
+
+使用虛擬客戶機標記 (VGT) 和雙節點叢集時，需要注意一點。在雙節點叢集配置中，節點管理 IP 位址用於在ONTAP完全可用之前與中介器建立早期連線。因此，對應到節點管理 LIF（連接埠 e0a）的連接埠群組僅支援外部交換器標記 (EST) 和虛擬交換器標記 (VST)。此外，如果管理和資料流量使用相同連接埠群組，則整個雙節點叢集僅支援 EST 和 VST。

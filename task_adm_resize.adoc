@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: task_adm_resize.html 
+keywords: administer, administering, web, resizing nodes, resizing 
+summary: 部署ONTAP Select叢集後，您可以使用 Deploy 管理公用程式升級節點的虛擬機器管理程式實例類型。 
+---
+= 調整ONTAP Select叢集節點的大小
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+部署ONTAP Select叢集後，您可以使用 Deploy 管理公用程式升級節點的虛擬機器管理程式實例類型。
+
+
+NOTE: 使用容量層許可模型和容量池許可模型時，您可以執行叢集節點大小調整操作。
+
+
+NOTE: 僅 ESXi 支援調整為大型實例類型。
+
+.開始之前
+集群必須處於線上狀態。
+
+.關於此任務
+此任務介紹如何使用 Deploy Web 使用者介面。您也可以使用 Deploy CLI 來執行實例大小調整。無論您使用哪個介面，調整大小操作所需的時間都會因多種因素而有很大差異，並且可能需要很長時間才能完成。您只能將節點大小調整到更大的程度。
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*Cluster*”選項卡，然後從清單中選擇所需的叢集。
+. 在叢集詳情頁面，點擊頁面右側的齒輪圖標，選擇「實例調整大小」。
+. 選擇*實例類型*並提供ONTAP憑證，然後按一下*修改*。
+
+
+.完成後
+您必須等待調整大小操作完成。

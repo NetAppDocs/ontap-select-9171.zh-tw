@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_networking.html 
+keywords: plan, planning, networking, network, drivers, vmxnet3, cluster mtu, firewall 
+summary: 在部署ONTAP Select之前，您必須正確設定虛擬機器管理程式網路。 
+---
+= ONTAP Select網路注意事項
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在部署ONTAP Select之前，您必須正確設定虛擬機器管理程式網路。
+
+
+
+== 虛擬交換器選項
+
+您必須在每個ONTAP Select主機上設定虛擬交換機，以支援外部網路和內部網路（僅限多節點叢集）。在部署多節點叢集的過程中，您應該測試內部叢集網路上的網路連線。
+
+
+NOTE: 要了解有關如何在虛擬機器管理程式主機上配置虛擬交換器以及高速介面功能的更多信息，請參閱link:concept_nw_concepts_chars.html["深入網路"]部分。
+
+
+
+== 升級到 VMXNET3（僅限 ESXi）
+
+從使用 Deploy 2.10 的ONTAP Select 9.5 開始，VMXNET3 是 VMware ESXi 上新叢集部署隨附的預設網路驅動程式。如果您將舊版ONTAP Select節點升級到 9.5 或更高版本，則該驅動程式不會自動升級。
+
+
+
+== 集群 MTU
+
+單獨的內部網路用於連接多節點叢集中的ONTAP Select節點。通常，此網路的 MTU 大小為 9000。但是，在某些情況下，此 MTU 大小對於連接ONTAP Select節點的網路來說過大。為了容納較小的幀， ONTAP Select在內部網路上使用的 MTU 大小可以在 7500-9000 位元組範圍內。
+
+MTU 大小顯示在叢集建立頁面的「叢集詳細資料」部分。該值由 Deploy 管理公用程式決定，如下所示：
+
+. 初始預設值為 9000。
+. 當您為 HA 對新增主機和網路時，MTU 值會根據網路中 vSwitch 的配置根據需要減少。
+. 新增所有 HA 對並準備建立叢集後，將設定叢集的最終叢集 MTU 值。
+
+
+
+NOTE: 如果需要，您可以根據網路設計手動設定叢集 MTU 值。
+
+
+
+== 具有標準 vSwitch 的雙 NIC 主機（僅限 ESXi）
+
+為了提高雙 NIC 配置中的ONTAP Select效能，您應該使用兩個連接埠組隔離內部和外部網路流量。此建議適用於以下特定配置：
+
+* ONTAP Select多節點集群
+* 兩個 NIC（NIC1 和 NIC2）
+* 標準 vSwitch
+
+
+在此環境中，您應該使用兩個連接埠群組來配置流量，如下所示：
+
+.連接埠組 1
+* 內部網路（叢集、RSM、HA-IC 流量）
+* NIC1 處於活動狀態
+* NIC2 處於待機狀態
+
+
+.連接埠組 2
+* 外部網路（資料和管理流量）
+* NIC1處於待機狀態
+* NIC2 處於活動狀態
+
+
+參見link:concept_nw_concepts_chars.html["深入網路"]本節提供有關雙網卡部署的更多資訊。
+
+
+
+== 帶有標準 vSwitch 的四 NIC 主機（僅限 ESXi）
+
+為了提高四 NIC 配置中的ONTAP Select效能，您應該使用四個連接埠組隔離內部和外部網路流量。此建議適用於以下特定配置：
+
+* ONTAP Select多節點集群
+* 四個 NIC（NIC1、NIC2、NIC3 和 NIC4）
+* 標準 vSwitch
+
+
+在此環境中，您應該使用四個連接埠群組來配置流量，如下所示：
+
+.連接埠組 1
+* 內部網路（叢集、RSM 流量）
+* NIC1 處於活動狀態
+* NIC2、NIC3、NIC4 處於待機狀態
+
+
+.連接埠組 2
+* 內部網路（叢集、HA-IC 流量）
+* NIC3 處於活動狀態
+* NIC1、NIC2、NIC4 處於待機狀態
+
+
+.連接埠組 3
+* 外部網路（資料和管理流量）
+* NIC2 處於活動狀態
+* NIC1、NIC3、NIC4 處於待機狀態
+
+
+.連接埠組 4
+* 外部網路（數據流量）
+* NIC4 處於活動狀態
+* NIC1、NIC2、NIC3 處於待機狀態
+
+
+參見link:concept_nw_concepts_chars.html["深入網路"]本節提供有關四網卡部署的更多資訊。
+
+
+
+== 網路流量需求
+
+您必須確保防火牆配置正確，以允許網路流量在ONTAP Select部署環境中的各個參與者之間流動。
+
+.參與者
+在ONTAP Select部署中，有多位參與者或實體會交換網路流量。本文將介紹這些參與者或實體，並在網路流量需求的摘要描述中使用它們。
+
+* 部署ONTAP Select部署管理實用程序
+* vSphere（僅限 ESXi）vSphere 伺服器或 ESXi 主機，取決於叢集部署中主機的管理方式
+* 虛擬機器管理程式伺服器 ESXi 虛擬機器管理程式主機或 Linux KVM 主機
+* OTS 節點ONTAP Select節點
+* OTS 集群ONTAP Select集群
+* Admin WS 本機管理工作站
+
+
+.網路流量需求摘要
+下表描述了ONTAP Select部署的網路流量要求。
+
+[cols="20,20,35,25"]
+|===
+| 協定/連接埠 | ESXi/KVM | 方向 | 描述 
+
+
+| TLS（443） | ESXi | 部署至 vCenter 伺服器（託管）或 ESXi（託管或非託管） | VMware VIX API 
+
+
+| 902 | ESXi | 部署至 vCenter 伺服器（託管）或 ESXi（非託管） | VMware VIX API 
+
+
+| ICMP | ESXi 或 KVM | 部署到虛擬機器管理程式伺服器 | 平 
+
+
+| ICMP | ESXi 或 KVM | 部署到各個OTS節點 | 平 
+
+
+| SSH（22） | ESXi 或 KVM | 管理 WS 到每個 OTS 節點 | 行政 
+
+
+| SSH（22） | 虛擬機 | 部署到虛擬機器管理程式伺服器節點 | 存取虛擬機器管理程式伺服器 
+
+
+| TLS（443） | ESXi 或 KVM | 部署到OTS節點和集群 | 訪問ONTAP 
+
+
+| TLS（443） | ESXi 或 KVM | 每個要部署的 OTS 節點 | 存取部署（容量池許可） 
+
+
+| iSCSI (3260) | ESXi 或 KVM | 每個要部署的 OTS 節點 | 中介/郵件磁碟 
+|===

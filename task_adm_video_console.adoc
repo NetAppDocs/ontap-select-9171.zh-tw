@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: task_adm_video_console.html 
+keywords: administer, administering, web, video console 
+summary: 您可以存取正在執行ONTAP Select 的ESXi 虛擬機器的視訊控制台。 
+---
+= 存取ONTAP Select視訊控制台
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以存取正在執行ONTAP Select 的虛擬機器管理程式虛擬機器的視訊控制台。
+
+.關於此任務
+您可能需要存取虛擬機器控制台來解決問題，或在NetApp支援人員要求您這樣做時這樣做。
+
+.步驟
+. 造訪 vSphere 用戶端並登入。
+. 導覽至層次結構中的對應位置以找到ONTAP Select虛擬機器。
+. 右鍵點選虛擬機器並選擇*開啟控制台*。
+

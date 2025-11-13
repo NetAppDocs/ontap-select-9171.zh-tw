@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: task_adm_mediators.html 
+keywords: administer, administering, web, mediators 
+summary: 每個ONTAP Select雙節點叢集均由調解器服務監控，該服務協助管理節點共享的 HA 功能。 
+---
+= 管理ONTAP Select Deploy 中介服務
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+每個ONTAP Select雙節點叢集均由調解器服務監控，該服務協助管理節點共享的 HA 功能。
+
+
+
+== 看中介服務的狀態
+
+您可以查看針對ONTAP Select Deploy 實用程式定義的每個雙節點叢集的調解器服務狀態。
+
+.關於此任務
+您可以查看每個調解器的配置，包括目前狀態、兩個ONTAP Select節點以及儲存 HA 控制資訊的 iSCSI 目標。將滑鼠懸停在頁面上的物件上即可顯示詳細資訊。
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*管理*”選項卡，然後點擊“*調解員*”。
+. 或點選「*過濾器*」來自訂中介服務監控的雙節點叢集的視圖。
+

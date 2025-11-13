@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_cp_compare_ct.html 
+keywords: license, licensing, Capacity Pools, Capacity Tiers, comparing 
+summary: 容量池和容量層授權模式之間存在一些差異。 
+---
+= 比較ONTAP Select容量池和容量層許可
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+下表比較了ONTAP Select支援的兩種生產許可模式。
+
+[cols="20,40,40"]
+|===
+|  | 容量層 | 容量池 
+
+
+| 許可證序號 | NetApp產生並分配給節點的九位數字 | NetApp產生並分配給容量池的九位數字 
+
+
+| 許可證鎖定 | 鎖定到ONTAP Select節點 | 鎖定到許可證管理器實例 
+
+
+| 許可證期限 | 永久（無需續訂） | 根據購買而定的固定期限（需續約） 
+
+
+| 資料聚合的租賃期限 | 不適用 | 一小時到七天 
+
+
+| 節點序號 | 九位數字，等於許可證序號 | 二十位數字，由許可證管理器生成 
+
+
+| 支援 | 附加功能和限時功能 | 包含並共同術語 
+
+
+| 許可證類型 | 標準型、高級型、高級 XL 型 | 標準型、高級型、高級 XL 型 
+
+
+| 評估許可證可用 | 是的 | 是的 
+
+
+| 生產升級評估 | 是的 | 不 
+
+
+| ONTAP Select虛擬機器大小調整（從小到中，從中到大） | 是的 | 是的 
+
+
+| 執法：執照已過期 | 不適用 | 是（無寬限期） 
+|===

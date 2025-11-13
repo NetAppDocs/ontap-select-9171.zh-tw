@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: concept_api_understanding_scripts.html 
+keywords: rest api, deploy rest api, rest, python, python scripts, understanding 
+summary: 範例 Python 腳本可協助您執行多種不同的任務。在實際部署 Deploy 實例之前，您應該先了解這些腳本。 
+---
+= 了解ONTAP Select Deploy 的 Python 腳本
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+範例 Python 腳本可協助您執行多種不同的任務。在實際部署 Deploy 實例之前，您應該先了解這些腳本。
+
+
+
+== 常見的設計特徵
+
+這些腳本的設計有以下共同特點：
+
+* 從客戶端電腦上的命令列介面執行 您可以從任何正確配置的客戶端電腦上執行 Python 腳本。有關更多信息，請參閱“開始之前”。
+* 接受 CLI 輸入參數 每個腳本都透過輸入參數在 CLI 進行控制。
+* 讀取輸入檔 每個腳本都會根據其用途讀取一個輸入檔。建立或刪除叢集時，必須提供 JSON 設定檔。新增節點許可證時，必須提供有效的許可證文件。
+* 使用通用支援模組 通用支援模組 _deploy_requests.py_ 包含一個類別。它被每個腳本導入和使用。
+
+
+
+
+== 創建集群
+
+您可以使用腳本 cluster.py 建立ONTAP Select叢集。根據 CLI 參數和 JSON 輸入檔案的內容，您可以根據部署環境修改腳本，如下所示：
+
+* 虛擬機器管理程式：您可以部署到 ESXI 或 KVM（取決於 Deploy 版本）。部署到 ESXi 時，虛擬機器管理程式可以由 vCenter 管理，也可以作為獨立主機。
+* 叢集大小 您可以部署單節點或多節點叢集。
+* 評估或生產許可證 您可以使用評估或購買的生產許可證來部署叢集。
+
+
+該腳本的 CLI 輸入參數包括：
+
+* Deploy 伺服器的主機名稱或 IP 位址
+* 管理者用戶帳號的密碼
+* JSON 設定檔的名稱
+* 訊息輸出的詳細標誌
+
+
+
+
+== 新增節點許可證
+
+如果您選擇部署生產集群，則必須使用腳本「add_license.py」為每個節點新增許可證。您可以在部署叢集之前或之後新增許可證。
+
+該腳本的 CLI 輸入參數包括：
+
+* Deploy 伺服器的主機名稱或 IP 位址
+* 管理者用戶帳號的密碼
+* 許可證文件的名稱
+* 具有新增授權權限的ONTAP使用者名
+* ONTAP用戶的密碼
+
+
+
+
+== 刪除叢集
+
+您可以使用腳本 _delete_cluster.py_ 刪除現有的ONTAP Select叢集。
+
+該腳本的 CLI 輸入參數包括：
+
+* Deploy 伺服器的主機名稱或 IP 位址
+* 管理者用戶帳號的密碼
+* JSON 設定檔的名稱
+

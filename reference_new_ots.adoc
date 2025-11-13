@@ -1,0 +1,263 @@
+---
+sidebar: sidebar 
+permalink: reference_new_ots.html 
+keywords: new features 
+// summary: The current release includes several new features and improvements specific to ONTAP Select. 
+summary: 目前版本包括幾個特定於ONTAP Select 的新功能或改進。 
+---
+= ONTAP Select的新增功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+了解ONTAP Select受支援版本中的新功能和增強功能。
+
+
+
+== ONTAP Select 9.17.1
+
+ONTAP Select 9.17.1 包含多項新功能和改進。
+
+KVM 主機上本機連接的 NVMe 磁碟的軟體 RAID 支持:: ONTAP Select 9.17.1 引進了對基於核心的虛擬機器 (KVM) 虛擬機器管理程式主機上ONTAP Select本機連接的 NVMe 磁碟的軟體 RAID 支援。
++
+--
+若要對本機連線的 NVMe 磁碟使用軟體 RAID，您需要：link:kvm-host-configuration-and-preparation-checklist.html["配置 PCI 直通（DirectPath IO）"]準備 KVM 主機時。這為 KVM 主機提供了對本地連接的 NVMe 磁碟的直接訪問，這是以下任務所必需的：
+
+* 配置 KVM 主機以使用 NVMe 驅動器
+* 部署叢集後使用軟體 RAID
+
+
+link:concept_stor_swraid_local.html["了解本地連接儲存的軟體 RAID 設定服務"]。
+
+--
+支援KVM主機叢集擴容與縮容:: 從ONTAP Select 9.17.1 開始，基於核心的虛擬機器 (KVM) 和 ESXi 虛擬機器管理程式主機均支援叢集擴充和收縮功能。對於ONTAP Select 9.16.1 和 9.15.1，僅 ESXi 虛擬機器管理程式主機支援叢集擴充和收縮功能。
++
+--
+您可以使用現有ONTAP Select叢集上的叢集擴展和收縮功能將叢集規模從六節點增加到八節點，或將叢集規模從八節點減少到六節點。
+
+link:task_cluster_expansion_contraction.html["了解叢集擴充和收縮以及支援的 KVM 和 ESXi 虛擬機器管理程式版本"]。
+
+--
+增強對 ESXi 主機上的叢集擴展和收縮的支持:: 從ONTAP Select 9.17.1 開始，ESXi 主機上的六節點叢集和十二節點叢集之間支援叢集擴展和收縮：
++
+--
+--
+您可以按以下增量增加現有 ESXi 群集的群集大小：
+
+* 從六個節點到八個、十個或十二個節點
+* 從八個節點到十個或十二個節點
+* 從十到十二個節點
+
+
+您可以按以下增量減少現有 ESXi 群集的群集大小：
+
+* 從十二個節點到十個、八個或六個節點
+* 從十個節點到八個或六個節點
+* 從八個節點到六個節點
+
+
+--
+link:task_cluster_expansion_contraction.html["了解叢集擴充和收縮以及支援的 KVM 和 ESXi 虛擬機器管理程式版本"]。
+
+--
+支援SnapMirror雲:: 從ONTAP Select 9.17.1 開始， ONTAP Select支援SnapMirror雲端。 SnapMirrorSnapMirror是獲得許可的ONTAP功能，在部署ONTAP Select 9.17.1 叢集或將現有ONTAP Select叢集升級到 9.17.1 版本時預設啟用。
++
+--
+https://docs.netapp.com/us-en/ontap/concepts/snapmirror-cloud-backups-object-store-concept.html["了解SnapMirror雲端備份到物件存儲"^]。
+
+--
+支援SnapLock Select Enterprise:: 從ONTAP Select 9.17.1 開始，新部署將自動獲得SnapLock Select Enterprise（包括防篡改快照鎖定）的許可。對於從ONTAP Select 9.16.1 及更早版本升級的情況，您需要從以下位置下載SnapLock Select 許可證：link:https://mysupport.netapp.com/site/["NetApp支援站點"^]並手動應用。
+在多節點叢集上支援 vSAN ESA:: 從ONTAP Select 9.17.1 開始，對 vSAN Express 儲存架構 (ESA) 的支援擴展，以部署多節點叢集。此增強功能可讓您部署 vSAN ESA 配置。
++
+--
+vSAN ESA 是一種 ESX 特定配置，是 vSphere 8 中引入的 VMware vSAN 的新架構。 vSAN ESA 旨在提供增強的效率、可擴展性和效能，尤其是在使用基於 NVMe 的 TLC 快閃記憶體裝置時。
+
+ONTAP Select Deploy 和ONTAP Select for ESX 支援配置ONTAP Select單節點和多節點集群，使用 vSAN 或外部陣列類型的資料儲存作為其儲存池。
+
+[NOTE]
+====
+要執行內容庫操作，您需要存取額外的權限等級。如果您使用受限角色，這對於 vSAN ESA 部署是必要的。
+
+link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html["了解內容庫操作的存取權限級別"^]。
+
+====
+--
+更新了 NDA 驅動程式支援:: 從ONTAP Select 9.17.1 開始，FreeBSD NDA（NVMe 直接存取）裝置驅動程式取代了 NVD（NVMe 快速磁碟驅動程式）。 FreeBSD驅動程式透過實作 NVMe 命令協定來支援直接存取裝置。當您部署ONTAP Select 9.17.1 叢集或將現有ONTAP Select叢集升級至 9.17.1 版本時，設定 NVMe 裝置時會預設啟動 FreeBSD 驅動程式。
++
+--
+對於ONTAP Select 9.16.1 及更早版本，NVD 將繼續為ONTAP Select部署中的 NVMe 設備提供支援。
+
+--
+更新了 KVM 虛擬機管理程式支持:: 從ONTAP Select 9.17.1 開始，Red Hat Enterprise Linux (RHEL) 9.6 和 Rocky Linux 9.6 支援 KVM 虛擬機器管理程式。
+增強的 VMware ESXi 支持:: ONTAP Select 9.17.1 包含對 VMware ESXi 9.0 的支援。
+
+
+
+
+== ONTAP Select 9.16.1
+
+ONTAP Select 9.16.1 包含多項新功能和改進。
+
+更新了NetApp許可證文件支持:: 從ONTAP Select 9.16.1 開始， NetApp許可證文件 (NLF) 支援已更新。新的 NLF 格式包含 ARP、 ONTAP S3 和 S3 SnapMirror功能的授權。link:reference_lic_ontap_features.html#ontap-features-automatically-enabled-by-default["了解更多"]。
++
+--
+對於新的ONTAP Select 9.16.1 Deploy，系統會自動套用新的 NLF 格式。將現有ONTAP Select Deploy 升級到 9.16.1 時，不會套用新的 NLF 格式。若要取得 ARP、 ONTAP S3 和 S3 SnapMirror功能許可證，您必須在升級後下載更新的 NLF。如果您還原到ONTAP Select 9.15.1 或更早版本，則必須重新安裝升級前擁有的功能授權。
+
+--
+支援自主勒索軟體防護:: ONTAP Select 9.16.1 引入了對自主勒索軟體防護 (ARP) 的支援。 ONTAPONTAP Select 9.16.1 僅支援 ARP 的手動更新，不支援自動更新。 ARP功能許可證包含在ONTAP Select 9.16.1 的 NLF 中。link:reference_lic_ontap_features.html#ontap-features-automatically-enabled-by-default["了解更多"]。
+增強的 VMware ESXi 支持:: ONTAP Select 9.16.1 包含對 VMware ESXi 8.0 U3 的支援。
+更新了 KVM 虛擬機管理程式支持:: 從ONTAP Select 9.16.1 開始，RHEL 9.5 和 Rocky Linux 9.5 支援 KVM 虛擬機器管理程式。
+
+
+
+
+== ONTAP Select 9.15.1
+
+ONTAP Select 9.15.1 包含多項新功能和改進。
+
+更新了 KVM 虛擬機管理程式支持:: 從ONTAP Select 9.15.1 開始，RHEL 9.4 和 Rocky Linux 9.4 支援基於核心的虛擬機器 (KVM) 虛擬機器管理程式。
+支援集群擴容和縮容:: 從ONTAP Select 9.15.1 開始，支持集群擴展和收縮。
++
+--
+* 叢集從六節點擴展到八節點集群
++
+您可以使用叢集擴展功能將叢集大小從六節點叢集增加到八節點叢集。目前不支援從一節點、兩節點或四節點叢集擴展至六節點或八節點叢集。link:task_cluster_expansion_contraction.html#expand-the-cluster["了解更多"]。
+
+* 集群收縮：八節點集群到六節點集群
++
+您可以使用叢集縮減功能將叢集規模從八節點叢集縮減為六節點叢集。目前不支援將叢集從六節點或八節點叢集縮減為一節點、兩節點或四節點叢集。link:task_cluster_expansion_contraction.html#contract-the-cluster["了解更多"]。
+
+
+
+--
+
+
+
+NOTE: 對集群擴展和收縮的支援僅限於 ESX 集群。
+
+
+
+== ONTAP Select 9.14.1
+
+ONTAP Select 9.14.1 包含多項新功能和改進。
+
+支援 KVM 虛擬機器管理程序:: 從ONTAP Select 9.14.1 開始，已復原對 KVM 虛擬機器管理程式的支援。先前， ONTAP Select 9.10.1 中已移除在 KVM 虛擬機管理程式上部署新叢集的支持，而ONTAP Select 9.11.1 中已移除對管理現有 KVM 叢集和主機（離線或移除除外）的支援。
+不再支援部署 VMware vCenter 插件:: 從ONTAP Select 9.14.1 開始，不再支援 Deploy VMware vCenter 外掛程式。
+更新了ONTAP Select Deploy 支持:: 如果您執行的ONTAP Select Deploy 9.14.1 版本低於 9.14.1P2，則應盡快升級至ONTAP Select Deploy 9.14.1P2。欲了解更多信息，請參閱link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["ONTAP Select 9.14.1 發行說明"^]。
+增強的 VMware ESXi 支持:: ONTAP Select 9.14.1 包含對 VMware ESXi 8.0 U2 的支援。
+
+
+
+
+== ONTAP Select 9.13.1
+
+ONTAP Select 9.13.1 包含多項新功能和改進。
+
+支援 NVMe over TCP:: 升級到ONTAP Select 9.13.1 時，您必須擁有新的許可證才能支援 NVMe over TCP。首次從 9.13.1 版本部署ONTAP Select時，將自動包含此許可證。
+更新了 VMware ESXi 支持:: 從ONTAP 9.13.1 開始，VMware ESXi 8.0.1 GA（內部版本 20513097）支援硬體版本 4 及更高版本。
+更新了ONTAP Select Deploy 支持:: 自 2024 年 4 月起， NetApp支援站點上不再提供ONTAP Select Deploy 9.13.1。如果您正在執行ONTAP Select Deploy 9.13.1，請盡快升級至ONTAP Select Deploy 9.14.1P2。欲了解更多信息，請參閱link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["ONTAP Select 9.14.1 發行說明"^]。
+
+
+
+
+== ONTAP Select 9.12.1
+
+ONTAP Select 9.12.1 受益於核心ONTAP產品目前版本中的大部分新開發功能。它不包含任何特定於ONTAP Select 的新功能或改進。
+
+自 2024 年 4 月起， NetApp支援站點上不再提供ONTAP Select Deploy 9.12.1。如果您正在執行ONTAP Select Deploy 9.12.1，請盡快升級至ONTAP Select Deploy 9.14.1P2。欲了解更多信息，請參閱link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["ONTAP Select 9.14.1 發行說明"^]。
+
+
+
+== ONTAP Select 9.11.1
+
+ONTAP Select 9.11.1 包含多項新功能和改進。
+
+增強的 VMware ESXi 支持:: ONTAP Select 9.11.1 包含對 VMware ESXi 7.0 U3C 的支援。
+支援 VMware NSX-T:: ONTAP Select 9.10.1 及更高版本已符合 VMware NSX-T 3.1.2 版的要求。在使用 OVA 檔案和ONTAP Select Deploy 管理實用程式部署的ONTAP Select單節點叢集中，使用 NSX-T 不會出現任何功能問題或缺陷。但是，在ONTAP Select多節點叢集中使用 NSX-T 時，請注意ONTAP Select 9.11.1 的以下限制：
++
+--
+* 網路連線檢查器
++
+當針對基於 NSX-T 的網路執行時，透過 Deploy CLI 提供的網路連線檢查器會失敗。
+
+
+
+--
+KVM 虛擬機器管理程式不再支援::
++
+--
+* 從ONTAP Select 9.10.1 開始，您無法再在 KVM 虛擬機器管理程式上部署新叢集。
+* 從ONTAP Select 9.11.1 開始，除脫機和刪除功能外，所有管理功能不再適用於現有的 KVM 叢集和主機。
++
+NetApp強烈建議客戶規劃並執行從ONTAP Select for KVM 到任何其他ONTAP平台（包括ONTAP Select for ESXi）的完整資料遷移。更多資訊請參見 https://mysupport.netapp.com/info/communications/ECMLP2877451.html["EOA 通知"^]
+
+
+
+--
+
+
+
+
+== ONTAP Select 9.10.1
+
+ONTAP Select 9.10.1 包含多項新功能和改進。
+
+支援 VMware NSX-T:: ONTAP Select 9.10.1 已通過 VMware NSX-T 3.1.2 版認證。在使用 OVA 檔案和ONTAP Select Deploy 管理實用程式部署的ONTAP Select單節點叢集中，使用 NSX-T 不會出現任何功能問題或缺陷。但是，在ONTAP Select多節點叢集中，使用 NSX-T 時，請注意以下要求和限制：
++
+--
+* 集群 MTU
++
+在部署叢集之前，您必須手動將叢集 MTU 大小調整為 8800，以應對額外的開銷。 VMware的指導是，在使用 NSX-T 時留出 200 位元組的緩衝區。
+
+* 網路 4x10Gb 配置
++
+對於在配置了四個網路卡的 VMware ESXi 主機上部署ONTAP Select ，Deploy 實用程式會提示您遵循最佳實踐，將內部流量拆分到兩個不同的連接埠群組，並將外部流量拆分到兩個不同的連接埠群組。但是，在使用覆蓋網路時，此配置不起作用，您應該忽略此建議。在這種情況下，您應該只使用一個內部連接埠群組和一個外部連接埠群組。
+
+* 網路連線檢查器
++
+當針對基於 NSX-T 的網路執行時，透過 Deploy CLI 提供的網路連線檢查器會失敗。
+
+
+
+--
+KVM 虛擬機器管理程式不再支援:: 從ONTAP Select 9.10.1 開始，您無法再在 KVM 虛擬機器管理程式上部署新叢集。但是，如果您將叢集從先前版本升級到 9.10.1，仍然可以使用 Deploy 公用程式來管理該叢集。
+
+
+
+
+== ONTAP Select 9.9.1
+
+ONTAP Select 9.9.1 包含多項新功能和改進。
+
+處理器系列支援:: 從ONTAP Select 9.9.1 開始， ONTAP Select僅支援 Intel Xeon Sandy Bridge 或更高版本的 CPU 型號。
+更新了 VMware ESXi 支持:: ONTAP Select 9.9.1 增強了對 VMware ESXi 的支援。目前支援以下版本：
++
+--
+* ESXi 7.0 U2
+* ESXi 7.0 U1
+
+
+--
+
+
+
+
+== ONTAP Select 9.8
+
+ONTAP Select 9.8 中包含一些新增和變更的功能。
+
+高速介面:: 高速介面功能提供 25G (25GbE) 和 40G (40GbE) 選項，增強了網路連接性。為了在使用這些更高速度時獲得最佳效能，您應遵循ONTAP Select文件中所述的有關連接埠對映配置的最佳實務。
+更新了 VMware ESXi 支持:: ONTAP Select 9.8 在對 VMware ESXi 的支援方面有兩項變更。
++
+--
+* 支援 ESXi 7.0（GA 版本 15843807 及更高版本）
+* ESXi 6.0 不再受支援
+
+
+--
+

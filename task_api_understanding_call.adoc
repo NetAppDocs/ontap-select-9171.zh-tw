@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: task_api_understanding_call.html 
+keywords: rest api, deploy rest api, rest, understanding, executing 
+summary: 所有 API 呼叫的詳細資訊均以通用格式記錄並顯示在ONTAP Select Deploy 線上文件網頁上。透過了解單一 API 呼叫，您可以存取和解讀所有 API 呼叫的詳細資訊。 
+---
+= 了解並執行ONTAP Select Deploy API 呼叫
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+所有 API 呼叫的詳細資訊均以通用格式記錄並顯示在ONTAP Select Deploy 線上文件網頁上。透過了解單一 API 呼叫，您可以存取和解讀所有 API 呼叫的詳細資訊。
+
+.開始之前
+您必須登入ONTAP Select Deploy 線上文件網頁。您必須擁有在建立ONTAP Select叢集時為其指派的唯一識別碼。
+
+.關於此任務
+您可以使用ONTAP Select叢集的唯一識別碼檢索描述該叢集的設定資訊。在本例中，所有被歸類為「廉價」的欄位都會傳回。但是，最佳做法是，您應該只請求所需的特定欄位。
+
+.步驟
+. 在主頁上，滾動到底部並點擊*Cluster*。
+. 按一下 *GET /clusters/{cluster_id}* 可顯示用於傳回有關ONTAP Select叢集資訊的 API 呼叫的詳細資訊。
+

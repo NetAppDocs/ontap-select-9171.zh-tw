@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: concept_ots_overview.html 
+keywords: overview, software defined storage, sds, typical deployment, ontap 9 
+summary: ONTAP Select是ONTAP的純軟體版本，可作為虛擬機器管理程式主機上的虛擬機器部署。它是對主流FAS和AFF ONTAP產品套件以及其他純軟體選項（例如Cloud Volumes ONTAP）的補充。 
+---
+= 了解ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select是ONTAP的純軟體版本，您可以將其作為虛擬機器部署在虛擬機器管理程式主機上。它是對主流FAS、 AFF和ASA ONTAP產品套件以及其他純軟體選項（例如Cloud Volumes ONTAP）的補充。
+
+ONTAP Select可將內部磁碟機（NVMe、SSD 或 HDD）以及外部陣列儲存轉換為靈活的儲存系統，並具備專用ONTAP儲存系統提供的許多優勢。您也可以在新伺服器或現有伺服器基礎架構上部署ONTAP SelectONTAP Select易於管理，並利用與基於ONTAP 的解決方案相同的管理軟體，這意味著營運開銷和培訓要求的降低。
+
+ONTAP Select透過兩種互補的許可模式（容量層和完全靈活的容量池）來適應您的容量消耗需求。這兩種授權模式都允許您以低至 1 TB 的增量增加容量。例如，您可以從幾 TB 開始，並隨著專案的成長動態增加容量。如果您使用容量池，則可以在專案完成後根據需要重新分配容量。
+
+ONTAP Select整合到 VMware vSphere 等雲端管理框架中。這有助於加速部署檔案服務、主目錄、軟體開發環境和應用程式測試等新專案。
+
+SnapMirror軟體支援您在混合雲的ONTAP儲存之間移動數據，以便您輕鬆存取所需位置的數據。例如，您可以快速建立環境來驗證某個想法。之後，您可以將專案遷移到專用儲存平台進行生產部署，或將其作為開發工作流程的一部分，在雲端中更方便地存取。
+
+
+
+== 軟體定義儲存
+
+透過軟體實施和交付 IT 服務，管理員能夠以前所未有的速度和敏捷性快速配置資源。隨著現代資料中心轉向軟體定義基礎架構 (SDI) 架構，您可以將最有價值的 IT 資產與底層實體基礎架構分離，從而提供靈活性、可擴展性和可程式性。
+
+在商品化的世界中，資料分散在直連儲存 (DAS) 的各個孤島中，資料移動和管理已成為更複雜的問題。軟體定義儲存 (SDS) 已成為 SDI 領域的重要組成部分，旨在解決這些問題及其他問題。
+
+ONTAP Select是NetApp面向 SDS 市場的解決方案。 ONTAPONTAP Select為軟體定義資料中心帶來了企業級儲存管理功能，並將NetApp Data Fabric 架構擴展到物聯網 (IoT) 和戰術伺服器等極端邊緣用例。
+
+
+
+== 兩個軟體元件
+
+ONTAP Select由兩個主要軟體元件組成：
+
+
+
+=== ONTAP Select節點
+
+ONTAP Select叢集由一個、兩個、四個、六個或八個節點組成。每個叢集節點都部署為單獨的虛擬機，並運行專門設計的ONTAP 9 軟體版本。
+
+
+
+=== ONTAP Select Deploy 管理實用程式
+
+Deploy 管理實用程式打包並安裝為單獨的 Linux 虛擬機器。您必須使用該實用程式在生產環境中部署ONTAP Select叢集。最新版本的ONTAP Select節點映像與 Deploy 實用程式捆綁在一起。
+
+
+NOTE: Deploy 管理公用程式未指派單獨的版本號。 Deploy的版本號碼與關聯的ONTAP Select版本相同。但是，特定ONTAP Select版本中 Deploy 實用程式的每次更新都有唯一的內部版本號。
+
+
+
+== 典型部署的圖示
+
+下圖展示如何使用NetApp ONTAP Select Deploy 管理公用程式來部署和支援四節點ONTAP Select叢集。 Deploy實用程式和ONTAP Select節點在專用虛擬機器管理程式主機上作為單獨的虛擬機器運作。
+
+image:ots_architecture.png["展示使用 Deploy 管理實用程式建立的ONTAP Select四節點叢集。"]
+
+
+
+== 比較ONTAP Select和ONTAP 9
+
+基於硬體的ONTAP和ONTAP Select均提供企業級儲存解決方案。然而，由於它們的設計和實施方式不同，因此各自可以滿足不同的業務需求和使用情境。在規劃ONTAP Select部署之前，您應該熟悉這兩個平台之間的主要差異。
+
+
+
+=== 不同的 HA 架構
+
+根據您在叢集中定義的節點數， ONTAP Select提供 HA 功能。例如，一個四節點群集由兩個 HA 對組成。ONTAP Select使用的 HA 架構是基於非共用儲存模型。也就是說，HA 對中的一個節點無法直接存取另一個節點擁有的儲存。這種設計可能會影響ONTAP Select 的某些運作特性。
+
+
+
+=== 容量許可
+
+ONTAP Select引進了基於消費的授權模式。在生產環境中部署ONTAP Select叢集時，您必須為每個節點或共用容量池購買一個包含儲存容量的授權。您必須使用 Deploy 公用程式套用用於確定叢集節點儲存容量的授權檔案。
+
+
+
+=== ONTAP功能許可
+
+ONTAP Select叢集中的每個節點都會自動獲得使用多項ONTAP功能的許可。您無需手動安裝或套用這些功能許可證。
+
+
+
+=== ONTAP Select不支援的ONTAP功能
+
+ONTAP Select不支援多項ONTAP功能。大多數情況下，這些功能需要虛擬化ONTAP Select環境中不提供的特殊硬體。
+
+* 自主勒索軟體防護 (ARP) 的自動更新
++
+
+NOTE: 從ONTAP Select 9.16.1 開始，支援手動更新 ARP，並且 ARP 功能許可證包含在NetApp許可證文件 (NLF) 中。
+
+* 叢集 IP 空間
++
+不支援對叢集 IP 空間進行任何修改，包括新增或刪除連接埠、虛擬 LAN (VLAN) 或連結聚合群組。
+
+* 光纖通道
++
+不支援光纖通道和乙太網路光纖通道。
+
+* 健康監測器
++
+基於硬體的ONTAP部署中使用的傳統運作狀況監控特定於底層硬體元件。由於ONTAP Select使用的是虛擬化環境，因此運行狀況監控器處於非活動狀態。
+
+* 介面組
++
+不支援介面組。
+
+* 多租戶金鑰管理員（MTKM）
+* NIC 卸載支援
++
+由於ONTAP Select所使用的虛擬化環境，因此不支援 NIC 卸載功能。
+
+* NetApp儲存加密驅動器
+* ONTAP連接埠屬性
++
+不支援修改ONTAP埠的屬性，包括速度、雙工和流量控制。
+
+* 服務處理器
+* SVM 遷移
+* SnapLock Compliance
+* SnapMirror主動同步
+* VMware HCX
+
+
+.相關資訊
+* link:reference_lic_ontap_features.html#ontap-features-automatically-enabled-by-default["了解預設啟用的ONTAP功能"]
+* link:concept_lic_evaluation.html["了解ONTAP Select許可證選項"]
+

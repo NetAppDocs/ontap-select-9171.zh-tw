@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: task_cli_connectivity.html 
+keywords: administer, administering, cli, connectivity, network connectivity, network checker 
+summary: 您可以測試內部叢集網路上兩個或多個ONTAP Select節點之間的網路連線。通常在部署多節點叢集之前執行此測試，以檢測可能導致操作失敗的問題。 
+---
+= 確認ONTAP Select節點之間的網路連接
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以測試內部叢集網路上兩個或多個ONTAP Select節點之間的網路連線。通常在部署多節點叢集之前執行此測試，以檢測可能導致操作失敗的問題。
+
+.開始之前
+測試中包含的所有ONTAP Select節點都必須配置並啟動。
+
+.關於此任務
+每次啟動測試時，背景都會建立新的流程運行，並為其指派一個唯一的運行識別碼。每次只能啟動一個運行。
+
+此測試有兩種控制其操作的模式：
+
+* 快速：此模式執行基本的無中斷測試。將執行 PING 測試，以及網路 MTU 大小和 vSwitch 測試。
+* 擴展模式：此模式會對所有冗餘網路路徑執行更全面的測試。如果在活動的ONTAP Select叢集上執行此模式，則可能會影響叢集的效能。
+
+
+
+NOTE: 建議您在建立多節點叢集之前始終執行快速測試。快速測試成功完成後，您可以根據生產需求選擇執行擴充測試。
+
+.步驟
+. 使用管理員帳戶Sign inDeploy 實用程式 CLI。
+. 顯示網路連線檢查器的目前運作並驗證沒有活動運作：
++
+`network connectivity-check show`
+
+. 啟動網路連接檢查器並記下命令輸出中的運行標識符：
++
+`network connectivity-check start -host-names HOSTNAMES -vswitch-type VSWITCH_TYPE-mode MODE`
+
++
+例子
+
++
+[listing]
+----
+network connectivity-check start -host-names 10.234.81.14
+10.234.81.15 -vswitch-type StandardVSwitch -mode quick
+----
+. 根據運行標識符監控網路連接檢查器的進度：
++
+`network connectivity-check show -run-id RUN_ID`
+
+
+
+.完成後
+網路連線檢查程序通常會透過刪除新增至ONTAP-Internal 連接埠群組的所有臨時連接埠和 IP 位址來進行清理。但是，如果連接性檢查器未能移除臨時端口，則必須透過重新執行帶有相應選項的 CLI 命令來執行手動清理操作。 `-mode cleanup` 。如果不從ONTAP-Internal 連接埠群組中刪除臨時連接埠，則可能無法成功建立ONTAP Select虛擬機器。

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_vcenter.html 
+keywords: plan, planning, vmware vcenter, vcenter server, vcenter 
+summary: 您應考慮與 VMware vCenter 相關的幾項規劃要求。 
+---
+= ONTAP SelectVMware vCenter 伺服器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您必須定義一個 vCenter 伺服器帳戶並將其與包含必要管理權限的角色關聯。
+
+
+NOTE: 您還需要管理部署ONTAP Select 的ESXi 虛擬機器管理程式主機的 vCenter 伺服器的完全限定網域名稱或 IP 位址。
+
+
+
+== 管理權限
+
+建立和管理ONTAP Select叢集所需的最低管理權限如下所示。
+
+
+
+=== 資料儲存
+
+* 分配空間
+* 瀏覽資料存儲
+* 低階文件操作
+* 更新虛擬機器文件
+* 更新虛擬機器元數據
+
+
+
+
+=== 主持人
+
+配置::
++
+--
+* 網路設定
+* 系統管理
+
+
+--
+本地操作::
++
+--
+* 建立虛擬機
+* 刪除虛擬機
+* 重新配置虛擬機
+
+
+--
+
+
+
+
+=== 網路
+
+* 分配網路
+
+
+
+
+=== 虛擬機
+
+配置:: 該類別中的所有特權。
+交互作用:: 該類別中的所有特權。
+存貨:: 該類別中的所有特權。
+供應:: 該類別中的所有特權。
+
+
+
+
+=== 虛擬應用
+
+該類別中的所有特權。
+
+.相關資訊
+link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html#ontap-select-deploy-vmware-vcenter-server-considerations["了解 vCenter 中 vSAN ESA 的 VMware vSphere 權限"]

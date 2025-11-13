@@ -1,0 +1,169 @@
+---
+sidebar: sidebar 
+permalink: concept_nw_single_multi_node.html 
+keywords: ontap select, single node network configuration, multinode network configuration 
+summary: ONTAP Select支援單節點和多節點網路配置。 
+---
+= ONTAP Select單節點與多節點網路配置
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select支援單節點和多節點網路配置。
+
+
+
+== 單節點網路配置
+
+單節點ONTAP Select配置不需要ONTAP內部網絡，因為沒有叢集、HA 或鏡像流量。
+
+與ONTAP Select產品的多節點版本不同，每個ONTAP Select VM 包含三個虛擬網路適配器，分別提供給ONTAP網路連接埠 e0a、e0b 和 e0c。
+
+這些連接埠用於提供以下服務：管理、資料和叢集間 LIF。
+
+.虛擬機
+ONTAP Select可以部署為單節點叢集。虛擬機管理程式主機包含一個虛擬交換機，用於提供對外部網路的存取。
+
+.ESXi
+下圖顯示了這些連接埠與底層實體適配器之間的關係，該圖描繪了 ESX 虛擬機器管理程式上的一個ONTAP Select叢集節點。
+
+單節點ONTAP Select叢集的網路配置
+
+image:DDN_03.jpg["單節點ONTAP Select叢集的網路配置"]
+
+
+NOTE: 儘管兩個適配器對於單節點叢集來說已經足夠，但仍需要 NIC 組合。
+
+
+
+=== LIF 分配
+
+如本文檔的多節點 LIF 分配部分所述， ONTAP Select使用 IP 空間將叢集網路流量與資料流量和管理流量分開。此平台的單節點版本不包含叢集網路。因此，在叢集 IP 空間中不存在任何連接埠。
+
+
+NOTE: 叢集和節點管理 LIF 會在ONTAP Select叢集設定期間自動建立。其餘 LIF 可在部署後建立。
+
+
+
+=== 管理和數據 LIF（e0a、e0b 和 e0c）
+
+ONTAP連接埠 e0a、e0b 和 e0c 被委派為承載以下類型流量的 LIF 的候選連接埠：
+
+* SAN/NAS 協定流量（CIFS、NFS 和 iSCSI）
+* 叢集、節點和 SVM 管理流量
+* 叢集間流量（SnapMirror和SnapVault）
+
+
+
+
+== 多節點網路配置
+
+多節點ONTAP Select網路配置由兩個網路組成。
+
+這兩個網路分別是：內部網路（負責提供叢集和內部複製服務）和外部網路（負責提供資料存取和管理服務）。對這兩個網路內部的流量進行端到端隔離，對於建立適合叢集彈性的環境至關重要。
+
+下圖顯示了這些網絡，該圖展示了在 VMware vSphere 平台上運行的四節點ONTAP Select叢集。六節點叢集和八節點叢集的網路佈局類似。
+
+
+NOTE: 每個ONTAP Select實例都駐留在單獨的實體伺服器上。內部和外部流量使用單獨的網路連接埠群組進行隔離，這些連接埠群組分配給每個虛擬網路接口，並允許叢集節點共享相同的實體交換器基礎架構。
+
+ONTAP Select多節點叢集網路配置概述
+
+image:DDN_01.jpg["ONTAP Select多節點叢集網路配置概述"]
+
+每個ONTAP Select虛擬機包含七個虛擬網路適配器，這些適配器以一組七個網路連接埠（e0a 至 e0g）的形式呈現給ONTAP 。儘管ONTAP將這些適配器視為實體 NIC，但它們實際上是虛擬的，並透過虛擬化網路層映射到一組實體介面。因此，每個託管伺服器不需要六個實體網路連接埠。
+
+
+NOTE: 不支援向ONTAP Select VM 新增虛擬網路適配器。
+
+這些連接埠已預先配置以提供以下服務：
+
+* e0a、e0b 和 e0g。管理和數據 LIF
+* e0c、e0d。集群網路 LIF
+* e0e.RSMRWS
+* e0f.HA 互連
+
+
+連接埠 e0a、e0b 和 e0g 位於外部網路上。雖然連接埠 e0c 到 e0f 執行多種不同功能，但它們共同構成了內部 Select 網路。在進行網路設計時，應將這些連接埠放置在單一二層網路上。無需將這些虛擬適配器分散在不同的網路之間。
+
+下圖說明了這些連接埠與底層實體適配器之間的關係，該圖描繪了 ESX 虛擬機器管理程式上的一個ONTAP Select叢集節點。
+
+*多節點ONTAP Select叢集中單一節點的網路配置*
+
+image:DDN_02.jpg["作為多節點ONTAP Select叢集一部分的單一節點的網路配置"]
+
+跨不同實體網路卡隔離內部和外部流量，可防止網路資源存取不足而導致系統延遲。此外，透過網路卡綁定進行聚合，可確保單一網路介面卡發生故障時， ONTAP Select叢集節點仍可存取對應的網路。
+
+請注意，外部網路和內部網路連接埠群組均以對稱方式包含所有四個網路卡適配器。外部網路連接埠群組中的活動連接埠是內部網路中的備用連接埠。相反，內部網路連接埠群組中的活動連接埠是外部網路連接埠群組中的備用連接埠。
+
+
+
+=== LIF 分配
+
+隨著 IP 空間的引入， ONTAP連接埠角色已被棄用。與FAS陣列一樣， ONTAP Select叢集包含預設 IP 空間和叢集 IP 空間。透過將網頁連接埠 e0a、e0b 和 e0g 放入預設 IP 空間，並將連接埠 e0c 和 e0d 放入叢集 IP 空間，這些連接埠實際上被隔離，無法託管不屬於該 IP 空間的 LIF。 ONTAPONTAP Select叢集中的其餘連接埠透過自動指派提供內部服務的介面來使用。它們不會像 RSM 和 HA 互連接口那樣透過ONTAP Shell 公開。
+
+
+NOTE: 並非所有 LIF 都可透過ONTAP指令 Shell 看到。 HA互連連接口和 RSM 介面在ONTAP中處於隱藏狀態，僅供內部使用，以提供各自的服務。
+
+以下章節將詳細介紹網路連接埠和 LIF。
+
+
+
+=== 管理和數據 LIF（e0a、e0b 和 e0g）
+
+ONTAP連接埠 e0a、e0b 和 e0g 被委派為承載以下類型流量的 LIF 的候選連接埠：
+
+* SAN/NAS 協定流量（CIFS、NFS 和 iSCSI）
+* 叢集、節點和 SVM 管理流量
+* 叢集間流量（SnapMirror和SnapVault）
+
+
+
+NOTE: 叢集和節點管理 LIF 會在ONTAP Select叢集設定期間自動建立。其餘 LIF 可在部署後建立。
+
+
+
+=== 集群網路 LIF（e0c、e0d）
+
+ONTAP連接埠 e0c 和 e0d 被指定為叢集介面的主連接埠。在每個ONTAP Select叢集節點中， ONTAP設定期間會使用連結本機 IP 位址 (169.254.xx) 自動產生兩個叢集介面。
+
+
+NOTE: 這些介面不能指派靜態 IP 位址，且不應建立額外的叢集介面。
+
+叢集網路流量必須流經低延遲、非路由的第 2 層網路。由於叢集吞吐量和延遲要求， ONTAP Select叢集應位於實體位置較近的位置（例如，多機櫃、單一資料中心）。不支援透過跨 WAN 或跨較遠地理距離分離 HA 節點來建立四節點、六節點或八節點延伸叢集配置。支援使用中介器的延伸雙節點配置。
+
+詳情請參閱該部分link:reference_plan_best_practices.html#two-node-stretched-ha-metrocluster-sds-best-practices["雙節點擴展 HA (MetroCluster SDS) 最佳實踐"]。
+
+
+NOTE: 為確保叢集網路流量的最大吞吐量，此網路連接埠配置為使用巨型幀（7500 到 9000 MTU）。為確保叢集正常運行，請驗證所有為ONTAP Select叢集節點提供內部網路服務的上游虛擬交換器和實體交換器上是否都啟用了巨型訊框。
+
+
+
+=== RAID SyncMirror流量（e0e）
+
+使用位於網路連接埠 e0e 上的內部網路接口，跨 HA 合作夥伴節點同步複製區塊。此功能使用ONTAP在叢集設定期間配置的網路介面自動運行，無需管理員進行任何配置。
+
+
+NOTE: ONTAP保留埠 e0e 用於內部複製流量。因此，此連接埠和託管 LIF 在ONTAP命令列介面 (CLI) 或系統管理員 (System Manager) 中均不可見。此介面配置為使用自動產生的連結本機 IP 位址，不支援重新指派備用 IP 位址。此網路連接埠需要使用巨型幀（MTU 為 7500 到 9000）。
+
+
+
+=== HA 互連 (e0f)
+
+NetApp FAS陣列使用專用硬體在ONTAP叢集中的 HA 對之間傳遞訊息。然而，軟體定義環境往往缺乏此類設備（例如 InfiniBand 或 iWARP 設備），因此需要一種替代解決方案。儘管考慮了多種可能性，但ONTAP對互連傳輸的要求要求在軟體中模擬此功能。因此，在ONTAP Select叢集中，HA 互連的功能（傳統上由硬體提供）已設計到作業系統中，並使用乙太網路作為傳輸機制。
+
+每個ONTAP Select節點都配置有一個 HA 互連埠 e0f。此連接埠託管 HA 互連網路接口，該接口負責兩個主要功能：
+
+* 在 HA 對之間鏡像NVRAM的內容
+* 在 HA 對之間傳送/接收 HA 狀態訊息和網路心跳訊息
+
+
+HA 互連流量透過在乙太網路封包內分層遠端直接記憶體存取 (RDMA) 幀，使用單一網路介面流經此網路連接埠。
+
+
+NOTE: 與 RSM 連接埠 (e0e) 類似，使用者無法從ONTAP CLI 或 System Manager 中看到實體連接埠和託管網路介面。因此，無法修改此介面的 IP 位址，也無法變更連接埠的狀態。此網路連接埠需要使用巨型幀（MTU 為 7500 到 9000）。

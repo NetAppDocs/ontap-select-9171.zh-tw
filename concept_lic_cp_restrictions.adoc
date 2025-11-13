@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_cp_restrictions.html 
+keywords: license, licensing, Capacity Pools, restrictions 
+summary: 使用容量池許可模型時適用的限制如下所示。 
+---
+= ONTAP Select容量池許可的部署限制
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用容量池許可模型時適用的限制如下所示。
+
+.每個集群的一致許可模型
+單一ONTAP Select叢集中的所有節點必須使用相同的許可模式，即容量層或容量池。您不能混合使用單一叢集中節點的授權類型。
+
+.叢集中的所有節點使用相同的許可證管理器實例
+ONTAP Select叢集中所有具有容量池許可證的節點都必須使用相同許可證管理器實例。由於每個 Deploy 實例中都有一個許可證管理器實例，因此此限制重申了現有要求，即叢集中的所有節點都必須由同一個 Deploy 實例管理。
+
+.每個節點一個容量池
+每個節點只能從一個容量池租用儲存。一個節點不能使用兩個或多個容量池。
+
+.HA 對中的節點使用同一個池
+單一 HA 對中的兩個節點必須從同一容量池租用儲存。但是，同一叢集內的不同 HA 對可以從由相同授權管理器管理的不同池中租用儲存。
+
+.儲存許可證期限
+從NetApp取得儲存許可證時，必須選擇許可證期限。例如，許可證有效期可以為一年。
+
+.資料聚合租賃期限
+當ONTAP Select節點為資料聚合請求儲存租約時，許可證管理器會根據容量池的配置提供特定期限的租約。您可以將每個池的租約期限配置為 1 小時到 7 天之間。預設租約期限為 24 小時。
+
+.指派給 Deploy 的靜態 IP 位址
+使用容量池授權時，必須為 Deploy 管理公用程式指派靜態 IP 位址。

@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: concept_nw_internal_external.html 
+keywords: ontap select, internal network, external network 
+summary: 內部和外部ONTAP Select網路的特點。 
+---
+= ONTAP Select內部與外部網絡
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select內部和外部網路的特性。
+
+
+
+== ONTAP Select內部網路
+
+內部ONTAP Select網路僅存在於產品的多節點版本中，負責為ONTAP Select叢集提供叢集通訊、HA 互連和同步複製服務。此網路包含以下連接埠和介面：
+
+* *e0c、e0d。 *託管叢集網路 LIF
+* *e0e.*託管 RSM LIF
+* *e0f.*託管 HA 互連 LIF
+
+
+此網路的吞吐量和延遲對於確定ONTAP Select叢集的效能和彈性至關重要。為了確保叢集安全並確保系統介面與其他網路流量隔離，需要進行網路隔離。因此，此網路必須由ONTAP Select叢集專用。
+
+
+NOTE: 不支援將 Select 內部網路用於 Select 叢集流量以外的其他流量（例如應用程式流量或管理流量）。 ONTAPONTAPVLAN 上不能有其他虛擬機器或主機。
+
+穿越內部網路的網路封包必須位於帶有 VLAN 標記的專用第 2 層網路上。這可以透過完成以下任務之一來實現：
+
+* 將 VLAN 標記的連接埠群組指派給內部虛擬 NIC（e0c 到 e0f）（VST 模式）
+* 使用上游交換器提供的本機 VLAN，其中本機 VLAN 不用於任何其他流量（指派沒有 VLAN ID 的連接埠群組，即 EST 模式）
+
+
+在所有情況下，內部網路流量的 VLAN 標記都是在ONTAP Select VM 之外完成的。
+
+
+NOTE: 僅支援 ESX 標準和分散式 vSwitch。不支援其他虛擬交換器或 ESX 主機之間的直接連線。內部網路必須完全開放；不支援 NAT 或防火牆。
+
+在ONTAP Select叢集中，內部流量和外部流量使用稱為連接埠群組的虛擬二層網路物件進行隔離。正確分配這些連接埠群組的 vSwitch 至關重要，尤其是對於負責提供叢集、高可用性互連和鏡像複製服務的內部網路而言。這些網路連接埠的網路頻寬不足會導致效能下降，甚至影響叢集節點的穩定性。因此，四節點、六節點和八節點叢集要求內部ONTAP Select網路使用 10Gb 連線；不支援 1Gb 網路卡。但是，可以對外部網路進行權衡，因為限制流入ONTAP Select叢集的資料流不會影響其可靠運作的能力。
+
+雙節點叢集可以使用四個 1Gb 端口進行內部流量傳輸，也可以使用 10Gb 端口，而無需像四節點叢集那樣使用兩個 10Gb 端口。如果伺服器環境不適合安裝四個 10Gb NIC 卡，則可以將兩個 10Gb NIC 卡用於內部網絡，將兩個 1Gb NIC 卡用於外部ONTAP網絡。
+
+
+
+=== 內部網路驗證與故障排除
+
+可以使用網路連接檢查器功能來驗證多節點叢集中的內部網路。可以透過執行 Deploy CLI 來呼叫此函數。 `network connectivity-check start`命令。
+
+執行以下命令以查看測試的輸出：
+
+[listing]
+----
+network connectivity-check show --run-id X (X is a number)
+----
+此工具僅適用於對多節點 Select 叢集中的內部網路進行故障排除。不應用於排除單節點叢集（包括 vNAS 配置）、 ONTAP Deploy 到ONTAP Select 的連線問題或客戶端連線問題。
+
+叢集建立精靈（ ONTAP Deploy UI 的一部分）包含內部網路檢查器，作為建立多節點叢集期間可用的選用步驟。鑑於內部網路在多節點叢集中發揮的重要作用，將此步驟作為叢集建立工作流程的一部分可以提高叢集創建操作的成功率。
+
+從ONTAP Deploy 2.10 開始，內部網路使用的 MTU 大小可以設定在 7,500 到 9,000 之間。網路連線檢查器也可用於測試 7,500 到 9,000 之間的 MTU 大小。預設 MTU 值設定為虛擬網路交換器的值。如果環境中存在 VXLAN 等網路覆蓋，則必須將該預設值替換為較小的值。
+
+
+
+== ONTAP Select外部網絡
+
+ONTAP Select外部網路負責叢集的所有出站通信，因此在單節點和多節點配置中均存在。雖然此網路不像內部網路那樣具有嚴格定義的吞吐量要求，但管理員應注意不要在客戶端和ONTAP虛擬機器之間造成網路瓶頸，因為效能問題可能會被誤認為是ONTAP Select問題。
+
+
+NOTE: 與內部流量類似，外部流量可以在 vSwitch 層 (VST) 和外部交換器層 (EST) 進行標記。此外，外部流量也可以由ONTAP Select虛擬機本身透過稱為 VGT 的過程進行標記。請參閱該部分link:concept_nw_data_mgmt_separation.html["數據和管理流量分離"]更多詳情請見下文。
+
+下表重點介紹了ONTAP Select內部和外部網路之間的主要差異。
+
+*內部網路與外部網路快速參考*
+
+[cols="3*"]
+|===
+| 描述 | 內部網路 | 外部網路 
+
+
+| 網路服務 | 群集 HA/IC RAID SyncMirror (RSM) | 叢集間資料管理（SnapMirror和SnapVault） 
+
+
+| 網路隔離 | 必需的 | 選修的 
+
+
+| 幀大小（MTU） | 7,500 至 9,000 | 1,500（預設）9,000（支援） 
+
+
+| IP位址分配 | 自動生成 | 使用者定義 
+
+
+| DHCP 支援 | 不 | 不 
+|===
+
+
+=== NIC 組合
+
+為了確保內部和外部網路均具備提供高效能和容錯能力所需的頻寬和彈性特性，建議使用實體網路適配器綁定。支援具有單一 10Gb 連結的雙節點叢集配置。但是， NetApp建議的最佳實務是在ONTAP Select叢集的內部和外部網路上都使用 NIC 綁定。
+
+
+
+=== MAC 位址生成
+
+指派給所有ONTAP Select網路連接埠的 MAC 位址均由隨附的部署公用程式自動產生。此實用程式使用NetApp特有的平台特定組織唯一識別碼 (OUI)，以確保不與FAS系統衝突。之後，此位址的副本將儲存在ONTAP Select安裝虛擬機器 (ONTAP Deploy) 的內部資料庫中，以防止在未來的節點部署過程中意外重新分配。管理員在任何情況下都不應修改已指派的網路連接埠 MAC 位址。

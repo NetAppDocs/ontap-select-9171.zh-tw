@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: task_lic_acquire_ct.html 
+keywords: license, licensing, acquire, Capacity Tiers 
+summary: 使用容量層許可時，您需要為每個ONTAP Select節點取得一個許可證文件。此許可證檔案定義了節點的儲存容量，並透過NetApp分配的唯一九位元序號鎖定到節點。 
+---
+= 取得ONTAP Select Capacity Tier 許可證
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用容量層許可時，您需要為每個ONTAP Select節點取得一個許可證文件。此許可證檔案定義了節點的儲存容量，並透過NetApp分配的唯一九位元序號鎖定到節點。
+
+.開始之前
+您必須擁有NetApp指派給節點的九位數許可證序號。在嘗試取得許可證文件之前，您應該至少等待採購訂單出貨日期後的二十四小時。
+
+.關於此任務
+您必須為每個需要容量層許可證的ONTAP Select節點執行此任務。
+
+.步驟
+. 使用 Web 瀏覽器存取ONTAP Select許可證站點：
++
+`https://register.netapp.com/register/getlicensefile`
+
+. 使用您的NetApp帳戶憑證Sign in。
+. 在*許可證產生器*頁面上，從下拉方塊中選擇所需的許可證。
+. 填寫同一頁面上的其餘字段，包括 *產品序號 *，即ONTAP Select節點的序號。
+. 點選“*提交*”。
+. 請求驗證後，選擇許可證的交付方式。
++
+您可以點選*下載授權*或*電子郵件授權*。
+
+. 根據您選擇的交付方式確認您收到了許可證文件。
+
+
+.完成後
+您必須先將許可證文件上傳到 Deploy 管理實用程序，然後才能將其套用至ONTAP Select節點。

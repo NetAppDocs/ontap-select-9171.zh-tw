@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: concept_adm_before.html 
+keywords: administer, administering, web, before you begin 
+summary: 建立ONTAP Select叢集後，您可以透過執行各種管理任務來支援部署。以下是一些需要注意的一般事項。 
+---
+= 開始管理ONTAP Select之前
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+建立ONTAP Select叢集後，您可以透過執行各種管理任務來支援部署。以下是一些需要注意的一般事項。
+
+一般來說，使用 Deploy Web 介面可以執行的程式分為三類。
+
+.部署ONTAP Select集群
+您可以部署單節點或多節點叢集。看link:task_deploy_cluster.html["部署ONTAP Select集群"]了解更多。
+
+.使用現有ONTAP Select集群執行程序
+管理程序分為不同的類別，例如“安全”和“集群”。
+
+.在部署實用程式上執行一個過程
+有幾個特定於 Deploy 的程式（例如更改管理員的密碼）。
+
+
+
+== 管理ONTAP Select
+
+作為ONTAP Select支援的一部分，有許多不同的管理程式可用。此外，還有一些特定於 Deploy 管理實用程式的程式。以下介紹其中最重要的程式。通常，所有程式都使用 Deploy Web 使用者介面。
+
+
+NOTE: 你也可以link:https://docs.netapp.com/us-en/ontap-select/task_cli_signing_in.html["使用命令列介面"]管理ONTAP Select。
+
+
+
+== 執行額外的ONTAP配置
+
+部署ONTAP Select叢集後，您可以像管理基於硬體的ONTAP系統一樣配置和管理該叢集。例如，您可以使用ONTAP System Manager 或ONTAP CLI 來設定ONTAP Select叢集。
+
+.NetApp客戶端軟體
+您可以使用以下受支援的NetApp客戶端軟體連線至ONTAP Select ：
+
+* ONTAP系統管理器
+* Active IQ Unified Manager
+* OnCommand Insight
+* OnCommand Workflow Automation
+* SnapCenter
+* 適用於 VMware vSphere 的虛擬儲存控制台
+
+
+若要確定支援的客戶端軟體版本，請查看以下內容：link:https://mysupport.netapp.com/matrix/["互通性矩陣工具"^] 。如果客戶端軟體支援ONTAP 9，則ONTAP Select也支援相同版本
+
+
+NOTE: 使用SnapCenter及其對應的插件需要基於伺服器的許可證。ONTAP Select目前不支援SnapCenter插件的儲存系統許可。
+
+ONTAP Select不支援清單中未包含的任何其他NetApp用戶端軟體。
+
+.可能的配置選項
+配置叢集時有多個可用選項，其中包括：
+
+* 建立網路配置
+* 佈置你的聚合體
+* 建立資料儲存虛擬機器 (SVM)
+
+
+.購買了具有儲存容量的許可證
+如果您決定在部署ONTAP Select叢集時不安裝具有儲存容量的許可證文件，則必須在使用購買的許可證執行的叢集的寬限期到期之前取得並安裝許可證文件。
+
+.鏡像聚合
+Deploy 管理公用程式會從可用的資料儲存空間（例如 Pool0 和 Pool1）在每個ONTAP Select節點上建立資料備用磁碟。要在多節點叢集上實現資料的高可用性，您必須使用這些備用磁碟建立鏡像聚合。
+
+
+NOTE: 僅當資料聚合配置為鏡像聚合時，才支援高可用性接管。

@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: concept_usecase_overview.html 
+keywords: ontap select, business use case overview, deployment, storage, development and testing 
+summary: ONTAP Select憑藉著透過虛擬機器管理程式虛擬化提供的固有靈活性，適用於多種不同類型的應用程式。 
+---
+= ONTAP Select業務需求與使用場景
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select憑藉著透過虛擬機器管理程式虛擬化提供的固有靈活性，適用於多種不同類型的應用程式。
+
+
+
+== 部署
+
+從高層次來看，您可以根據虛擬機器管理程式主機伺服器上的工作負載以兩種不同的方式部署ONTAP Select 。
+
+
+
+=== 專用部署
+
+在專用部署模型中，單一ONTAP Select實例在主機伺服器上執行。在同一虛擬機器管理程式主機上不執行任何其他重要處理。
+
+
+
+=== 共置部署
+
+在共置部署模型中， ONTAP Select與其他工作負載共用主機。具體來說，會有一些額外的虛擬機，每個虛擬機通常會運行計算應用程式。這些計算工作負載位於ONTAP Select叢集的本機。此模型支援專門的應用程式和部署要求。與專用部署模型一樣，每個ONTAP Select虛擬機器都必須在單獨的專用虛擬機器管理程式主機上執行。
+
+
+
+== 儲存
+
+根據您的業務需求， ONTAP Select可以用作主儲存或輔助儲存。
+
+
+
+=== 主儲存
+
+在某些情況下，您可以選擇部署ONTAP Select作為主儲存平台。這些實施類型會有所不同，具體取決於應用程式的工作負載特性以及您的業務目標。
+
+
+
+=== 災難復原和二級存儲
+
+您可以使用ONTAP Select實現額外的存儲，以增強您的主存儲功能。額外的儲存空間可用於支援您組織的災難復原工作和資料備份計畫。
+
+
+
+== 開發和測試
+
+在組織內部署各種應用程式時，您可以將ONTAP Select用作整個應用程式開發和測試流程中不可或缺的一部分。例如，您可能需要暫時儲存來保存測試輸入或輸出資料。這些類型的部署時長可能會因應用程式的特性和要求而異。

@@ -1,0 +1,189 @@
+---
+sidebar: sidebar 
+permalink: task_adm_licenses.html 
+keywords: administer, administering, web, licenses 
+summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相關任務。 
+---
+= 管理ONTAP Select許可證
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在管理ONTAP Select許可證的過程中，您可以執行幾個相關任務。
+
+
+
+== 管理容量層許可證
+
+您可以根據需要新增、編輯和刪除ONTAP Select Capacity Tier 許可證。
+
+.步驟
+. 使用管理員帳戶透過 Web 介面Sign inDeploy 實用程式。
+. 選擇頁面頂部的“*管理*”標籤。
+. 選擇*許可證*並選擇*容量層*。
+. 可選擇選擇*過濾器*並限制顯示的許可證。
+. 若要取代現有許可證，請選擇一個許可證。image:icon_kebab.gif["選項"]然後選擇“更新”。
+. 若要新增許可證，請選擇頁面頂部的“*新增*”，然後選擇“*上傳許可證*”並從本機工作站中選擇許可證文件。
+
+
+
+
+== 管理容量池許可證
+
+您可以根據需要新增、編輯和刪除ONTAP Select容量池許可證。
+
+.步驟
+. 使用管理員帳戶透過 Web 介面Sign inDeploy 實用程式。
+. 選擇頁面頂部的“*管理*”標籤。
+. 選擇*許可證*並選擇*容量池*。
+. 或者，選擇*過濾器*並限制顯示的許可證。
+. （可選）選擇許可證並選擇image:icon_kebab.gif["選項"]管理現有許可證。
+. 新增許可證或續訂現有許可證：
++
+[role="tabbed-block"]
+====
+.新增許可證
+--
+若要新增許可證，請選擇頁面頂部的「*新增*」。
+
+--
+.續訂現有許可證
+--
+要續訂現有許可證：
+
+.. 選擇image:icon_kebab.gif["選項"]在現有許可證的基礎上。
+.. 選擇*上傳許可證*。
+.. 從本機工作站選擇一個許可證文件。
+
+
+--
+====
+. 若要查看容量池清單：
++
+.. 選擇*摘要*。
+.. 選擇並展開一個池以查看從該池租用儲存的叢集和節點。
+.. 在*許可證資訊*下查看許可證的目前狀態。
+.. 您可以在租約到期下更改為池簽發的租約期限。
+
+
+. 若要查看叢集清單：
++
+.. 選擇*詳細資訊*。
+.. 選擇並展開叢集以查看儲存利用率。
+
+
+
+
+
+
+== 重新安裝容量池許可證
+
+每個活動的容量池許可證都會鎖定到特定的許可證管理器實例，該實例包含在 Deploy 管理公用程式的實例中。如果您正在使用容量池許可證，然後還原或還原 Deploy 實例，則原始許可證將不再有效。您必須產生新的容量授權文件，然後將該授權安裝到新的 Deploy 執行個體。
+
+.開始之前
+* 確定原始 Deploy 實例所使用的所有容量池許可證。
+* 如果在建立新的 Deploy 執行個體時還原備份，請確定備份是否是最新的。
+* 找到原始 Deploy 實例最近建立的ONTAP Select節點（僅當原始 Deploy 實例的最新備份未還原到新的 Deploy 實例時）。
+* 還原或重新建立 Deploy 實例
+
+
+.關於此任務
+概括來說，此任務由三個部分組成。您必須重新產生並安裝 Deploy 實例所使用的所有容量池授權。將所有授權重新安裝到新的 Deploy 執行個體後，您可以根據需要重設序號。最後，如果 Deploy IP 位址已更改，則必須更新每個使用容量池授權的ONTAP Select節點。
+
+.步驟
+. 聯絡NetApp支援並取消綁定和取消註冊原始 Deploy 實例的所有容量池許可證。
+. 為每個容量池許可證取得並下載一個新的許可證文件。
++
+看link:task_lic_acquire_cp.html["取得容量池許可證"]了解更多。
+
+. 在新的 Deploy 實例上安裝容量池許可證：
++
+.. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+.. 選擇頁面頂部的“*管理*”標籤。
+.. 選擇*許可證*，然後選擇*容量池*。
+.. 選擇“*新增*”，然後選擇“*上傳許可證*”來選擇並上傳許可證。
+
+
+. 如果您在未還原備份的情況下建立了新的 Deploy 實例，或者您使用的備份不是最新的，則必須更新序號：
++
+.. 使用管理員帳戶Sign in部署公用程式命令列介面。
+.. 顯示原始 Deploy 實例最近建立的節點的序號：
++
+`node show -cluster-name CLUSTER_NAME -name NODE_NAME -detailed`
+
+.. 從二十位元節點序號擷取最後八位元數字，取得原始 Deploy 實例所使用的最後一個序號。
+.. 將 20 新增至序號以建立新的序號。
+.. 設定新 Deploy 實例的序號：
++
+`license-manager modify -serial-sequence SEQ_NUMBER`
+
+
+
+. 如果指派給新 Deploy 執行個體的 IP 位址與原始 Deploy 執行個體的 IP 位址不同，則必須在每個使用容量池授權的ONTAP Select節點上更新 IP 位址：
++
+.. Sign inONTAP Select節點的ONTAP命令列介面。
+.. 進入進階權限模式：
++
+`set adv`
+
+.. 顯示目前配置：
++
+`system license license-manager show`
+
+.. 設定節點使用的許可證管理器（部署）IP位址：
++
+`system license license-manager modify -host NEW_IP_ADDRESS`
+
+
+
+
+
+
+
+== 將評估許可證轉換為生產許可證
+
+您可以升級ONTAP Select評估叢集以使用生產容量層許可證和 Deploy 管理實用程式。
+
+.開始之前
+* 每個節點必須分配足夠的儲存空間來支援生產許可證所需的最低要求。
+* 您必須為評估叢集中的每個節點擁有容量層授權。
+
+
+.關於此任務
+在單節點叢集中修改叢集許可證會造成中斷。然而，在多節點叢集中則不會出現這種情況，因為轉換過程會逐一重新啟動每個節點以應用許可證。
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 選擇頁面頂部的“*Clusters*”標籤並選擇所需的叢集。
+. 在叢集詳情頁面頂部，選擇「*按一下此處*」修改叢集授權。
++
+您也可以在「叢集詳細資料」部分中選擇評估許可證旁邊的「修改」。
+
+. 為每個節點選擇一個可用的生產許可證或根據需要上傳額外的許可證。
+. 提供ONTAP憑證並選擇*修改*。
++
+叢集許可證升級可能需要幾分鐘。請等待流程完成，然後再離開頁面或進行任何其他變更。
+
+
+
+.完成後
+最初分配給每個節點用於評估部署的二十位元節點序號將被用於升級的生產許可證的九位元序號所取代。
+
+
+
+== 管理過期的容量池許可證
+
+通常情況下，許可證過期後不會發生任何反應。但是，由於節點與已過期的授權關聯，因此您無法安裝其他授權。在續約授權之前，請勿執行任何可能導致聚合離線的操作，例如重新啟動或故障轉移操作。建議的操作是加快許可證續約。
+
+有關ONTAP Select和許可證續訂的更多信息，請參閱“許可證、安裝、升級和還原”部分。link:https://docs.netapp.com/us-en/ontap-select/reference_faq.html#licenses-installation-upgrades-and-reverts["常問問題"] 。
+
+
+
+== 管理附加許可證
+
+對於ONTAP Select產品，附加許可證直接在ONTAP中應用，無需透過ONTAP Select Deploy 進行管理。看link:https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html["管理許可證概覽（僅限叢集管理員）"^]和link:https://docs.netapp.com/us-en/ontap/task_admin_enable_new_features.html["透過新增許可證密鑰來啟用新功能"^]了解更多。

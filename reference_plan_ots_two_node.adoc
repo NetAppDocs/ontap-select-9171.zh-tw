@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_two_node.html 
+keywords: plan, planning, two nodes, two node clusters 
+summary: 部署具有 HA 的雙節點叢集所需的規劃和配置與其他叢集節點配置相同。但是，在建立雙節點叢集時，您應該注意一些差異。 
+---
+= 具有 HA 的ONTAP Select雙節點集群
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+部署具有 HA 的雙節點叢集所需的規劃和配置與其他叢集節點配置相同。但是，在建立雙節點叢集時，您應該注意一些差異。
+
+.目標環境
+雙節點叢集由一個 HA 對組成，專為遠端辦公室和分支機構部署而設計。
+
+
+NOTE: 雖然主要為遠端和分公司環境設計，但您也可以根據需要在資料中心部署雙節點叢集。
+
+.授權
+您可以使用任何 VMware vSphere 授權部署雙節點叢集。不過，VMware ROBO 標準版和高級版授權是遠端和分公司部署的理想選擇。
+
+.仲介服務
+當叢集由兩個節點組成時，如果一個節點發生故障或通訊中斷，則無法達到所需的法定人數。為了解決此類裂腦情況， ONTAP Select Deploy 實用程式的每個實例都包含一個調解器服務。此服務連接到活動的雙節點叢集中的每個節點，以監控 HA 對並協助管理故障。調解器服務將 HA 狀態資訊維護在與每個雙節點叢集關聯的專用 iSCSI 目標上。
+
+
+CAUTION: 如果您有一個或多個活動的雙節點集群，則管理這些集群的ONTAP Select Deploy 虛擬機器必須始終處於運作狀態。如果ONTAP Select Deploy 虛擬機器停止運作或發生故障，則中介服務不可用，且雙節點叢集的 HA 功能將會遺失。
+
+.集群和中介服務的位置
+由於雙節點叢集通常部署在遠端或分支機構，因此它們可能遠離企業資料中心和提供管理支援的ONTAP Select Deploy 實用程式。透過這種配置， ONTAP Select Deploy 實用程式和叢集之間的管理流量將透過 WAN 傳輸。有關限制和約束的更多信息，請參閱發行說明。
+
+.備份 Deploy 配置數據
+最佳實踐是link:task_cli_clusters.html["備份ONTAP Select Deploy 配置數據"]定期進行，包括在建立集群之後。這對於雙節點叢集尤其重要，因為備份中包含了中介器配置資料。
+
+.指派給 Deploy 的靜態 IP 位址
+您必須為ONTAP Select Deploy 管理公用程式指派靜態 IP 位址。此要求適用於管理一個或多個ONTAP Select雙節點叢集的所有ONTAP Select Deploy 實例。

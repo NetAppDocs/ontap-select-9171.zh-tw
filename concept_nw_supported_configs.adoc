@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: concept_nw_supported_configs.html 
+keywords: ontap select, supported network configurations 
+summary: 選擇最佳硬體並配置您的網路以優化效能和彈性。 
+---
+= 支援的ONTAP Select網路配置
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+選擇最佳硬體並配置您的網路以優化效能和彈性。
+
+伺服器供應商深知客戶的需求各不相同，選擇至關重要。因此，在購買實體伺服器時，網路連線決策中存在著許多選擇。大多數商用系統都隨附各種網路卡 (NIC)，提供單一連接埠和多連接埠選項，速度和吞吐量各不相同。其中包括支援 VMware ESX 的 25Gb/s 和 40Gb/s 網路卡適配器。
+
+由於ONTAP Select虛擬機器的效能與底層硬體的特性直接相關，因此透過選擇更高速的 NIC 來提高虛擬機器的吞吐量，可以提高叢集效能並改善整體使用者體驗。可以使用四個 10 Gb NIC 或兩個高速 NIC (25/40 Gb/s) 來實現高效能網路佈局。此外，還支援許多其他配置。對於雙節點集群，支援 4 個 1 Gb 連接埠或 1 個 10 Gb 連接埠。對於單節點集群，支援 2 個 1 Gb 連接埠。
+
+.網路最低配置和推薦配置
+根據叢集大小，有幾種支援的乙太網路配置。
+
+[cols="30,35,35"]
+|===
+| 簇大小 | 最低要求 | 推薦 
+
+
+| 單節點集群 | 2 個 1GbE | 2 個 10GbE 
+
+
+| 雙節點集群或MetroCluster SDS | 4 個 1GbE 或 1 個 10GbE | 2 個 10GbE 
+
+
+| 四節點、六節點或八節點集群 | 2 個 10GbE | 4 個 10GbE 或 2 個 25/40GbE 
+|===
+
+NOTE: 不支援在正在運行的群集上進行單鏈路和多鏈路拓撲之間的轉換，因為可能需要在每個拓撲所需的不同 NIC 組合配置之間進行轉換。
+
+.使用多個實體交換器的網路配置
+當有足夠的硬體可用時， NetApp建議使用下圖所示的多交換器配置，因為它可以增加對實體交換器故障的保護。
+
+image:BP_02.jpg["使用多個實體交換器的網路配置"]

@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_platforms.html 
+keywords: license, licensing, platform license offerings, license offerings, standard, premium, premium xl 
+summary: 您可以購買三個平台容量等級之一的ONTAP Select容量層或容量池許可證。這些許可證決定了部署ONTAP Select 的主機的功能。 
+---
+= 了解ONTAP Select的平台許可證產品
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以購買標準級、高級或高級 XL 級ONTAP Select容量層或容量池許可證。這些許可證決定了部署ONTAP Select 的主機的功能。
+
+
+
+== 平台授權產品提供什麼
+
+特定的許可證方案決定了虛擬機器管理程式主機在以下兩個方面的功能：
+
+* 實例類型（CPU、記憶體）
+* 附加功能
+
+
+許可證產品依功能從標準版到高級版 XL 的升序排列。通常，您選擇的許可證選項會授予您該級別及所有較低級別的功能。例如，高級版同時提供高級版和標準版的功能。
+
+下表比較了標準版、進階版和進階 XL 版授權的功能。
+
+[cols="25,25,25,25,25"]
+|===
+2+| 許可證支援… | 標準 | 優質的 | 進階加大尺寸 
+
+
+2+| 實例類型 | 僅限小型 | 小號或中號 | 小號、中號或大號 
+
+
+.2+| 硬碟機 (HDD) 在… | 硬體 RAID 配置 | 是的 | 是的 | 是的 
+
+
+| vNAS 配置 | 是的 | 是的 | 是的 
+
+
+.3+| 固態硬碟 (SSD) 在… | 硬體 RAID 配置 | 不 | 是的 | 是的 
+
+
+| 軟體 RAID 配置 | 不 | 是的 | 是的 
+
+
+| vNAS 配置 | 是的 | 是的 | 是的 
+
+
+.3+| NVMe 驅動器在... | 硬體 RAID 配置 | 不 | 不 | 是的 
+
+
+| 軟體 RAID 配置 | 不 | 不 | 是的 
+
+
+| vNAS 配置 | 是的 | 是的 | 是的 
+
+
+2+| MetroCluster SDS | 不 | 是的 | 是的 
+|===
+
+NOTE: 基於核心的虛擬機器 (KVM) 不支援大型執行個體類型。
+
+
+
+== 比較平台授權產品的硬體支持
+
+標準版、高級版和高級 XL 授權產品支援多種硬體和軟體。有關硬體和軟體版本的最新信息，請參閱link:https://mysupport.netapp.com/matrix/["互通性矩陣工具"^]。
+
+[role="tabbed-block"]
+====
+.核心物品
+--
+[cols="5"30"]
+|===
+
+
+2+| 核心物品類型 3+| 描述 
+
+
+2+| 主機協定 3+| NFS、SMB/CIFS、iSCSI 和 NVMe over TCP 
+
+
+2+| 部署選項 3+| 單節點 雙節點集群（HA 對） 四節點、六節點或八節點集群 
+
+
+2+| 支援的容量（每個節點） 3+| 高達 400TB 原始資料（ESXi 和 KVM） 
+|===
+--
+.硬體
+--
+[cols="5"30"]
+|===
+
+
+2+| 硬體類型 3+| 描述 
+
+
+2+| 實例大小 | 小的 | 中等的 | 大的 
+
+
+2+| CPU系列 | Intel Xeon E5-26xx v3 (Haswell) 或更高版本 | Intel Xeon E5-26xx v3 (Haswell) 或更高版本 | Intel Xeon E5-26xx v3 (Haswell) 或更高版本 
+
+
+2+| ONTAP SelectCPU/內存 | 4 個虛擬 CPU (vCPU) / 16GB RAM | 8 個 vCPU / 64GB RAM | 16 個 vCPU / 128GB RAM 
+
+
+2+| 主機 CPU/記憶體最低需求^1^ | 6 核/24GB RAM | 10 核/72GB RAM | 18 核/136GB RAM 
+
+
+2+| 網路（每個節點） 3+| 單節點叢集至少有兩個 1GbE 埠 雙節點叢集（HA 對）至少有四個 1GbE 埠 四節點、六節點或八節點叢集至少有兩個 10GbE 端口 
+|===
+^1^ 假設虛擬機器管理程式有兩個核心和 8GB RAM。
+
+--
+.儲存類型
+--
+下表提供了指定儲存所需的最低許可證類型。 
+
+[cols="5"30"]
+|===
+
+
+2+| 儲存類型 3+| 描述 
+
+
+2+| 許可證類型 | 標準 | 優質的 | 進階加大尺寸 
+
+
+2+| 實例大小 | 小的 | 小型和中型 | 小、中、大 
+
+
+2+| 具有硬體 RAID 控制器的本地 DAS | 8 - 60 個驅動器 | 8 - 60 個驅動器 | 8 - 60 個驅動器 
+
+
+2+| 硬碟 (SAS、NL-SAS、SATA) | 不適用 | 4 – 60 個驅動器 | 4 – 60 個驅動器 
+
+
+2+| 固態硬碟 (SAS) | 不適用 | 4 – 60 個驅動器（僅限 SSD） | 4 – 60 個驅動器（僅限 SSD） 
+
+
+2+| 帶有軟體 RAID 的本地 DAS | 不適用 | 適用的 | 4 - 14 個驅動器（僅限 NVMe） 
+
+
+2+| 外部數組^1^ 3+| 託管在外部陣列上的資料儲存透過 FC、FCoE、iSCSI 和 NFS（KVM 不支援 NFS）連接。這些資料儲存提供高可用性和彈性。 
+|===
+^1^ 外部陣列協定支援反映了網路儲存連接。
+
+--
+.軟體
+--
+[cols="5"30"]
+|===
+
+
+2+| 軟體類型 3+| 描述 
+
+
+2+| 虛擬機器管理程序支援 (VMware) 3+| VMware vSphere 9.0、VMware vSphere 8.0GA 及更新 1 至 3、VMware vSphere 7.0GA 及更新 1 至 3C 
+
+
+2+| 虛擬機器管理程式支援 (KVM) 3+| Red Hat Enterprise Linux 64 位元 (KVM) 9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.8、8.7 和 8.6 Rocky Linux (KVM) 9.6 9.5、9.4、9.3、9.2、9.1、9.08. 
+
+
+2+| 管理軟體 3+| NetApp Active IQ Unified Manager管理套件ONTAP Select Deploy Utility SnapCenter （選購） 
+|===
+--
+====
+.相關資訊
+* link:concept_lic_production.html["了解容量層和容量池許可證類型"]
+

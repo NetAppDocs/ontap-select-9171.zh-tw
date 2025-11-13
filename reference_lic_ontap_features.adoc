@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: reference_lic_ontap_features.html 
+keywords: license, licensing, ontap features, default ontap features 
+summary: ONTAP Select為大多數ONTAP功能提供全面支援。部署叢集時，許多ONTAP功能都會自動為每個節點授予許可。但是，某些功能需要單獨的許可證。 
+---
+= ONTAP Select對ONTAP功能的支持
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select支援大多數ONTAP功能。部署叢集時，許多ONTAP功能都會自動為每個節點授予許可。但是，某些功能需要單獨的許可證。
+
+
+NOTE: ONTAP Select通常不支援具有特定於硬體的依賴性的ONTAP功能。
+
+
+
+== 預設自動啟用ONTAP功能
+
+ONTAP Select支援以下ONTAP功能，並且預設獲得許可：
+
+* 自主勒索軟體防護 (ARP)（手動更新）
+* CIFS
+* 重複資料刪除和壓縮
+* FlexCache
+* FlexClone
+* iSCSI
+* NDMP
+* NetApp卷加密（僅限不受限制的國家）
+* NFS
+* 基於 TCP 的 NVMe
+* ONTAP多租戶功能
+* ONTAP S3
+* S3 SnapMirror
+* SnapMirror
+* SnapMirror雲
+* SnapRestore
+* SnapVault
+* 儲存虛擬機器災難復原 (SVM DR)
++
+
+NOTE: ONTAP Select支援將 SVM DR 作為來源和目標，最多可建立 16 個關係。 SVMDR 支援僅限於使用來源ONTAP版本 2 以上版本。例如， ONTAP Select 9.12.1 來源可以連接到目標ONTAP版本 9.12.1、9.13.1 或 9.14.1。
+
+
+
+
+
+== 需要單獨授權的ONTAP功能
+
+對於任何未預設啟用的ONTAP功能，您需要單獨購買許可證，包括：
+
+* FabricPool
+* MetroCluster SDS（ONTAP Select高級授權產品）
+
+
+[NOTE]
+====
+* 對於ONTAP Select 9.16.1 及更早版本， SnapLock Select Enterprise（包括防篡改快照鎖定）可從以下位置取得：link:https://mysupport.netapp.com/site/["NetApp支援站點"^] 。
+* ONTAP Select不支援SnapLock Compliance 。
+* 使用StorageGRID時不需要FabricPool許可證。
+
+
+====
+.相關資訊
+* link:concept_ots_overview.html#compare-ontap-select-and-ontap-9["ONTAP Select與ONTAP 9 的比較"]
+* link:https://mysupport.netapp.com/site/systems/master-license-keys["NetApp ONTAP主授權金鑰"^]
+

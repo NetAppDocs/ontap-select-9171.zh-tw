@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_workflow.html 
+keywords: license, licensing, purchase, purchasing, workflow 
+summary: 您可以按照工作流程為ONTAP Select部署購買和申請許可證。 
+---
+= 購買ONTAP Select許可證時的工作流程
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+以下工作流程說明了為ONTAP Select部署購買和應用許可證的過程。購買許可證時，您必須選擇許可證模式和儲存容量。
+
+具體流程取決於您使用的是容量層許可證還是容量池許可證：
+
+九位數許可證序號:: 序號適用於節點（容量層）或儲存池（容量池）
+許可證鎖定ID:: 使用容量池許可證時，您必須擁有 Deploy 執行個體的許可證鎖定 ID
+授權網站:: 您可以在不同的網站上獲得容量層和容量池許可證
+
+
+image:purchased_license_workflow.png["描述購買和安裝用於生產ONTAP Select部署的儲存許可證的過程。"]
+
+.相關資訊
+link:task_adm_licenses.html["ONTAP Select許可證"]

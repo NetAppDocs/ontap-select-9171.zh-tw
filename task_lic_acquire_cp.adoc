@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: task_lic_acquire_cp.html 
+keywords: license, licensing, acquire, Capacity Pools 
+summary: 您必須為ONTAP Select節點所使用的每個容量池取得一個許可證文件。此許可證文件定義了池的儲存容量和有效期限。該檔案透過NetApp指派的唯一許可證序號和與 Deploy 實例關聯的許可證鎖定 ID 的組合鎖定到許可證管理員。 
+---
+= 取得ONTAP Select容量池許可證
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您必須為ONTAP Select節點所使用的每個容量池取得一個許可證文件。此許可證文件定義了池的儲存容量和有效期限。該檔案透過NetApp指派的唯一許可證序號和與 Deploy 實例關聯的許可證鎖定 ID 的組合鎖定到許可證管理員。
+
+.開始之前
+您必須擁有NetApp指派給容量池的九位數許可證序號。在嘗試取得許可證文件之前，您應該至少等待採購訂單出貨日期後的二十四小時。
+
+.關於此任務
+您必須對ONTAP Select節點所使用的每個容量池執行此任務。
+
+.步驟
+. 使用 Web 瀏覽器造訪NetApp支援網站並登入。
+. 點擊頂部的“*系統*”，然後點擊“*軟體授權*”。
+. 輸入容量池的許可證序號，然後按一下「*開始！*」。
+. 在許可證詳細資訊頁面上，導覽至「*產品詳細資料*」欄位。
+. 按一下對應行上的「取得NetApp授權檔案」。
+. 輸入您的ONTAP Select Deploy 實例的許可證鎖定 ID，然後按一下「提交」。
+. 選擇適當的交付方式並點擊*提交*。
+. 在交付確認視窗中按一下「*確定*」。
+
+
+.完成後
+您必須先將許可證文件上傳到 Deploy 管理實用程序，然後ONTAP Select節點才能使用容量池。

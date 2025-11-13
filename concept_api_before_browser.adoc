@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: concept_api_before_browser.html 
+keywords: rest api, deploy rest api, rest, access browser, before you begin 
+summary: 在使用部署線上文件頁面之前，您應該注意幾件事。 
+---
+= 在使用瀏覽器存取ONTAP Select Deploy API 之前
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在使用部署線上文件頁面之前，您應該注意幾件事。
+
+
+
+== 部署計劃
+
+如果您打算在執行特定部署或管理任務的過程中發出 API 調用，則應考慮制定部署計劃。這些計劃可以是正式的，也可以是非正式的，通常包含您的目標和要使用的 API 呼叫。有關更多信息，請參閱使用部署 REST API 的工作流程。
+
+
+
+== JSON 範例和參數定義
+
+文件頁面上的每個 API 呼叫都採用一致的格式進行描述。內容包括實作說明、查詢參數和 HTTP 狀態碼。此外，您還可以顯示 API 請求和回應中使用的 JSON 的詳細信息，如下所示：
+
+* 範例值 如果您在 API 呼叫中點擊“範例值”，則會顯示該呼叫的典型 JSON 結構。您可以根據需要修改該範例，並將其用作請求的輸入。
+* 模型如果按一下“模型”，則會顯示 JSON 參數的完整列表，其中包含每個參數的描述。
+
+
+
+
+== 發出 API 呼叫時需謹慎
+
+您使用部署文件頁面執行的所有 API 操作均為即時操作。請務必小心，切勿誤建立、更新或刪除配置或其他資料。

@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: task_adm_support.html 
+keywords: administer, administering, web, diagnostics, support 
+summary: 在管理ONTAP Select過程中，您可以執行多項相關的診斷和支援任務。 
+---
+= ONTAP Select診斷與支持
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在管理ONTAP Select過程中，您可以執行多項相關的診斷和支援任務。
+
+
+
+== 配置部署系統
+
+您應該設定影響 Deploy 實用程式運作方式的基本系統設定參數。
+
+.關於此任務
+Deploy 設定資料由AutoSupport使用。
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*管理*”標籤。
+. 點擊“設定和AutoSupport”，然後點擊image:icon_pencil.gif["編輯"]。
+. 提供適合您環境的配置數據，然後按一下「*修改*」。
++
+如果使用代理伺服器，可以如下設定代理 URL：
+`\http://USERNAME:PASSWORD@<FQDN|IP>:PORT`
+
++
+例子
+`\http://user1:mypassword@proxy.company-demo.com:80`
+
+
+
+
+
+== 顯示ONTAP Select Deploy 事件訊息
+
+ONTAP Select Deploy 實用程式包含一個事件日誌記錄工具，可提供有關係統活動的資訊。您應該查看事件日誌的內容以調試任何問題，或者在技術支援人員指示您這樣做時查看。
+
+.關於此任務
+您可以根據多種特徵過濾事件訊息列表，其中包括：
+
+* 地位
+* 類型
+* 類別
+* 實例
+* 時間
+* 描述
+
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*管理*”標籤。
+. 按一下“*事件和作業*”，然後按一下“*事件*”。
+. （可選）點擊“*過濾器*”並建立過濾器以限制顯示的事件訊息。
+
+
+
+
+== 啟用AutoSupport
+
+您可以根據需要啟用和停用AutoSupport功能。
+
+.關於此任務
+AutoSupport是NetApp支援ONTAP Select的主要故障排除工具。因此，除非絕對必要，否則不應停用AutoSupport 。即使停用了AutoSupport，系統仍會收集數據，但不會傳輸到NetApp。
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*管理*”標籤。
+. 點擊“設定和AutoSupport”，然後點擊image:icon_kebab.gif["選項"]。
+. 根據需要啟用或停用AutoSupport功能。
+
+
+
+
+== 產生並下載AutoSupport包
+
+ONTAP Select包含產生AutoSupport軟體套件的功能。您應該產生一個軟體包來調試任何問題，或者在支援人員指示您這樣做時執行此操作。
+
+.關於此任務
+您可以在NetApp支援的指導下產生以下AutoSupport套件：
+
+* 部署日誌ONTAP Select Deploy 實用程式所建立的日誌文件
+* 故障排除 有關虛擬機器管理程式主機和ONTAP Select節點的故障排除和偵錯資訊
+* 效能 有關虛擬機器管理程式主機和ONTAP Select節點的效能資訊
+
+
+.步驟
+. 使用管理員帳戶Sign in部署公用程式 Web 使用者介面。
+. 點擊頁面頂部的“*管理*”標籤。
+. 點擊“設定和AutoSupport”，然後點擊image:icon_kebab.gif["選項"]。
+. 按一下“生成”。
+. 選擇類型並提供包裹的描述；您可以選擇提供案件編號。
+. 按一下“生成”。
++
+每個AutoSupport包都分配有一個唯一的序號識別號碼。
+
+. （可選）在 * AutoSupport History* 下，選擇正確的套件並點擊下載圖示將AutoSupport檔案儲存到本機工作站。
+

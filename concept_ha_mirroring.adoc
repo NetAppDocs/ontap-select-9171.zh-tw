@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: concept_ha_mirroring.html 
+keywords: ontap select, ha, high availability, synchronous replication, mirrored aggregates, write path, raid syncmirror, rsm 
+summary: '使用 RAID SyncMirror (RSM)、鏡像聚合和寫入路徑防止資料遺失。' 
+---
+= ONTAP Select HA RSM 和鏡像聚合
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用 RAID SyncMirror (RSM)、鏡像聚合和寫入路徑防止資料遺失。
+
+
+
+== 同步複製
+
+ONTAP高可用性 (HA) 模型建立在高可用性合作夥伴的概念之上。 ONTAPONTAP Select將此架構擴展到非共用商用伺服器領域，利用ONTAP中提供的 RAID SyncMirror (RSM) 功能在叢集節點之間複製資料區塊，從而在高可用性 (HA) 對中提供兩個使用者資料副本。
+
+具有調解器的雙節點叢集可以跨越兩個資料中心。更多信息，請參閱該部分。link:reference_plan_best_practices.html#two-node-stretched-ha-metrocluster-sds-best-practices["雙節點擴展 HA (MetroCluster SDS) 最佳實踐"] 。
+
+
+
+== 鏡像聚合
+
+ONTAP Select叢集由 2 到 8 個節點組成。每個 HA 對包含兩個使用者資料副本，透過 IP 網路跨節點同步鏡像。此鏡像對使用者透明，並且是資料聚合的屬性，會在資料聚合建立過程中自動配置。
+
+ONTAP Select叢集中的所有聚合都必須進行鏡像，以便在發生節點故障轉移時確保資料可用性，並在發生硬體故障時避免出現單點故障 (SPOF)。 ONTAPONTAP Select叢集中的聚合基於 HA 對中每個節點提供的虛擬磁碟構建，並使用以下磁碟：
+
+* 一組本機磁碟（由目前ONTAP Select節點提供）
+* 一組鏡像磁碟（由目前節點的 HA 夥伴提供）
+
+
+
+NOTE: 用於建構鏡像聚合的本機磁碟和鏡像磁碟的大小必須相同。這些聚合稱為叢 0 和叢 1（分別表示本地鏡像對和遠端鏡像對）。實際的叢編號在您的安裝中可能有所不同。
+
+這種方法與標準ONTAP集群的工作方式有著根本的不同。這適用於ONTAP Select叢集中的所有根磁碟和資料磁碟。聚合包含資料的本機副本和鏡像副本。因此，包含 N 個虛擬磁碟的聚合可提供相當於 N/2 個磁碟的唯一存儲，因為第二個資料副本位於其自己的唯一磁碟上。
+
+下圖顯示了四節點ONTAP Select叢集中的 HA 對。此叢集中有一個聚合（測試），它使用來自兩個 HA 配對節點的儲存。此資料聚合由兩組虛擬磁碟組成：一組本機磁碟，由ONTAP Select所屬叢集節點 (Plex 0) 提供；一組遠端磁碟，由故障轉移配對節點 (Plex 1) 提供。
+
+Plex 0 是用於存放所有本機磁碟的儲存桶。 Plex1 是用於存放鏡像磁碟（即負責儲存使用者資料第二個複製副本的磁碟）的儲存桶。擁有聚合的節點會將磁碟提供給 Plex 0，而該節點的 HA 配對節點會將磁碟提供給 Plex 1。
+
+下圖中有一個包含兩個磁碟的鏡像聚合。此聚合的內容在兩個叢集節點之間進行鏡像，本地磁碟 NET-1.1 放置在 Plex 0 儲存桶中，遠端磁碟 NET-2.1 放置在 Plex 1 儲存桶中。在此範例中，聚合測試歸左側的叢集節點所有，並使用本機磁碟 NET-1.1 和 HA 夥伴鏡像磁碟 NET-2.1。
+
+* ONTAP Select鏡像聚合*image:DDHA_03.jpg["ONTAP Select鏡像聚合"]
+
+
+NOTE: 部署ONTAP Select叢集時，系統上的所有虛擬磁碟都會自動指派給正確的 Plex，而無需使用者執行任何與磁碟分配相關的額外步驟。這可以防止磁碟意外分配給錯誤的 Plex，並提供最佳的鏡像磁碟配置。
+
+
+
+== 寫入路徑
+
+叢集節點之間的資料區塊同步鏡像以及系統故障時不遺失資料的要求對傳入寫入作業在ONTAP Select叢集中傳播時所採用的路徑有重大影響。此過程包含兩個階段：
+
+* 致謝
+* 降級
+
+
+對目標磁碟區的寫入作業透過資料 LIF 進行，並提交到ONTAP Select節點系統磁碟上的虛擬化NVRAM分割區，然後再向客戶端確認。在 HA 設定中，也會執行一個額外的步驟，因為這些NVRAM寫入作業會在確認之前立即鏡像到目標磁碟區擁有者的 HA 配對節點。此流程可確保在原始節點發生硬體故障時，HA 配對節點上的檔案系統保持一致。
+
+將寫入內容提交至NVRAM後， ONTAP會定期將此分割區的內容移至對應的虛擬磁碟，此程序稱為降級轉儲。此過程僅在擁有目標磁碟區的叢集節點上發生一次，不會在 HA 配對節點上發生。
+
+下圖顯示了傳入ONTAP Select節點的寫入請求的寫入路徑。
+
+ONTAP Select寫入路徑工作流程*image:DDHA_04.jpg["ONTAP Select寫入路徑工作流程"]
+
+傳入寫入確認包括以下步驟：
+
+* 寫入透過ONTAP Select節點 A 擁有的邏輯介面進入系統。
+* 寫入作業提交到節點 A 的NVRAM並鏡像到 HA 夥伴節點 B。
+* 當兩個 HA 節點都出現 I/O 請求後，該請求就會被確認回客戶端。
+
+
+ONTAP Select從NVRAM降級到資料聚合 (ONTAP CP) 包括以下步驟：
+
+* 寫入操作從虛擬NVRAM轉入虛擬資料聚合。
+* 鏡像引擎同步將區塊複製到兩個 plex。
+

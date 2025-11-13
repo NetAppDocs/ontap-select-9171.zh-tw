@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_dep_general.html 
+keywords: plan, planning, ontap select deploy, general requirements 
+summary: 在規劃安裝ONTAP Select Deploy 管理實用程式時，您應該考慮幾個常規要求。 
+---
+= ONTAP Select Deploy 的一般要求和規劃
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在規劃安裝ONTAP Select Deploy 管理實用程式時，您應該考慮幾個常規要求。
+
+
+
+== 將 Deploy 實用程式與ONTAP Select叢集配對
+
+將 Deploy 實用程式實例與ONTAP Select叢集配對時，您有多種選擇。
+
+
+NOTE: 在所有部署方案中，單一ONTAP Select叢集及其中的節點只能由一個 Deploy 管理實用程式實例進行管理。一個叢集不能由兩個或多個不同的 Deploy 實用程式實例進行管理。
+
+.每個ONTAP Select叢集對應一個實用程式實例
+您可以使用 Deploy 實用程式的專用實例來部署和管理每個ONTAP Select叢集。透過這種一對一配置，每個實用程式與叢集之間的配對都有明確的區分。此配置可提供高等級的隔離，並縮小故障域。
+
+.適用於多個ONTAP Select叢集的實用程式的一個實例
+您可以使用單一 Deploy 實用程式實例在組織中部署和管理多個ONTAP Select叢集。透過這種一對多配置，所有處理和配置資料均由同一個 Deploy 實用程式實例管理。
+
+
+NOTE: Deploy 實用程式的一個實例最多可以管理 400 個ONTAP Select節點或 100 個叢集。
+
+
+
+== 與 KVM 環境相關的要求
+
+在 KVM 虛擬機器管理程式環境中安裝 Deploy 管理公用程式之前，您應該查看基本要求並為部署做好準備。
+
+.部署的要求和限制
+在 KVM 環境中安裝ONTAP Select Deploy 實用程式時，應考慮一些要求和限制。
+
+.Linux KVM 主機伺服器硬體需求
+Linux KVM 虛擬機器管理程式主機必須滿足幾個最低資源需求。請驗證部署ONTAP Select 的主機是否符合以下基本要求：
+
+* Linux 伺服器：
++
+** 硬體和軟體必須是 64 位元
+** 伺服器必須遵守為ONTAP Select節點定義的相同支援版本
+
+
+* 虛擬 CPU (2)
+* 虛擬記憶體（4GB）
+* 儲存空間（40GB）
+* 「動態主機設定協定（DHCP）已啟用（您也可以指派靜態 IP 位址）
+
+
+.網路連線
+驗證 Deploy 虛擬機器網路介面是否已配置並可連接到其管理的ONTAP Select主機。
+
+.支援 IP 版本 4
+ONTAP Select Deploy 僅支援 IP 版本 4 (IPv4)。不支援 IP 版本 6 (IPv6)。此限制會以以下方式影響ONTAP Select ：
+
+* 您必須為 Deploy VM 的管理 LIF 指派一個 IPv4 位址。
+* Deploy 無法建立配置為在ONTAP LIF 上使用 IPv6的 ONTAP Select節點。
+
+
+
+
+== 必需的配置訊息
+
+作為部署規劃的一部分，您應該在安裝ONTAP Select Deploy 管理實用程式之前確定所需的設定資訊。
+
+.部署虛擬機器的名稱
+VM 使用的名稱。
+
+.Linux KVM 主機的名稱
+安裝了 Deploy 實用程式的 Linux KVM 主機。
+
+.儲存池名稱
+保存 VM 檔案的儲存池（大約需要 40GB）。
+
+.虛擬機器的網絡
+Deploy VM 所連接的網路。
+
+
+
+== 可選的網路設定資訊
+
+Deploy VM 預設使用 DHCP 配置。但是，如果需要，您可以手動設定 VM 的網路介面。
+
+.主機名稱
+主持人的姓名。
+
+.主機 IP 位址
+靜態 IPv4 位址。
+
+.子網路遮罩
+子網路遮罩，基於虛擬機器所屬的網路。
+
+.閘道
+預設網關或路由器。
+
+.主 DNS 伺服器
+主網域伺服器。
+
+.輔助 DNS 伺服器
+輔助網域名稱伺服器。
+
+.搜尋域名
+要使用的搜尋網域。
+
+
+
+== 使用憑證儲存進行身份驗證
+
+ONTAP Select Deploy 憑證儲存是一個保存帳戶資訊的資料庫。 Deploy使用帳戶憑證在叢集建立和管理過程中執行主機驗證。您應該了解如何在規劃ONTAP Select部署時使用憑證儲存。
+
+
+NOTE: 帳戶資訊使用AES加密演算法和SHA-256雜湊演算法安全地儲存在資料庫中。
+
+.憑證類型
+支援以下類型的憑證：
+
+* 主機 用於在將ONTAP Select節點直接部署到 VMware ESXi 的過程中對虛擬機器管理程式主機進行驗證
+* vCenter 當主機由 VMware vCenter 管理時，用於在將ONTAP Select節點部署到 ESXi 的過程中對 vCenter 伺服器進行驗證
+
+
+.使用權
+在使用 Deploy 執行常規管理任務（例如新增虛擬機器管理程式主機）時，可以從內部存取憑證儲存。您也可以直接透過 Deploy Web 使用者介面和 CLI 管理憑證儲存。

@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: reference_chk_select_req_info.html 
+keywords: ontap select, pre-installation, vmware 
+summary: 作為準備在 VMware 環境中部署ONTAP Select叢集的一部分，請收集使用ONTAP Select Deploy 管理實用程式部署和配置叢集時所需的資訊。 
+---
+= ONTAP Select安裝所需的信息
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+作為準備在 VMware 環境中部署ONTAP Select叢集的一部分，請收集使用ONTAP Select Deploy 管理實用程式部署和配置叢集時所需的資訊。
+
+您收集的某些資訊適用於叢集本身，而其他資訊適用於叢集中的各個節點。
+
+
+
+== 集群級資訊
+
+您必須收集與ONTAP Select集群相關的資訊。
+
+[cols="35,65"]
+|===
+| 集群資訊 | 描述 
+
+
+| 叢集名稱 | 集群的唯一識別碼。 
+
+
+| 許可模式 | 評估或購買許可。 
+
+
+| 叢集的 IP 配置 | 叢集和節點的 IP 配置，包括：* 叢集的管理 IP 位址 * 子網路遮罩 * 預設網關 
+|===
+
+
+== 主機級資訊
+
+您必須收集與ONTAP Select叢集中每個節點相關的資訊。
+
+[cols="35,65"]
+|===
+| 集群資訊 | 描述 
+
+
+| 主持人姓名 | 主機的唯一識別碼。 
+
+
+| 主機的域名 | 主機的完全限定域名。 
+
+
+| 節點的 IP 配置 | 叢集中每個節點的管理 IP 位址。 
+
+
+| 鏡像節點 | HA 對中關聯節點的名稱（僅限多節點叢集）。 
+
+
+| 儲存池 | 使用的儲存池的名稱。 
+
+
+| 儲存磁碟 | 如果使用軟體 RAID，則列出磁碟。 
+
+
+| 序號 | 如果您使用購買的許可證進行部署，則NetApp會提供唯一的九位數序號。 
+|===

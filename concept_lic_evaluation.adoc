@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_evaluation.html 
+keywords: license, licensing, evaluation, upgrade license 
+summary: 如果您想在決定購買之前評估ONTAP Select ，可以使用評估許可證。評估許可證包含在ONTAP Select Deploy 管理實用程式中，並會在評估部署過程中自動套用於每個ONTAP Select節點。 
+---
+= ONTAP Select部署的評估許可證
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以使用評估許可證或購買的許可證來部署ONTAP Select 。您選擇的許可證必須套用於ONTAP Select叢集中的每個節點，因此也適用於整個叢集。如果您想在決定購買之前評估ONTAP Select ，可以使用評估許可證。評估許可證包含在ONTAP Select Deploy 管理實用程式中，並會在評估部署過程中自動套用於每個ONTAP Select節點。
+
+[NOTE]
+====
+要下載ONTAP Select Deploy 管理實用程序，您需要以下內容：
+
+* 註冊的NetApp支援網站帳號。如果您沒有帳戶，請參閱 https://mysupport.netapp.com/site/user/registration["用戶註冊"^]。
+* 到 https://mysupport.netapp.com/site/downloads/evaluation/ontap-select["接受最終用戶許可協議"^]適用於具有評估許可證的ONTAP Select部署。
+
+
+====
+部署和支援評估集群時需要考慮以下幾點：
+
+* 您只能將該群集用於評估目的。您不得在生產環境中使用具有評估許可證的叢集。
+* 配置每個主機時，您應該如下使用ONTAP Select Deploy 管理實用程式：
++
+** 不提供序號
+** 配置使用評估許可證
+
+
+
+
+
+
+== 許可特徵
+
+ONTAP Select評估許可證具有以下特點：
+
+* 不需要具有儲存容量的生產許可證
+* 節點序號為 20 位數，由ONTAP Select Deploy 自動產生
++
+（您不能直接從NetApp取得它）
+
+* 許可證提供的評估期間最長可達 90 天
+* 每個節點分配的最大儲存與生產許可證相同
+
+
+
+
+== 升級到生產許可證
+
+您可以升級ONTAP Select評估叢集以使用生產許可證。您應該注意以下限制：
+
+* 您必須使用 Deploy 管理公用程式來執行授權升級
+* 您可以使用容量層許可證，但不支援容量池許可
+* 根據叢集規模，每個節點必須分配足夠的儲存空間，以支援生產許可證所需的最低要求
+
+
+看link:task_adm_licenses.html["將評估許可證轉換為生產許可證"]了解更多。
+
+.相關資訊
+* link:concept_lic_production.html["了解生產部署的許可證"]
+* link:deploy-evaluation-ontap-select-ovf-template.html["部署ONTAP Select叢集的 90 天評估實例"]
+

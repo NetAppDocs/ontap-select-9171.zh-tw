@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: esxi-host-configuration-and-preparation-checklist.html 
+keywords: ontap select, pre-installation checklist, esxi, host preparation 
+summary: 準備部署ONTAP Select節點的每個 ESXi 虛擬機器管理程式主機。準備主機時，需要仔細評估部署環境，以確保主機已正確配置並準備好支援ONTAP Select叢集的部署。 
+---
+= ONTAP Select的 ESXi 主機配置和準備清單
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+準備部署ONTAP Select節點的每個 ESXi 虛擬機器管理程式主機。準備主機時，需要仔細評估部署環境，以確保主機已正確配置並準備好支援ONTAP Select叢集的部署。
+
+
+NOTE: ONTAP Select Deploy 管理公用程式不會執行虛擬機器管理程式主機所需的網路和儲存配置。您必須在部署ONTAP Select叢集之前手動準備每個主機。
+
+
+
+== 步驟 1：準備 ESXi 虛擬機器管理程式主機
+
+驗證 ESXi 主機和防火牆連接埠的配置。
+
+.步驟
+. 驗證每個 ESXi 是否配置了以下內容：
++
+** 預先安裝並受支援的虛擬機器管理程序
+** VMware vSphere 許可證
+
+
+. 驗證同一個 vCenter 伺服器是否可以管理叢集內部署了ONTAP Select節點的所有主機。
+. 驗證防火牆連接埠是否已配置為允許存取 vSphere。這些連接埠必須處於開啟狀態，才能支援與ONTAP Select虛擬機器的序列埠連接。
++
+[role="tabbed-block"]
+====
+.受到推崇的
+--
+NetApp建議您開啟以下防火牆連接埠以允許存取 vSphere：
+
+** 連接埠 7200 – 7400（入站和出站流量）
+
+
+--
+.預設
+--
+預設情況下，VMware 允許以下連接埠的存取：
+
+** 連接埠 22 和連接埠 1024 – 65535（入站流量）
+** 連接埠 0 – 65535（出站流量）
+
+
+--
+====
++
+欲了解更多信息，請參閱link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-security-8-0/securing-esxi-hosts/customizing-hosts-with-the-security-profile/esxi-firewall-configuration.html["Broadcom VMware vSphere 文檔"^]。
+
+. 熟悉所需的 vCenter 權限。看link:reference_plan_ots_vcenter.html["VMware vCenter 伺服器"]了解更多。
+
+
+
+
+== 步驟 2：檢查ONTAP Select叢集配置
+
+您可以將ONTAP Select部署為多節點叢集或單節點叢集。在許多情況下，多節點叢集是首選，因為它具有額外的儲存容量和高可用性 (HA) 功能。
+
+下圖展示了單節點叢集和四節點叢集使用的ONTAP Select網路。
+
+[role="tabbed-block"]
+====
+.單節點集群
+--
+下圖展示了一個單節點叢集。外部網路承載客戶端、管理和跨叢集複製流量 (SnapMirror/ SnapVault)。
+
+image:CHK_01.jpg["顯示一個網路的單節點集群"]
+
+--
+.四節點集群
+--
+下圖展示了一個包含兩個網路的四節點集群。內部網路支援節點之間的通信，以支援ONTAP集群網路服務。外部網路承載客戶端、管理和跨叢集複製流量 (SnapMirror/ SnapVault)。
+
+image:CHK_02.jpg["顯示兩個網路的四節點集群"]
+
+--
+.四節點叢集中的單一節點
+--
+下圖展示了四節點叢集中單一ONTAP Select虛擬機器的典型網路配置。其中有兩個獨立的網路： ONTAP內部網路和ONTAP外部網路。
+
+image:CHK_03.jpg["四節點叢集中的單一節點"]
+
+--
+====
+
+
+== 步驟3：設定Open vSwitch
+
+vSwitch 是用於支援內部和外部網路連接的核心虛擬機器管理程式元件。在設定每個虛擬機器管理程式 vSwitch 時，您應該考慮以下幾點。
+
+以下步驟適用於典型網路環境中具有兩個實體連接埠（2x10Gb）的 ESXi 主機的 vSwitch 設定。
+
+.步驟
+. link:concept_nw_vsphere_vswitch_config.html["配置 vSwitch 並將兩個連接埠分配給 vSwitch"]。
+. link:concept_nw_vsphere_vswitch_config.html["使用兩個連接埠建立 NIC 團隊"]。
+. 將負載平衡策略設定為「基於原始虛擬連接埠ID的路由」。
+. 將兩個適配器都標記為“活動”或將一個適配器標記為“活動”，將另一個適配器標記為“待機”。
+. 將“故障回復”設定設為“是”。
++
+image:CHK_04.jpg["vSwitch 屬性）"]
+
+. 配置 vSwitch 以使用巨型幀 (9000 MTU)。
+. 在 vSwitch 上為內部流量設定連接埠群組 (ONTAP-internal )：
++
+** 此連接埠群組指派給用於叢集、HA 互連和鏡像流量的ONTAP Select虛擬網路介面卡 e0c-e0g。
+** 由於此網路預計為私有網絡，因此連接埠群組應位於不可路由的 VLAN 上。您應該為連接埠群組添加相應的 VLAN 標記以考慮到這一點。
+** 連接埠組的負載平衡、故障回復和故障轉移順序設定應與 vSwitch 相同。
+
+
+. 在 vSwitch 上為外部流量配置連接埠群組 (ONTAP-external )：
++
+** 此連接埠群組指派給用於資料和管理流量的ONTAP Select虛擬網路適配器 e0a-e0c。
+** 連接埠群組可以位於可路由 VLAN 上。根據網路環境，您還應該新增適當的 VLAN 標記或設定連接埠群組以進行 VLAN 中繼。
+** 連接埠組的負載平衡、故障回復和故障轉移順序設定應與 vSwitch 相同。
+
+
+

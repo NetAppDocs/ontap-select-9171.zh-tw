@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: concept_nw_data_mgmt_separation.html 
+keywords: ontap select, traffic separation 
+summary: 將資料流量和管理流量隔離到單獨的第 2 層網路。 
+---
+= ONTAP Select資料與管理流量分離
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+將資料流量和管理流量隔離到單獨的第 2 層網路。
+
+ONTAP Select外部網路流量定義為資料（CIFS、NFS 和 iSCSI）、管理和複製 (SnapMirror) 流量。在ONTAP叢集中，每種類型的流量都使用單獨的邏輯接口，該接口必須託管在虛擬網路連接埠上。在ONTAP Select的多節點配置中，這些連接埠被指定為連接埠 e0a 和 e0b/e0g。在單節點配置中，這些連接埠被指定為 e0a 和 e0b/e0c，其餘連接埠則保留用於內部叢集服務。
+
+NetApp建議將資料流量和管理流量隔離到單獨的第 2 層網路。在ONTAP Select環境中，這可以透過使用 VLAN 標記來實現。您可以透過將帶有 VLAN 標記的連接埠群組指派給網路介面卡 1（連接埠 e0a）來實現管理流量。然後，您可以為連接埠 e0b 和 e0c（單節點叢集）以及 e0b 和 e0g（多節點叢集）指派單獨的連接埠群組來傳輸資料流量。
+
+如果本文檔前面介紹的 VST 解決方案不夠用，則可能需要在同一個虛擬連接埠上共置資料 LIF 和管理 LIF。為此，請使用稱為 VGT 的流程，其中 VLAN 標記由虛擬機器執行。
+
+
+NOTE: 使用ONTAP Deploy 公用程式時，無法透過 VGT 分離資料和管理網路。此過程必須在叢集設定完成後執行。
+
+使用 VGT 和雙節點叢集時，還有一個需要注意的事項。在雙節點叢集配置中，節點管理 IP 位址用於在ONTAP完全可用之前建立與中介器的連線。因此，對應到節點管理 LIF（連接埠 e0a）的連接埠組僅支援 EST 和 VST 標記。此外，如果管理和資料流量都使用同一個連接埠群組，則整個雙節點叢集僅支援 EST/VST。
+
+VST 和 VGT 兩種設定選項均受支援。下圖顯示了第一種方案 VST，其中流量透過分配的連接埠群組在 vSwitch 層進行標記。在此配置中，叢集和節點管理 LIF 指派給ONTAP連接埠 e0a，並透過指派的連接埠群組標記為 VLAN ID 10。資料 LIF 指派給連接埠 e0b 以及 e0c 或 e0g，並使用第二個連接埠群組指定 VLAN ID 20。叢集連接埠使用第三個連接埠群組，位於 VLAN ID 30 上。
+
+*使用 VST 進行資料和管理分離*
+
+image:DDN_04.jpg["使用 VST 進行資料和管理分離"]
+
+下圖顯示了第二種場景 VGT，其中ONTAP虛擬機器使用放置在單獨廣播域中的 VLAN 連接埠標記流量。在此範例中，虛擬連接埠 e0a-10/e0b-10/(e0c 或 e0g)-10 和 e0a-20/e0b-20 位於虛擬機器連接埠 e0a 和 e0b 之上。此配置允許直接在ONTAP內部執行網路標記，而不是在 vSwitch 層執行。管理和資料 LIF 位於這些虛擬連接埠上，從而允許在單一虛擬機器連接埠內進一步進行第 2 層細分。集群 VLAN（VLAN ID 30）仍在連接埠群組中標記。
+
+*筆記：*
+
+* 這種配置方式在使用多個 IP 空間時尤其適用。如果需要進一步的邏輯隔離和多租用戶功能，可以將 VLAN 連接埠分組到單獨的自訂 IP 空間。
+* 若要支援 VGT，ESXi/ESX 主機網路適配器必須連接到實體交換器上的中繼連接埠。連接到虛擬交換器的連接埠群組必須將其 VLAN ID 設定為 4095，以便在連接埠群組上啟用中繼功能。
+
+
+*使用 VGT 進行資料和管理分離*
+
+image:DDN_05.jpg["使用 VGT 進行資料和管理分離"]

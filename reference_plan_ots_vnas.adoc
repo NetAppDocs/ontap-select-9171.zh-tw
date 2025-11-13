@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_vnas.html 
+keywords: plan, planning, vnas, vmware esxi, 
+summary: 您應考慮幾個與使用 VMware ESXi 相關的規劃問題。 
+---
+= ONTAP Select VMware ESXi 需求
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select vNAS 解決方案允許將ONTAP Select資料儲存置於執行ONTAP Select虛擬機器的 ESXi 虛擬機器管理程式主機的外部。這些遠端資料儲存可以透過 VMware vSAN 或通用外部儲存陣列存取。
+
+
+
+== 基本要求和限制
+
+ONTAP Select vNAS 解決方案可與任何規模的ONTAP Select叢集一起使用。
+
+所有相關的儲存元件，包括硬體、軟體和功能要求，都必須符合以下文件中所述的要求：link:https://mysupport.netapp.com/matrix/["互通性矩陣工具"^] 。此外， ONTAP Select支援 VMware 儲存/SAN 相容性文件中所述的所有外部儲存陣列，包括 iSCSI、NAS (NFSv3)、光纖通道和乙太網路光纖通道。外部陣列支援受限於ONTAP Select支援的 ESXi 版本
+
+使用ONTAP Select vNAS 部署叢集時支援以下 VMware 功能：
+
+* VMotion
+* 高可用性（HA）
+* 分散式資源調度器（DRS）
+
+
+
+NOTE: 這些 VMware 功能支援單節點和多節點ONTAP Select叢集。部署多節點叢集時，應確保同一叢集中的兩個或多個節點不在同一虛擬機器管理程式主機上執行。
+
+以下 VMware 功能不支援：
+
+* 容錯（FT）
+* 虛擬資料儲存 (VVOL)
+
+
+
+
+== 配置要求
+
+如果您打算在外部儲存陣列（iSCSI、光纖通道、乙太網路光纖通道）上使用 VMFS 資料存儲，則必須先建立 VMFS 儲存池，然後再設定ONTAP Select以使用該儲存。如果您使用 NFS 資料存儲，則無需建立單獨的 VMFS 資料儲存。所有 vSAN 資料儲存都必須在同一個 ESXi 叢集中定義。
+
+
+CAUTION: 配置主機或執行儲存新增作業時，必須為 VMware vSAN 或外部儲存陣列上的每個資料儲存提供容量限制。指定的容量必須在外部儲存允許的儲存限制範圍內。如果您未提供容量限制，或在磁碟建立作業期間外部儲存空間不足，則會發生錯誤。
+
+
+
+== 最佳實踐
+
+請參閱可用的 VMware 文件並遵循針對 ESXi 主機所確定的適用最佳實務。另外：
+
+* 為ONTAP Select網路和外部儲存（使用 iSCSI 或 NFS 時的 VMware vSAN 和通用儲存陣列流量）定義專用網路連接埠、頻寬和 vSwitch 配置
+* 配置容量選項以限制儲存利用率（ONTAP Select不能消耗外部 vNAS 資料儲存的全部容量）
+* 確保所有通用外部儲存陣列盡可能使用可用的冗餘和 HA 功能
+

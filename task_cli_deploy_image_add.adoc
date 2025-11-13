@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: task_cli_deploy_image_add.html 
+keywords: administer, administering, cli, deploy, ontap select image, add 
+summary: 您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例。安裝映像後，您可以在部署ONTAP Select叢集時使用它。 
+---
+= 將ONTAP Select映像新增至 Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例。安裝映像後，您可以在部署ONTAP Select叢集時使用它。
+
+.開始之前
+在將任何新的ONTAP Select映像新增至 Deploy 之前，您應該先刪除所有不需要的映像。
+
+
+NOTE: 您只能新增版本低於 Deploy 實用程式實例所含原始版本的ONTAP Select映像。不支援添加NetApp提供的ONTAP Select更高版本。
+
+
+
+== 步驟 1：下載安裝鏡像
+
+若要開始將ONTAP Select映像新增至 Deploy 公用程式實例，您必須從NetApp支援網站下載安裝映像。 ONTAPONTAP Select安裝映像的格式為單一壓縮檔。
+
+.步驟
+. 使用網頁瀏覽器造訪NetApp支援網站，然後選擇「支援快速連結」。
+. 在“熱門任務”下選擇“下載軟體”，然後登入網站。
+. 選擇“尋找您的產品”。
+. 向下捲動並選擇 * ONTAP Select*。
+. 在「其他可用軟體」下，選擇「部署升級」、「節點升級」、「鏡像安裝」。
+. 選擇所需的升級包版本。
+. 查看最終使用者授權協議 (EULA)，然後按一下「接受並繼續」*。
+. 選擇並下載適當的包，根據您的環境需求回應所有提示。
+
+
+
+
+== 步驟 2：將安裝鏡像上傳到 Deploy 平台
+
+取得ONTAP Select安裝映像後，您必須將該檔案上傳到 Deploy 虛擬機器。
+
+.開始之前
+您必須在本機工作站上擁有可用的安裝映像檔。您還必須擁有 Deploy 管理員使用者帳戶的密碼。
+
+.關於此任務
+此任務描述了將檔案上傳到 Deploy 虛擬機器的一種方法。可能還有其他更適合您環境的選項。
+
+.步
+. 在本機工作站的命令 shell 中，將映像檔上傳到 Deploy 虛擬機，如下範例所示：
++
+....
+scp image_v_93_install_esx.tgz admin@10.234.81.101:/home/admin (provide password when prompted)
+....
++
+....
+sftp admin@10.234.81.101 (provide password when prompted)
+put image_v_93_install_esx.tgz
+exit
+....
+
+
+.結果
+節點安裝檔案儲存在管理員使用者的主目錄中。
+
+
+
+== 步驟 3：新增安裝鏡像
+
+將ONTAP Select安裝映像新增至部署映像目錄，以便在部署新叢集時可以使用。
+
+.開始之前
+您必須知道安裝映像檔在 Deploy 實用程式虛擬機器中的哪個目錄中。假設該檔案位於管理員的主目錄中。
+
+.步驟
+. 使用管理員 (admin) 帳戶透過 SSHSign inDeploy 實用程式 CLI。
+. 啟動 Bash shell：
+
+
+[listing]
+----
+shell bash
+----
+. 將安裝鏡像檔放入 images 目錄，如下例所示：
++
+`tar -xf image_v_93_install_esx.tgz -C /opt/netapp/images/`
+
+
+
+
+
+== 步驟 4：顯示可用的安裝映像
+
+顯示部署新叢集時可用的ONTAP Select鏡像。
+
+.步驟
+. 造訪部署實用程式虛擬機器上的線上文件網頁，並使用管理員 (admin) 帳戶登入：
++
+`\http://<FQDN|IP_ADDRESS>/api/ui`
+
++
+使用 Deploy 虛擬機器的網域名稱或 IP 位址。
+
+. 導覽至頁面底部，選擇“部署”，然後選擇“取得/ima​​ges”。
+. 選擇“立即體驗！”以顯示可用的ONTAP Select圖片。
+. 確認所需影像可用。
+

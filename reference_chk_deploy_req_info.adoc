@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: reference_chk_deploy_req_info.html 
+keywords: ontap select, deploy, pre-installation, vmware 
+summary: 在 VMware 環境中安裝 Deploy 管理公用程式之前，請先查看基本需求並為成功部署做好準備。 
+---
+= ONTAP Select Deploy 實用程式安裝所需的資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在虛擬機器管理程式環境中安裝 Deploy 管理公用程式之前，請檢查所需的設定資訊和可選的網路設定訊息，為成功部署做好準備。
+
+
+
+== 必需的配置訊息
+
+作為部署規劃的一部分，您應該在安裝ONTAP Select Deploy 管理實用程式之前確定所需的設定資訊。
+
+[cols="40,60"]
+|===
+| 所需資訊 | 描述 
+
+
+| Deploy 虛擬機器的名稱 | 用於虛擬機器的識別碼。 
+
+
+| 虛擬機器管理程式主機的名稱 | 安裝了 Deploy 實用程式的 VMware ESXi 或 KVM 虛擬機器管理程式主機的識別碼。 
+
+
+| 資料儲存的名稱 | 保存虛擬機器檔案的虛擬機器管理程式資料儲存的識別碼（大約需要 40GB）。 
+
+
+| 虛擬機器的網絡 | Deploy 虛擬機器所連接的網路的識別碼。 
+|===
+
+
+== 可選的網路設定資訊
+
+預設情況下，Deploy 虛擬機器使用 DHCP 配置。但是，如果需要，您可以手動設定虛擬機器的網路介面。
+
+[cols="35,65"]
+|===
+| 網路資訊 | 描述 
+
+
+| 主機名稱 | 主機的識別碼。 
+
+
+| 主機 IP 位址 | 主機的靜態 IPv4 位址。 
+
+
+| 子網路遮罩 | 子網路遮罩，基於虛擬機器所屬的網路。 
+
+
+| 閘道 | 預設網關或路由器。 
+
+
+| 主 DNS 伺服器 | 主網域伺服器。 
+
+
+| 輔助 DNS 伺服器 | 輔助網域名稱伺服器。 
+
+
+| 搜尋域名 | 要使用的搜尋網域的清單。 
+|===

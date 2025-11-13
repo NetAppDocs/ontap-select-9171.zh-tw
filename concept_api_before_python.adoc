@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: concept_api_before_python.html 
+keywords: rest api, deploy rest api, rest, python, before you begin 
+summary: 在執行範例 Python 腳本之前，您必須準備環境。 
+---
+= 在使用 Python 存取ONTAP Select Deploy API 之前
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在執行範例 Python 腳本之前，您必須準備環境。
+
+在執行 Python 腳本之前，必須確保環境配置正確：
+
+* 必須安裝 Python2 的最新適用版本。範例程式碼已使用 Python2 進行了測試。它們應該也可以移植到 Python3，但尚未進行相容性測試。
+* 必須安裝 Requests 和 urllib3 函式庫。您可以根據自己的環境使用 pip 或其他 Python 管理工具。
+* 執行腳本的客戶端工作站必須具有對ONTAP Select Deploy 虛擬機器的網路存取權限。
+
+
+此外，您還必須具備以下資訊：
+
+* Deploy 虛擬機器的 IP 位址
+* Deploy 管理員帳戶的使用者名稱和密碼
+

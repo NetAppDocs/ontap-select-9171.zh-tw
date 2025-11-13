@@ -1,0 +1,138 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_hardware.html 
+keywords: plan, planning, vmware, hardware, hardware requirements 
+summary: 您應考慮與 VMware 環境相關的幾個硬體需求和規劃問題。 
+---
+= ONTAP Select VMware 虛擬機器管理程序和硬體注意事項
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您應考慮與 VMware 環境相關的幾個硬體需求和規劃問題。
+
+
+
+== 虛擬機器管理程序要求
+
+運行ONTAP Select 的虛擬機器管理程式有幾個相關要求。
+
+
+NOTE: 你應該複習一下link:reference_release_notes.html["ONTAP Select發行說明"]任何其他已知的限製或約束。
+
+
+
+=== VMware 許可
+
+若要部署ONTAP Select叢集，您的組織必須擁有適用於執行ONTAP Select 的虛擬機器管理程式主機的有效 VMware vSphere 授權。您應該使用適合您部署的授權。
+
+
+
+=== 軟體相容性
+
+您可以在 KVM 和 ESXi 虛擬機器管理程式上部署ONTAP Select 。
+
+[role="tabbed-block"]
+====
+.虛擬機
+--
+ONTAP Select支援以下 KVM 虛擬機器管理程式版本：
+
+* Red Hat Enterprise Linux 9.6、9.5、9.4、9.2、9.1、9.0、8.8、8.7 與 8.6 上的 KVM
+* Rocky Linux 9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6 上的 KVM
+
+
+--
+.ESXi
+--
+ONTAP Select支援以下 ESXi 虛擬機器管理程式版本：
+
+* VMware ESXi 9.0
+* VMware ESXi 8.0 U3
+* VMware ESXi 8.0 U2
+* VMware ESXi 8.0 U1（內部版本 21495797）
+* VMware ESXi 8.0 GA（內部版本 20513097）
+* VMware ESXi 7.0 GA（內部版本 15843807 或更高版本），包括 7.0 U3C、U2 和 U1
+
+
+
+NOTE: 只要 VMware 繼續支援相同的版本， NetApp就會在已識別的 ESXi 版本上支援ONTAP Select 。
+
+
+NOTE: ESXi 6.5 GA 和 ESXi 6.7 GA 已達到可用終止狀態。如果您擁有使用這些版本的ONTAP Select集群，則必須按照以下說明昇級到受支援的版本： https://mysupport.netapp.com/matrix["互通性矩陣工具（IMT）"^] 。
+
+--
+====
+
+
+=== VMware vCenter 和獨立 ESXi 主機
+
+如果 ESXi 虛擬機器管理程式主機由 vCenter 伺服器管理，則必須使用 vCenter 憑證將該主機註冊至 Deploy 管理公用程式。您無法使用 ESXi 憑證將該主機註冊為獨立主機。
+
+
+
+== 核心硬體需求
+
+部署ONTAP Select 的實體虛擬機器管理程式主機必須符合多項硬體需求。您可以選擇任何平台作為虛擬機器管理程式主機，只要它符合最低硬體需求即可。以下供應商提供支援的硬體平台： Cisco、Dell、HP、Fujitsu、Lenovo 和 Supermicro。
+
+
+NOTE: 從ONTAP Select 9.9.1 開始，僅支援基於 Intel Xeon Sandy Bridge 或更高版本的 CPU 型號。
+
+請參閱 https://mysupport.netapp.com/matrix["互通性矩陣工具，window=_blank"]了解更多。
+
+
+
+=== 基本硬體需求
+
+無論節點實例類型或許可證提供如何，所有平台都適用一些常見的硬體要求。
+
+.處理器
+支援的微處理器包括用於伺服器的英特爾至強處理器，詳見link:https://www.intel.com/content/www/us/en/products/processors/xeon/view-all.html?Processor+Type=1003["英特爾至強處理器，window=_blank"]了解更多。
+
+
+NOTE: ONTAP Select不支援 Advanced Micro Devices (AMD) 處理器。
+
+.乙太網路配置
+根據叢集大小，有幾種支援的乙太網路配置。
+
+[cols="2,3,3"]
+|===
+| 簇大小 | 最低要求 | 推薦要求 
+
+
+| 單節點集群 | 2 個 1GbE | 2 個 10GbE 
+
+
+| 雙節點集群或MetroCluster SDS | 4 個 1GbE 或 1 個 10GbE | 2 個 10GbE 
+
+
+| 四節點、六節點或八節點集群 | 2 個 10GbE | 4 個 10GbE 或 2 個 25/40GbE 
+|===
+
+
+=== 基於實例類型的其他硬體需求
+
+根據節點實例類型，還有一些額外的硬體需求。
+
+請參閱link:concept_lic_platforms.html["了解平台授權產品"]了解更多。
+
+[cols="a1,a2,a2,a2"]
+|===
+| 節點大小 | CPU 核心 | 記憶 | 所需的平台許可證產品 
+
+
+| 小的 | 六個或更多物理核心，其中四個保留用於ONTAP Select | 24GB 或更大，其中 16GB 保留給ONTAP Select | 標準型、高級型或高級 XL 型 
+
+
+| 中等的 | 十個或更多物理核心，其中八個保留用於ONTAP Select | 72GB 或更大，其中 64GB 保留給ONTAP Select | Premium 或 Premium XL 
+
+
+| 大的 | 十八個或更多物理核心，其中十六個保留用於ONTAP Select | 136GB 或更大，其中 128GB 保留給ONTAP Select | 進階加大尺寸 
+|===
+
+NOTE: 根據平台許可證，還有額外的磁碟要求。看link:reference_plan_ots_storage.html["儲存和 RAID"]了解更多。
