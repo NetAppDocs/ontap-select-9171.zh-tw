@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: task_cli_deploy_image_add.html 
 keywords: administer, administering, cli, deploy, ontap select image, add 
-summary: 您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例。安裝映像後，您可以在部署ONTAP Select叢集時使用它。 
+summary: 將 ONTAP Select 映像新增至 Deploy 管理實用程式執行個體。安裝完成後，即可在部署 ONTAP Select 叢集時使用它。 
 ---
 = 將ONTAP Select映像新增至 Deploy
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: 您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例
 
 
 [role="lead"]
-您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例。安裝映像後，您可以在部署ONTAP Select叢集時使用它。
+將 ONTAP Select 映像新增至 Deploy 管理實用程式執行個體。映像安裝完成後，即可在部署 ONTAP Select 叢集時使用。
 
 .開始之前
 在將任何新的ONTAP Select映像新增至 Deploy 之前，您應該先刪除所有不需要的映像。
@@ -29,14 +29,11 @@ NOTE: 您只能新增版本低於 Deploy 實用程式實例所含原始版本的
 若要開始將ONTAP Select映像新增至 Deploy 公用程式實例，您必須從NetApp支援網站下載安裝映像。 ONTAPONTAP Select安裝映像的格式為單一壓縮檔。
 
 .步驟
-. 使用網頁瀏覽器造訪NetApp支援網站，然後選擇「支援快速連結」。
-. 在“熱門任務”下選擇“下載軟體”，然後登入網站。
-. 選擇“尋找您的產品”。
-. 向下捲動並選擇 * ONTAP Select*。
-. 在「其他可用軟體」下，選擇「部署升級」、「節點升級」、「鏡像安裝」。
-. 選擇所需的升級包版本。
-. 查看最終使用者授權協議 (EULA)，然後按一下「接受並繼續」*。
-. 選擇並下載適當的包，根據您的環境需求回應所有提示。
+. 存取 link:https://mysupport.netapp.com/site/downloads/["NetApp 支援網站下載"^] 頁面。
+. 向下捲動並選擇 *ONTAP Select Image*。
+. 選擇所需的安裝映像版本。
+. 查看最終用戶許可協議 (EULA) 並選擇*接受並繼續*。
+. 選擇並下載對應的 *ONTAP Select Image Install* 軟體包。視需要回應所有提示。
 
 
 
@@ -46,7 +43,7 @@ NOTE: 您只能新增版本低於 Deploy 實用程式實例所含原始版本的
 取得ONTAP Select安裝映像後，您必須將該檔案上傳到 Deploy 虛擬機器。
 
 .開始之前
-您必須在本機工作站上擁有可用的安裝映像檔。您還必須擁有 Deploy 管理員使用者帳戶的密碼。
+請確認您的本機工作站上已存在安裝映像檔。您還必須擁有 Deploy 管理員使用者帳戶的密碼。
 
 .關於此任務
 此任務描述了將檔案上傳到 Deploy 虛擬機器的一種方法。可能還有其他更適合您環境的選項。
@@ -80,9 +77,8 @@ exit
 .步驟
 . 使用管理員 (admin) 帳戶透過 SSHSign inDeploy 實用程式 CLI。
 . 啟動 Bash shell：
-
-
-[listing]
++
+[source, cli]
 ----
 shell bash
 ----

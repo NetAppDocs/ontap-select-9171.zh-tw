@@ -116,12 +116,6 @@
   <block id="30cf2dd94fe579c8d10145706d2803f2" category="admonition">您無法使用 Deploy 管理實用程式來升級現有的ONTAP Select節點。 Deploy實用程式只能用於建立新的ONTAP Select叢集。</block>
   <block id="debe5df850e1b90f9e0e1e836af7a573" category="section-title">一般程序</block>
   <block id="6faefe32fa9943fbdd41223aa8a6c274" category="paragraph">從高層次來看，您應該使用以下步驟來升級現有的ONTAP Select節點。</block>
-  <block id="e105a9c27bf2d9ddd5067b411d434cd6" category="list-text">導覽至NetApp支援網站的下載頁面。</block>
-  <block id="68f9ff06ec00760816a8852081d652a9" category="inline-link">NetApp支援下載</block>
-  <block id="332fd48f854bf692aea555e091e1b3cc" category="paragraph"><block ref="332fd48f854bf692aea555e091e1b3cc" category="inline-link-rx"></block></block>
-  <block id="eea1cec828c419810e082867558ec301" category="list-text">按一下“ONTAP Select Node Upgrade”。</block>
-  <block id="a864f71b844955db4e27746202712f1b" category="list-text">根據需要選擇並下載響應所有提示的適當的升級映像。</block>
-  <block id="2e17a67d810d937603511ac8eb9044c5" category="paragraph">在升級ONTAP Select節點之前，請查看發行說明以了解更多資訊和任何所需的步驟。</block>
   <block id="4d63a206f9a467135d39dc9c9512fc9e" category="inline-link-macro">支援的ONTAP升級路徑</block>
   <block id="8c3e5d2f8a26562237025f868ae58fd6" category="list-text">使用ONTAP Select升級文件，透過標準ONTAP升級流程升級ONTAP Select節點。有關支援的升級路徑的信息，請參閱<block ref="641712e0b7bbcdbd0a030cb6eba15629" category="inline-link-macro-rx"></block>。</block>
   <block id="46928a27773a23230df6e5bda4c3aeb9" category="section-title">還原ONTAP Select節點</block>
@@ -3410,22 +3404,12 @@
   <block id="1d8edcb67cffc7ed8d5c5ba0f36578b7" category="list-text">顯示集群的狀態，判斷集群是否已成功部署：</block>
   <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">下一步是什麼？</block>
   <block id="555e00828dd08d70ecb4ba3a8ffd7cb3" category="paragraph"><block ref="aed7172faa8aaa717810c3226e96b29d" category="inline-link-macro-rx"></block>。</block>
-  <block id="6738f098cd2bba79a1109b07a6b3a4e3" category="summary">您可以將ONTAP Select映像新增至 Deploy 管理公用程式實例。安裝映像後，您可以在部署ONTAP Select叢集時使用它。</block>
   <block id="ff2a9bd49048e73baaf69d5e3097f161" category="paragraph">在將任何新的ONTAP Select映像新增至 Deploy 之前，您應該先刪除所有不需要的映像。</block>
   <block id="7e0a8cfbb81693d645b2e510efe248df" category="admonition">您只能新增版本低於 Deploy 實用程式實例所含原始版本的ONTAP Select映像。不支援添加NetApp提供的ONTAP Select更高版本。</block>
   <block id="374fcbe92413e77c7fc7cda40bfb3be6" category="section-title">步驟 1：下載安裝鏡像</block>
   <block id="807ad9e65833a6b39b8d8286e8b783f8" category="paragraph">若要開始將ONTAP Select映像新增至 Deploy 公用程式實例，您必須從NetApp支援網站下載安裝映像。 ONTAPONTAP Select安裝映像的格式為單一壓縮檔。</block>
-  <block id="42cd2a8efe7c9aac811d923637a0f193" category="list-text">使用網頁瀏覽器造訪NetApp支援網站，然後選擇「支援快速連結」。</block>
-  <block id="6168f6eb3f1b81ec759f515fdd7bab98" category="list-text">在“熱門任務”下選擇“下載軟體”，然後登入網站。</block>
-  <block id="84791eb50904d5d426f95112ce50d397" category="list-text">選擇“尋找您的產品”。</block>
-  <block id="a896447aac9deddba0f8b7bc142c079f" category="list-text">向下捲動並選擇 * ONTAP Select*。</block>
-  <block id="676522edf33055c4e8da85feed945dc5" category="list-text">在「其他可用軟體」下，選擇「部署升級」、「節點升級」、「鏡像安裝」。</block>
-  <block id="a8601f098fd28588686f1b5ce31da2a1" category="list-text">選擇所需的升級包版本。</block>
-  <block id="9bf3ac5f4cb6341117598df735958bdf" category="list-text">查看最終使用者授權協議 (EULA)，然後按一下「接受並繼續」*。</block>
-  <block id="def8f653fff47640d3bcce40244c6331" category="list-text">選擇並下載適當的包，根據您的環境需求回應所有提示。</block>
   <block id="4ec4ff4105057abcf44071cf2a8f84b6" category="section-title">步驟 2：將安裝鏡像上傳到 Deploy 平台</block>
   <block id="219698a1df9fbd3c16f4a498102fbc3e" category="paragraph">取得ONTAP Select安裝映像後，您必須將該檔案上傳到 Deploy 虛擬機器。</block>
-  <block id="2a5d9f3f5564baf37e1d1a8cf1a3b68c" category="paragraph">您必須在本機工作站上擁有可用的安裝映像檔。您還必須擁有 Deploy 管理員使用者帳戶的密碼。</block>
   <block id="2b4b559d53be4bdb64aeeae26870beb2" category="paragraph">此任務描述了將檔案上傳到 Deploy 虛擬機器的一種方法。可能還有其他更適合您環境的選項。</block>
   <block id="48c7c41b72e1d678923ce3571aa65b2d" category="list-title">步</block>
   <block id="3ad5852905f7d86a4b551630b78bec6f" category="list-text">在本機工作站的命令 shell 中，將映像檔上傳到 Deploy 虛擬機，如下範例所示：</block>
@@ -3551,16 +3535,7 @@
   <block id="18c3c3eb46e4632917dcdff90d15d0de" category="list-text">公司名稱（必填）</block>
   <block id="bf228c91d777320bb66324531a85cdb5" category="list-text">代理 URL（可選）</block>
   <block id="a070d5cad46a2ff939c511d82e8fa8a6" category="list-text">鍵入 *?* 並按 *Enter* 以顯示可用的管理 shell 命令清單。</block>
-  <block id="c9732055d20960435002cec722852b3e" category="summary">您可以使用命令列介面就地升級現有的 Deploy 實用程式虛擬機器。</block>
-  <block id="6a72bf96d9b994589542338ffd146590" category="doc">升級ONTAP Select Deploy 實例</block>
-  <block id="aee852b160915b647628e7eef82ecf7e" category="paragraph">您可以使用 ONTAP ONTAP Select ONTAP Select Deploy 實用程式虛擬機器。</block>
-  <block id="37d4c938e6c31c7ec9166448ac3458f3" category="paragraph">確保在升級期間不使用ONTAP Select Deploy 執行任何其他任務。有關升級ONTAP Select Deploy 實用程式的資訊和限制，請參閱目前發行說明。</block>
   <block id="298707edb3b539391aec5a5a89670001" category="paragraph">如果您安裝了ONTAP Select Deploy 管理公用程式的舊實例，則應升級至目前版本。 ONTAPONTAP Select節點和ONTAP Select Deploy 元件將單獨升級。看<block ref="fb380fde33185400cd8ee6587621860d" category="inline-link-macro-rx"></block>更多詳情請見下文。</block>
-  <block id="35767fb08a64b94abf91d7c25ea1b1d5" category="paragraph">您可以從 ONTAP ONTAP Select ONTAP Select Deploy 9.17.1。若要從ONTAP Select Deploy 9.14.1 或更早版本升級，請查看ONTAP Select版本的發行說明。</block>
-  <block id="db1b7c6bff7b0da47260c4e758478bf5" category="section-title">步驟 1：下載軟體包</block>
-  <block id="c81ba5c62604d6722d8975fb55e13972" category="paragraph">若要開始升級流程，請從下列位置下載對應的ONTAP Select Deploy 虛擬機器升級檔案：<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 。升級包格式為單一壓縮檔。</block>
-  <block id="0f0e87daa63b5587a3d3f02aefb73403" category="list-text">訪問<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>使用網頁瀏覽器，從「下載」選單中選擇「下載」。</block>
-  <block id="dce12db5fd853ebf9ecc2b9677234aa6" category="list-text">向下捲動並選擇 * ONTAP Select Deploy Upgrade*。</block>
   <block id="d3a9739a4d6cf4fc9efd4b7704905c48" category="list-text">查看最終用戶許可協議 (EULA) 並選擇*接受並繼續*。</block>
   <block id="1bd278b7a759195dc2c65f644c38efc6" category="section-title">步驟 2：將軟體包上傳到ONTAP Select Deploy 虛擬機</block>
   <block id="58d35d75d5ec4b24d42607d4bf519bb0" category="paragraph">下載軟體包後，您需要將檔案上傳到ONTAP Select Deploy 虛擬機器。</block>
@@ -3718,22 +3693,11 @@
   <block id="785cc01cf7efbfd5a1fd1d4863d9b83a" category="paragraph">集群部署完成後，<block ref="af0babf33c9640eb381afcb6484c80f3" category="inline-link-macro-rx"></block>進而<block ref="530c589d5a11589fc0cbd2126b61e792" category="inline-link-macro-rx"></block>。</block>
   <block id="106b2acee8931f9a5618948233ee3f9a" category="paragraph">如果叢集建立作業已啟動但未能完成，則您定義的ONTAP管理密碼可能無法套用。如果發生這種情況，您可以使用下列 CLI 命令來確定ONTAP Select叢集的臨時管理密碼：</block>
   <block id="2e872cc50863e55fb4478e06d9231f07" category="summary">您需要安裝ONTAP Select Deploy 管理實用程式並使用該實用程式建立ONTAP Select叢集。</block>
-  <block id="da691cb71c1f879ed7bf93a9a845601a" category="section-title">下載虛擬機器映像</block>
-  <block id="4457cc766e233dbf5bfec7006eded349" category="paragraph">您可以從NetApp支援網站下載ONTAP Select套件。</block>
   <block id="bf55dfa0f53f23704c47337781c41d3d" category="inline-link">您有一個註冊的NetApp支援網站帳戶</block>
   <block id="914500048ffed1428cdb2b9c357cc238" category="paragraph"><block ref="a25ad1701b82327b9cc6269d54c24597" category="inline-link-rx"></block>。</block>
-  <block id="53e646b7dd5ddb95bd47f8626f05f330" category="paragraph">ONTAP Select Deploy 管理實用程式是基於開放虛擬化格式 (OVF) 標準打包為虛擬機器 (VM)。單一壓縮檔案帶有後綴。<block ref="f81b21fb4e12a0e6917f955a9a305553" prefix=" " category="inline-code"></block> 。虛擬機器為ONTAP Select節點提供 Deploy 伺服器和安裝映像。</block>
-  <block id="a8b083480f6b19e605e4aaa8bd3425f1" category="list-text">訪問<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>使用網頁瀏覽器並登入。</block>
-  <block id="cc97556611cf17d7a90f16087052f93b" category="list-text">從選單中選擇*下載*，然後從下拉式選單中選擇*下載*。</block>
-  <block id="ab0ffe542101d39137dce2c19869d545" category="list-text">在「下載」頁面的「所有產品 AZ」下，選擇字母 *O*。</block>
-  <block id="49f3378bb78e3d9783ddf1d56b07097e" category="list-text">選擇所需的套件版本。</block>
-  <block id="a0ce89b8db68d7f3e4fb721f6bf6c751" category="list-text">選擇並下載適當的包，根據需要回應所有提示。</block>
-  <block id="8435c401e57e043b0c57edfb0a00c774" category="section-title">驗證ONTAP Select Deploy OVA 簽名</block>
-  <block id="ab07c13a31893a6c9ee2547e7b9df643" category="paragraph">在安裝安裝包之前，您應該驗證ONTAP Select開放虛擬化設備 (OVA) 簽章。</block>
   <block id="cfa6562e428e1a648631dac061567897" category="paragraph">驗證您的系統是否符合以下要求：</block>
   <block id="80c9c2739b6086de81c8ec7262f87af8" category="list-text">OpenSSL 版本 1.0.2 至 3.0 用於基本驗證</block>
   <block id="03018e3ee63fad9b70308ee5184022f9" category="list-text">用於線上憑證狀態協定 (OCSP) 驗證的公共網際網路訪問</block>
-  <block id="940949e444a7d7ca33644736f8b10bcd" category="list-text">從NetApp支援網站的產品下載頁面取得以下檔案：</block>
   <block id="0b27918290ff5323bea1e3b78a9cf04e" category="cell">文件</block>
   <block id="249111a1c7f415853c625e0755631d11" category="cell"><block ref="008c7b6d630fe84ef2d584c45f088cb2" prefix="" category="inline-code"></block></block>
   <block id="e4069d9d0927b15ac9a4b5a57f151285" category="cell">用於驗證簽署的公鑰。</block>
@@ -3746,9 +3710,6 @@
   <block id="4e4e408ba11d90a1648acdc6230e66d0" category="cell"><block ref="20db26963ac3dc0b119aa4c781855701" prefix="" category="inline-code"></block></block>
   <block id="51efe37fbdc37f9d0c55c657a430d296" category="cell">SHA-256 演算法經過雜湊處理後，由遠端支援代理程式 (RSA) 使用以下方式進行簽署：<block ref="b6ad60ee94a07b2ba8c24c883ec70503" prefix=" " category="inline-code"></block>安裝程式的金鑰和簽章。</block>
   <block id="1f463ad70f232a0c4114c51cb2a44a5a" category="list-text">確認<block ref="20db26963ac3dc0b119aa4c781855701" prefix=" " category="inline-code"></block>該文件正在使用關聯的證書和驗證命令。</block>
-  <block id="134cfba28fd247854afe7ce4d31767ad" category="list-text">使用以下命令驗證簽名：</block>
-  <block id="0ba1987cb555e519f115071e917656fc" category="section-title">部署虛擬機</block>
-  <block id="1eadabe4e39cf3ae5ce71caf6ddc8447" category="paragraph">您必須使用 OVF 虛擬機器映像安裝並啟動ONTAP Select Deploy 虛擬機器。在安裝過程中，您需要將網路介面設定為使用 DHCP 或靜態 IP 設定。</block>
   <block id="a295d719442375039396c1ff541e8a8f" category="paragraph">對於 ESXi 虛擬機器管理程序，您必須準備部署ONTAP Select Deploy VM：</block>
   <block id="780f7110b279a0cc42242a48431ab5bd" category="list-text">透過安裝 VMware 用戶端整合外掛程式或根據需要執行類似配置，在瀏覽器中啟用 OVF 功能</block>
   <block id="171890587c5a7811013eb0e4f687968f" category="list-text">若要為 Deploy VM 動態指派 IP 位址，請在 VMware 環境中啟用 DHCP</block>
@@ -3762,11 +3723,9 @@
   <block id="30e58d6b4fce06c690ff3897ae040f55" category="paragraph">如果您使用 vSphere，部署 OVF 範本精靈會包含表單，用於提供所有 Deploy 設定資訊（包括網路設定）。但是，如果您選擇不使用此表單，則可以改用 Deploy 虛擬機器的控制台來設定網路。</block>
   <block id="922bafb0938c68773e29242e2675f0b9" category="paragraph">您遵循的步驟取決於您使用的是 ESXi 還是 KVM 虛擬機器管理程式。</block>
   <block id="c7b5afc9e76543d6c823b8732fde22cc" category="list-text">導覽至層次結構中的適當位置並選擇*部署 OVF 範本*。</block>
-  <block id="3186b86d87a207cefd5620929256fbd0" category="list-text">選擇 OVA 檔案並完成部署 OVF 範本精靈，選擇適合您環境的選項。</block>
   <block id="c400d3339e8bc65ccc2657e3aee763be" category="paragraph">必須定義管理員帳戶的密碼。登入 Deploy 實用程式時需要提供此密碼。</block>
   <block id="6e0cb8704cabb0eb79ea7580ba166b3e" category="list-text">部署虛擬機器後，選擇新的虛擬機器。如果根據部署精靈的輸入，虛擬機器尚未啟動，請手動啟動。</block>
   <block id="1c2f49da17d54e224e8288edcb35fd8b" category="list-text">如果需要，您可以使用 VM 控制台設定 Deploy 網路：</block>
-  <block id="1d7370ec51f294f5948f3cc2550b812a" category="list-text">按一下「*控制台*」標籤以存取 ESXi 主機設定 shell 並監控啟動程序。</block>
   <block id="4b6e5972b38c860adc515c05d7100df8" category="list-text">等待以下提示：</block>
   <block id="08dc93d24cbfbbfd880b1bb1ccc94728" category="paragraph">主機名稱：</block>
   <block id="be35756ada0a94e987f82992b890a61a" category="list-text">輸入主機名稱並按下 *Enter*。</block>
@@ -3780,17 +3739,12 @@
   <block id="5e3c1106cdccc5163a9adeb91282141d" category="list-text">建立並啟動執行 Deploy 管理實用程式的 KVM VM：</block>
   <block id="2f1d867c33574a0e8fe8ef9afc5d3296" category="list-text">連接到虛擬機器控制台：</block>
   <block id="6cc6377064b4e1df43ff21fb26f8883a" category="list-text">輸入主機名稱並選擇*Enter*。</block>
-  <block id="25775c61c3281e6d412f48371102d8b3" category="section-title">Sign inDeploy Web 介面</block>
-  <block id="887ee30caedf2bee91979565f5ddf01e" category="paragraph">您應該登入 Web 使用者介面以確認部署公用程式可用並執行初始設定。</block>
   <block id="32be4d152f2326423c990dde583d8768" category="list-text">使用 IP 位址或網域名稱將瀏覽器指向 Deploy 實用程式：</block>
   <block id="cc0e719d3ebda123b94502d26d56a7eb" category="paragraph"><block ref="5ecf8b6869afd2efb46edbb07a649207" prefix="" category="inline-code"></block></block>
   <block id="533f8108cde4f7f1af2f1fb435cc4710" category="list-text">提供管理員（admin）帳戶名稱和密碼並登入。</block>
   <block id="b41a57a870dbb2988a82d37df74541fa" category="list-text">如果顯示「*歡迎使用ONTAP Select*」彈出窗口，請檢查先決條件並選擇「*確定*」繼續。</block>
-  <block id="28258323eaa4732b0beafbc8b083a5ab" category="list-text">如果這是首次登錄，且您沒有使用 vCenter 提供的精靈安裝 Deploy，請在出現提示時提供以下設定資訊：</block>
   <block id="0dd298d83de1b2c4259299d711cefb70" category="list-text">AutoSupport （可選）</block>
   <block id="3b08ef3085886d9469e1dc839034e127" category="list-text">具有帳戶憑證的 vCenter 伺服器（可選）</block>
-  <block id="0778e2d9c54386153e2e52bad4129abe" category="inline-link-macro">使用 SSHSign in以進行部署</block>
-  <block id="ccbbd15600c60abef8f9d734d84b4a4e" category="list-text"><block ref="ccbbd15600c60abef8f9d734d84b4a4e" category="inline-link-macro-rx"></block></block>
   <block id="b28ceb45f344ed12e54e3531ae0bac88" category="summary">您必須為ONTAP Select節點所使用的每個容量池取得一個許可證文件。此許可證文件定義了池的儲存容量和有效期限。該檔案透過NetApp指派的唯一許可證序號和與 Deploy 實例關聯的許可證鎖定 ID 的組合鎖定到許可證管理員。</block>
   <block id="b06635debd20e5d8f23e5fd54016e095" category="doc">取得ONTAP Select容量池許可證</block>
   <block id="332320e6473eb55e261b81cf0938cfbc" category="paragraph">您必須擁有NetApp指派給容量池的九位數許可證序號。在嘗試取得許可證文件之前，您應該至少等待採購訂單出貨日期後的二十四小時。</block>
@@ -3944,4 +3898,45 @@
   <block id="02d99372e9e1eb54a9dddd0b08891357" category="list-text">Red Hat Enterprise Linux (RHEL) 10.1、10.0、9.7、9.6、9.5、9.4、9.2、9.1、9.0、8.8、8.7 和 8.6</block>
   <block id="f1200e5ffcff7a7cc8b8ea25410cc78a" category="list-text">Rocky Linux 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="d65f97fb1a167a35c6951233420ba74d" category="list-text">Red Hat Enterprise Linux (RHEL) 64 位元 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.8、8.7 和 8.6</block>
+  <block id="e9acce0d3652d40c91f9bd7e814291c0" category="inline-link-macro">NetApp 支援網站下載</block>
+  <block id="17838336399b2e69627cea0614c17f30" category="list-text">存取 <block ref="8e92c016cc209b5ea10cc71b5bfe5577" category="inline-link-macro-rx"></block> 頁面。</block>
+  <block id="102500ba079e1f102bac567290d3e053" category="list-text">向下捲動並選擇 *ONTAP Select Image*。</block>
+  <block id="1ccd2fe0ab425cd480daec44d7c332ba" category="list-text">選擇所需的安裝映像版本。</block>
+  <block id="b0ccaa273cbf1ac7308b75b9c7fd6d4e" category="list-text">選擇並下載適當的 *ONTAP Select Image Upgrade* 套件。視需要回應所有提示。</block>
+  <block id="1a8d41e65cef4d345c50298a70f79734" category="inline-link-macro">發行說明</block>
+  <block id="b7a85c17919c6d783689e1a6530de3d7" category="paragraph">在升級 ONTAP Select 節點之前，請查看 <block ref="3dda619db99e14ba32fb3b3389030b7d" category="inline-link-macro-rx"></block> 以取得其他資訊和任何必要的程序。</block>
+  <block id="ab0efa1679a96e82121715180bb36a1d" category="summary">將 ONTAP Select 映像新增至 Deploy 管理實用程式執行個體。安裝完成後，即可在部署 ONTAP Select 叢集時使用它。</block>
+  <block id="91dd9283705750f9fe7e837b0a40349f" category="paragraph">將 ONTAP Select 映像新增至 Deploy 管理實用程式執行個體。映像安裝完成後，即可在部署 ONTAP Select 叢集時使用。</block>
+  <block id="c887723161d2b70aba693fc5b80ea33b" category="list-text">選擇並下載對應的 *ONTAP Select Image Install* 軟體包。視需要回應所有提示。</block>
+  <block id="04574480371a2b80422d880e51839d84" category="paragraph">請確認您的本機工作站上已存在安裝映像檔。您還必須擁有 Deploy 管理員使用者帳戶的密碼。</block>
+  <block id="a935f72e89684cc4e1e44be3fa93301b" category="doc">步驟 1：下載升級套件</block>
+  <block id="4138c5c743e6f7a38cc7aa46349fddb8" category="paragraph">sidebar: sidebar permalink: task_cli_upgrade_deploy.html keywords: administer, administering, cli, deploy, upgrade deploy summary: 您可以使用命令列介面就地升級現有的 Deploy 公用程式虛擬機器。--- = 升級 ONTAP Select Deploy 執行個體 :hardbreaks: :nofooter: :icons: font :linkattrs: :imagesdir: ./media/</block>
+  <block id="71b6b56cdf9a8f06858b086466ade95e" category="paragraph">使用 ONTAP Select Deploy 實用程式 CLI 就地升級現有的 ONTAP Select Deploy 實用程式虛擬機器。</block>
+  <block id="893d0216a6847b8a50f3efc04d175542" category="paragraph">確認在升級過程中 ONTAP Select Deploy 未執行任何其他任務。有關升級 ONTAP Select Deploy 實用程式的相關資訊和限制，請參閱<block ref="3dda619db99e14ba32fb3b3389030b7d" category="inline-link-macro-rx"></block>。</block>
+  <block id="bb68cf2408900213fd35084701d5c32c" category="paragraph">您可以從 ONTAP Select Deploy 9.17.1 或 9.16.1 直接升級到 ONTAP Select Deploy 9.18.1。若要從 ONTAP Select Deploy 9.15.1 或更早版本升級，請查看您的 ONTAP Select 版本的發行說明。</block>
+  <block id="9c7dbffc228f5e20cfc38dd2e9d52183" category="paragraph">若要開始升級過程，請從 NetApp 支援網站下載 ONTAP Select Deploy 升級檔案。升級套件以單一壓縮檔案的形式提供。</block>
+  <block id="c7de263deca2f546c4c7b9417bbb6aec" category="list-text">向下捲動並選擇 *ONTAP Select Deploy*。</block>
+  <block id="224ba05e3cb699bfc71537bae00db024" category="list-text">選擇所需的 ONTAP Select 版本。</block>
+  <block id="edef4f12cb19840bbbb69b8757b99015" category="list-text">選擇並下載適當的 *ONTAP Select Deploy Upgrade* 套件。視需要回應所有提示。</block>
+  <block id="916c12b3fbccb1ff32e8a4776708798e" category="section-title">步驟 1：下載虛擬機器映像</block>
+  <block id="b6754a68a857ab2b2389816249373a57" category="paragraph">從 NetApp 支援網站下載 ONTAP Select 套件。</block>
+  <block id="1ace48b65c22215b19f774b3df5f35bc" category="paragraph">ONTAP Select Deploy 管理實用程式以虛擬機器（VM）的形式打包，並基於開放虛擬化格式（OVF）標準。單一壓縮檔案帶有<block ref="586ba478b7ebec665f3df120799b6c2e" prefix=" " category="inline-code"></block> ESXi 主機專用後綴和<block ref="fe0b8e90d35ee4c0d89c53587e2d402e" prefix=" " category="inline-code"></block> KVM 主機專用後綴。此虛擬機器提供 Deploy 伺服器和 ONTAP Select 節點的安裝映像。</block>
+  <block id="1b889c4574d56e52bb5c7740f68139d2" category="list-text">選擇並下載適當的 *ONTAP Select Deploy Install* 套件。視需要回應所有提示。</block>
+  <block id="0230ee7e6071858ebc377c057e5e603e" category="section-title">步驟 2：驗證 ONTAP Select Deploy OVA 簽章</block>
+  <block id="9e0015dd89b19bd3443ad4f4a14527ab" category="paragraph">安裝 ONTAP Select 安裝套件之前，請先驗證 ONTAP Select Open Virtualization Appliance （OVA） 簽章。</block>
+  <block id="3f5028687bfdb0f40e4748a9cf9f5076" category="list-text">請從 NetApp 支援網站的產品下載頁面取得以下檔案：</block>
+  <block id="f754a351095ccdb252bb15b2152c09f3" category="list-text">驗證簽名：</block>
+  <block id="35f9f1c9a9790bd3fc497db798819083" category="section-title">步驟 3：部署虛擬機器</block>
+  <block id="a84a05d08c99af325673887887ed8fdb" category="paragraph">使用 OVF VM 映像安裝並啟動 ONTAP Select Deploy VM。在安裝過程中，您需要設定網路介面以使用 DHCP 或靜態 IP 組態。</block>
+  <block id="5029ec7f3dcb7c58660c1d47f8dce6c3" category="list-text">選擇 OVA 檔案並完成 Deploy OVF Template 精靈。選擇適合您環境的選項。</block>
+  <block id="77b39f7b1e60aa5d2af3e45d47ff1adf" category="list-text">選擇 *Console* 標籤以存取 ESXi 主機設定 shell 並監控開機程序。</block>
+  <block id="b976538163f8bd7f20f37762f79adba6" category="list-text">如果選擇靜態配置、請提供所有必要的網路配置資訊。</block>
+  <block id="7e5f2ca43da3004f8d3d7bae3edb7bae" category="section-title">步驟 4：Sign in Deploy Web 介面</block>
+  <block id="896f4c4fdd4e61c33a930415e20d88d3" category="paragraph">Sign in Web 使用者介面以確認 Deploy 公用程式可用並執行初始組態。</block>
+  <block id="a88f396cb1d0d25e4d7b5bc9e25d3617" category="paragraph-title">接下來：</block>
+  <block id="4452a56e6eb6220413b5f5ed2b39c2eb" category="paragraph"><block ref="4452a56e6eb6220413b5f5ed2b39c2eb" category="inline-link-macro-rx"></block></block>
+  <block id="186a0749125d9c043615b75ece89e1b9" category="inline-link-macro">了解如何使用 SSH 登入 Deploy</block>
+  <block id="3127e7fd2160f6fce263d627cbcb5a4d" category="list-text"><block ref="3127e7fd2160f6fce263d627cbcb5a4d" category="inline-link-macro-rx"></block></block>
+  <block id="53e65bd37d1e95a079cd2ec376ccf900" category="inline-link-macro">了解如何部署 ONTAP Select 叢集的 90 天評估執行個體</block>
+  <block id="f5f0f7b9b906ffe1f1af3b3d9bc2a475" category="list-text"><block ref="f5f0f7b9b906ffe1f1af3b3d9bc2a475" category="inline-link-macro-rx"></block></block>
 </blocks>

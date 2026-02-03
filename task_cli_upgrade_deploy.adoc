@@ -1,43 +1,34 @@
----
-sidebar: sidebar 
-permalink: task_cli_upgrade_deploy.html 
-keywords: administer, administering, cli, deploy, upgrade deploy 
-summary: 您可以使用命令列介面就地升級現有的 Deploy 實用程式虛擬機器。 
----
-= 升級ONTAP Select Deploy 實例
-:hardbreaks:
+= 步驟 1：下載升級套件
 :allow-uri-read: 
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ./media/
 
+
+sidebar: sidebar permalink: task_cli_upgrade_deploy.html keywords: administer, administering, cli, deploy, upgrade deploy summary: 您可以使用命令列介面就地升級現有的 Deploy 公用程式虛擬機器。--- = 升級 ONTAP Select Deploy 執行個體 :hardbreaks: :nofooter: :icons: font :linkattrs: :imagesdir: ./media/
 
 [role="lead"]
-您可以使用 ONTAP ONTAP Select ONTAP Select Deploy 實用程式虛擬機器。
+使用 ONTAP Select Deploy 實用程式 CLI 就地升級現有的 ONTAP Select Deploy 實用程式虛擬機器。
 
 .開始之前
-確保在升級期間不使用ONTAP Select Deploy 執行任何其他任務。有關升級ONTAP Select Deploy 實用程式的資訊和限制，請參閱目前發行說明。
+確認在升級過程中 ONTAP Select Deploy 未執行任何其他任務。有關升級 ONTAP Select Deploy 實用程式的相關資訊和限制，請參閱link:reference_release_notes.html["發行說明"]。
 
 [NOTE]
 ====
 如果您安裝了ONTAP Select Deploy 管理公用程式的舊實例，則應升級至目前版本。 ONTAPONTAP Select節點和ONTAP Select Deploy 元件將單獨升級。看link:concept_adm_upgrading_nodes.html["升級ONTAP Select節點"^]更多詳情請見下文。
 
-您可以從 ONTAP ONTAP Select ONTAP Select Deploy 9.17.1。若要從ONTAP Select Deploy 9.14.1 或更早版本升級，請查看ONTAP Select版本的發行說明。
+您可以從 ONTAP Select Deploy 9.17.1 或 9.16.1 直接升級到 ONTAP Select Deploy 9.18.1。若要從 ONTAP Select Deploy 9.15.1 或更早版本升級，請查看您的 ONTAP Select 版本的發行說明。
 
 ====
 
 
-== 步驟 1：下載軟體包
+== 步驟 1：下載升級套件
 
-若要開始升級流程，請從下列位置下載對應的ONTAP Select Deploy 虛擬機器升級檔案：link:https://mysupport.netapp.com/site/["NetApp支援站點"^] 。升級包格式為單一壓縮檔。
+若要開始升級過程，請從 NetApp 支援網站下載 ONTAP Select Deploy 升級檔案。升級套件以單一壓縮檔案的形式提供。
 
 .步驟
-. 訪問link:https://mysupport.netapp.com/site/["NetApp支援站點"^]使用網頁瀏覽器，從「下載」選單中選擇「下載」。
-. 向下捲動並選擇 * ONTAP Select Deploy Upgrade*。
-. 選擇所需的升級包版本。
+. 存取 link:https://mysupport.netapp.com/site/downloads/["NetApp 支援網站下載"^] 頁面。
+. 向下捲動並選擇 *ONTAP Select Deploy*。
+. 選擇所需的 ONTAP Select 版本。
 . 查看最終用戶許可協議 (EULA) 並選擇*接受並繼續*。
-. 選擇並下載適當的包，根據您的環境需求回應所有提示。
+. 選擇並下載適當的 *ONTAP Select Deploy Upgrade* 套件。視需要回應所有提示。
 
 
 
