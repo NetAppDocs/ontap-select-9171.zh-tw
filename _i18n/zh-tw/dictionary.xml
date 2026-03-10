@@ -3866,15 +3866,9 @@
   <block id="7ceba9002504861c21a7c60ab97ce4d0" category="list-text"><block ref="7ceba9002504861c21a7c60ab97ce4d0" category="inline-link-macro-rx"></block></block>
   <block id="05e40b852405f8fbe510662799c939d2" category="inline-link-macro">CDEPLOY-4025： ONTAP Select DeployGUI：在執行 RHEL10/Rocky 10 的主機上，叢集建立頁面中 SWR 的儲存池和儲存磁碟不可見</block>
   <block id="5b121e358e0c7c08ef9cd2f6ed82464f" category="list-text"><block ref="5b121e358e0c7c08ef9cd2f6ed82464f" category="inline-link-macro-rx"></block></block>
-  <block id="f5bbe572ad2fdd6b30f8297ec74c9ee1" category="paragraph">在 RHEL 10.1 和 10.0 以及 Rocky Linux 10.1 和 10.0 主機上，KVM 虛擬機器管理程式的軟體 RAID 工作流程有一些限制。如需詳細資訊，請參閱下列知識庫文章：</block>
   <block id="ed30014f555a12e11dad9346ca4c3b58" category="paragraph">Red Hat Enterprise Linux (RHEL) 64 位元（KVM）10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.8、8.7 和 8.6</block>
-  <block id="bf159becb82fac20415db1b695308945" category="paragraph">Rocky Linux (KVM) 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
-  <block id="967674de238d2eda67413078f3382830" category="paragraph">*注意*:在 RHEL 10.1 和 10.0 以及 Rocky Linux 10.1 和 10.0 主機上的 KVM 虛擬機器管理程式存在軟體 RAID 工作流程限制。如需更多資訊，請參閱以下知識庫文章：</block>
-  <block id="e342911175fb54ab7198aeaf9378ba80" category="list-text">從 ONTAP Select 9.17.1 開始，Red Hat Enterprise Linux (RHEL) 10.1、10.0、9.7 和 9.6 以及 Rocky Linux 10.1、10.0、9.7 和 9.6 支援 KVM 虛擬機器管理程式。</block>
   <block id="9f67ae0fbf0ec858c854905b95acf153" category="list-text">Red Hat Enterprise Linux (RHEL) 10.1、10.0、9.7、9.6、9.5、9.4、9.2、9.1、9.0、8.8、8.7 和 8.6 上的 KVM</block>
-  <block id="77c3f1eb72717033f409425f67ee4a6d" category="list-text">KVM on Rocky Linux 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="02d99372e9e1eb54a9dddd0b08891357" category="list-text">Red Hat Enterprise Linux (RHEL) 10.1、10.0、9.7、9.6、9.5、9.4、9.2、9.1、9.0、8.8、8.7 和 8.6</block>
-  <block id="f1200e5ffcff7a7cc8b8ea25410cc78a" category="list-text">Rocky Linux 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="d65f97fb1a167a35c6951233420ba74d" category="list-text">Red Hat Enterprise Linux (RHEL) 64 位元 10.1、10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.8、8.7 和 8.6</block>
   <block id="e105a9c27bf2d9ddd5067b411d434cd6" category="list-text">前往 NetApp 支援網站的下載頁面。</block>
   <block id="68f9ff06ec00760816a8852081d652a9" category="inline-link">NetApp 支援下載</block>
@@ -3923,4 +3917,10 @@
   <block id="0778e2d9c54386153e2e52bad4129abe" category="inline-link-macro">使用 SSH Sign in 進行部署</block>
   <block id="ccbbd15600c60abef8f9d734d84b4a4e" category="list-text"><block ref="ccbbd15600c60abef8f9d734d84b4a4e" category="inline-link-macro-rx"></block></block>
   <block id="111ee35eb26cb3daacf7392b146bf0ea" category="list-text">管理 點選頁面頂部的 *Administration* 選項卡，然後點選 *Systems &amp; AutoSupport*。</block>
+  <block id="666e2d64cc00d0a8b97b0fd56b7dd1f8" category="paragraph">在 RHEL 10.1 和 10.0 以及 Rocky Linux 10.0 主機上，KVM 虛擬機器管理程式的軟體 RAID 工作流程有一些限制。如需更多資訊，請參閱以下知識庫文章：</block>
+  <block id="a6f11f6ea893cf00b507bd99f7148bfe" category="paragraph">Rocky Linux（KVM）10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
+  <block id="4c593fb6a6971787a6c1b21b1778dbf1" category="paragraph">*注意*:在 RHEL 10.1 和 10.0 以及 Rocky Linux 10.0 主機上,KVM 虛擬機器管理程式的軟體 RAID 工作流程有限制。如需更多資訊，請參閱以下知識庫文章：</block>
+  <block id="11c2c011b497aeb8d79ad57ac92e7cc5" category="list-text">從 ONTAP Select 9.17.1 開始，Red Hat Enterprise Linux（RHEL）10.1、10.0、9.7 和 9.6 以及 Rocky Linux 10.0、9.7 和 9.6 支援 KVM 虛擬機器管理程式。</block>
+  <block id="5aa6aa921cf2d6f0b9754a2006c7bc35" category="list-text">KVM on Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
+  <block id="3f83d67e3baa5e5249a6ace7bf94d7b8" category="list-text">Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
 </blocks>
