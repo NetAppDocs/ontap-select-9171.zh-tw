@@ -2144,7 +2144,6 @@
   <block id="55449fd175613962d882ab450cfc5f3c" category="list-text">FabricPool</block>
   <block id="eab10597f9ef50e8058170729878869e" category="list-text">MetroCluster SDS（ONTAP Select高級授權產品）</block>
   <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="inline-link-macro">NetApp支援站點</block>
-  <block id="93d144dcea71d657403535e794175870" category="list-text">對於ONTAP Select 9.16.1 及更早版本， SnapLock Select Enterprise（包括防篡改快照鎖定）可從以下位置取得：<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 。</block>
   <block id="2f6bbdcc3a16c2d18a29e52e65bcab80" category="list-text">ONTAP Select不支援SnapLock Compliance 。</block>
   <block id="d8d124daaa3196fc86bdde707e37359d" category="list-text">使用StorageGRID時不需要FabricPool許可證。</block>
   <block id="c3c1ba002ed4d0d1ae23559793a734bd" category="inline-link-macro">ONTAP Select與ONTAP 9 的比較</block>
@@ -2183,8 +2182,6 @@
   <block id="8e6364cfe908f51088b3ba968ff3a1ef" category="list-text">從ONTAP Select 9.17.1 開始， ONTAP Select支援SnapMirror雲端。 SnapMirrorSnapMirror是獲得許可的ONTAP功能，在部署ONTAP Select 9.17.1 叢集或將現有ONTAP Select叢集升級到 9.17.1 版本時預設啟用。</block>
   <block id="138c7cd45c4194bbbdcc248c8d717a95" category="inline-link">了解SnapMirror雲端備份到物件存儲</block>
   <block id="a674f1954e78adeee48a68d3b46f7329" category="paragraph"><block ref="e78089da9b0e2900996a3bebc3fd1588" category="inline-link-rx"></block>。</block>
-  <block id="e00fa7841a6ee0c945bc2050ae35f7fe" category="list-text">支援SnapLock Select Enterprise</block>
-  <block id="995fad35ee105a7018fb5f14889be178" category="list-text">從ONTAP Select 9.17.1 開始，新部署將自動獲得SnapLock Select Enterprise（包括防篡改快照鎖定）的許可。對於從ONTAP Select 9.16.1 及更早版本升級的情況，您需要從以下位置下載SnapLock Select 許可證：<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>並手動應用。</block>
   <block id="e9d1284d8df9151f9bec7a163cd5c363" category="list-text">在多節點叢集上支援 vSAN ESA</block>
   <block id="4ba59a7efee785c52f70cdae7fca55c3" category="list-text">從ONTAP Select 9.17.1 開始，對 vSAN Express 儲存架構 (ESA) 的支援擴展，以部署多節點叢集。此增強功能可讓您部署 vSAN ESA 配置。</block>
   <block id="e9c8709140b0de62f90e930862c6b06a" category="paragraph">vSAN ESA 是一種 ESX 特定配置，是 vSphere 8 中引入的 VMware vSAN 的新架構。 vSAN ESA 旨在提供增強的效率、可擴展性和效能，尤其是在使用基於 NVMe 的 TLC 快閃記憶體裝置時。</block>
@@ -3923,4 +3920,10 @@
   <block id="11c2c011b497aeb8d79ad57ac92e7cc5" category="list-text">從 ONTAP Select 9.17.1 開始，Red Hat Enterprise Linux（RHEL）10.1、10.0、9.7 和 9.6 以及 Rocky Linux 10.0、9.7 和 9.6 支援 KVM 虛擬機器管理程式。</block>
   <block id="5aa6aa921cf2d6f0b9754a2006c7bc35" category="list-text">KVM on Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="3f83d67e3baa5e5249a6ace7bf94d7b8" category="list-text">Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
+  <block id="047fc3d7b951880ca6749f6433cfe2bf" category="list-text">SnapLock Select</block>
+  <block id="62d69997b08663dafba848660e7b1cee" category="inline-link-macro">ONTAP SnapLock 文檔</block>
+  <block id="a2c36271189430a9451913aeb53ffe5c" category="paragraph">SnapLock Select 是 ONTAP SnapLock 專為 ONTAP Select 設計的實作，包含 SnapLock Enterprise。但不包含 SnapLock Compliance。如需詳細資訊,請參閱 <block ref="4550ac0e247ddc9f80a43ee81b1b5a95" category="inline-link-macro-rx"></block>。</block>
+  <block id="03ac71bebfd40853f4266d059ed25b35" category="list-text">對於 ONTAP Select 9.16.1 及更早版本， SnapLock Select （包括防篡改快照鎖定）可從 <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 取得。</block>
+  <block id="d7a5c2d00ea9258a0d2580ffe65ad84c" category="list-text">支援 SnapLock Select</block>
+  <block id="3ef41e1838b5f933bc2b06f1eb6efb06" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需詳細資訊，請參閱 <block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>。</block>
 </blocks>
