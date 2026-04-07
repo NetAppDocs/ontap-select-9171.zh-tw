@@ -58,7 +58,6 @@
   <block id="787fb8fbafed37b77c3881f9e0c851a0" category="section-title">MetroCluster軟體定義存儲</block>
   <block id="12402222727a1e6976eb8efff78d2bfe" category="paragraph">ONTAP Select MetroCluster軟體定義儲存 (SDS) 提供增強的保護和經濟高效的實施。</block>
   <block id="468c7067a5232ce7f7b5f71d1c6e1685" category="paragraph">如果滿足某些最低要求，雙節點叢集可以在兩個位置之間擴展。此架構完美地融合了基於硬體的MetroCluster和單一資料中心叢集（硬體定義或軟體定義）。 ONTAPONTAP Select MetroCluster SDS 的要求凸顯了軟體定義儲存解決方案的普遍靈活性，以及它與基於硬體的MetroCluster SDS 之間的差異。無需專有硬體。</block>
-  <block id="189f86e135df200ab301cdba9724b737" category="paragraph">與MetroCluster不同， ONTAP Select使用現有的網路基礎架構，並支援高達 5 毫秒 RTT 的網路延遲和高達 5 毫秒的最大抖動，總最大延遲為 10 毫秒。最大距離也要求為 10 公里，儘管延遲情況更為重要。市場空間中的分離要求與物理分離有關，而不是實際距離。在某些情況下，這可能意味著不同的建築物。在其他情況下，它可能意味著同一建築物中的不同房間。無論實際的實體位置為何，雙節點叢集定義為MetroCluster SDS 的原因是每個節點都使用單獨的上行鏈路交換器。</block>
   <block id="c0a1eea8b1af6026a021d360f96c66d8" category="paragraph">作為雙節點 HA 配置的一部分，需要一個調解器在故障轉移期間正確識別活動節點，並避免任何裂腦情況（即兩個節點在網路分區期間保持獨立活動狀態）。此操作與先前提供的常規雙節點 HA 配置相同。為了在站點故障期間提供適當的保護和故障轉移，調解器應與兩個 HA 節點位於不同的站點。調解器與每個ONTAP Select節點之間的最大延遲不能超過 125 毫秒。</block>
   <block id="7df0d3f86ea85895ce805f02d425a395" category="paragraph">ONTAP Select MetroCluster SDS 具有以下優勢：</block>
   <block id="c5d9de22973474c51d806858e261da44" category="list-text">MetroCluster SDS 為ONTAP Select提供了另一個維度（資料中心到資料中心）的保護。現在，除了利用軟體定義儲存和ONTAP的所有優勢之外，您還可以利用此額外的保護等級。</block>
@@ -378,7 +377,6 @@
   <block id="47e419c14abec01f3f254dab003a6aba" category="section-title">雙節點 HA 與雙節點延伸 HA (MetroCluster SDS)</block>
   <block id="568e700bfd84bf09ea449e03f0b63ec2" category="paragraph">可以將雙節點主動/主動 HA 叢集擴展到更遠的距離，並可能將每個節點放置在不同的資料中心。雙節點群集和雙節點延伸群集（也稱為MetroCluster SDS）之間的唯一區別在於節點之間的網路連接距離。</block>
   <block id="576271d358b861b1da59de8d0b9547e8" category="paragraph">雙節點叢集定義為兩個節點位於相同資料中心且相距 300 公尺以內的叢集。通常，兩個節點都具有到同一網路交換器或一組交換器間連結 (ISL) 網路交換器的上行鏈路。</block>
-  <block id="4e83e8addeafe73c3acbe68952183177" category="paragraph">雙節點MetroCluster SDS 是指節點物理上相距超過 300 公尺（不同房間、不同建築物和不同資料中心）的群集。此外，每個節點的上行鏈路連接分別連接到單獨的網路交換器。 MetroClusterMetroCluster不需要專用硬體。但是，該環境應滿足延遲（RTT 最大 5 毫秒，抖動最大 5 毫秒，總計 10 毫秒）和物理距離（最大 10 公里）的要求。</block>
   <block id="6aa8a3e3c7b01a983d682bcf568533c1" category="paragraph">MetroCluster SDS 是一項進階功能，需要 Premium 授權或 Premium XL 授權。 Premium授權支援建立中小型虛擬機器以及 HDD 和 SSD 媒體。 PremiumXL 許可證還支援建立 NVMe 驅動器。</block>
   <block id="526a514c4ab4ec984314911904c226e7" category="admonition">MetroCluster SDS 支援本地連接儲存 (DAS) 和共用儲存 (vNAS)。請注意，由於ONTAP Select虛擬機器與共用儲存之間的網絡，vNAS 配置通常具有較高的固有延遲。 MetroClusterSDS 配置必須在節點之間提供最多 10 毫秒的延遲，其中包括共用儲存延遲。換句話說，僅測量 Select 虛擬機器之間的延遲是不夠的，因為對於這些配置來說，共用儲存延遲不可忽略。</block>
   <block id="8e5c75406092b84c33a434dd62222ee5" category="summary">使用 RAID SyncMirror (RSM)、鏡像聚合和寫入路徑防止資料遺失。</block>
@@ -1584,7 +1582,6 @@
   <block id="8b223dc7087ae077b733962bc5c66fff" category="list-text">單節點集群</block>
   <block id="84c58882c8429c8f8515c3e7a653c06f" category="paragraph">ONTAP Select VM 可以與應用程式 VM 共置，使其成為 ROBO 的最佳解決方案。</block>
   <block id="c351b410431306a0c6c9b4caf19ded4f" category="paragraph">使用ONTAP Select提供企業級文件服務，同時允許雙向複製到其他ONTAP Select或FAS集群，從而能夠在低接觸或低成本環境中建立高彈性解決方案。 ONTAPONTAP Select預先安裝了 CIFS、NFS 和 iSCSI 協定服務以及SnapMirror和SnapVault複製技術的功能授權。因此，所有這些功能在部署後即可立即使用。</block>
-  <block id="c2389d581045462585c7d00fa4f67273" category="admonition">由於所有 VMware vSphere 授權均受支持，您可以選擇 vSphere Remote Office Branch Office 標準版或高級版許可證，而無需選擇 Enterprise 版或 Enterprise Plus 版授權。現在所有 vSphere 和 VSAN 授權均受支援。</block>
   <block id="6c7d730bef94b94b16a0eea89a48d7ef" category="paragraph">對於小型資料中心來說，配備遠端中介器的ONTAP Select雙節點叢集是一個頗具吸引力的解決方案。在此配置中，HA 功能由ONTAP Select提供。雙節點ONTAP Select ROBO 解決方案的最低網路要求是四條 1Gb 連結。此外，也支援單一 10Gb 網路連線。在 VSAN 上執行的 vNAS ONTAP Select解決方案（包括雙節點 VSAN ROBO 配置）是另一個選擇。在此配置中，HA 功能由 VSAN 提供。最後，將資料複製到核心位置的單節點ONTAP Select叢集可以在商用伺服器上提供一套強大的企業資料管理工具。</block>
   <block id="c11557a633da8e8234fe07d4d53492c4" category="paragraph">下圖展示了在虛擬機器 ESXi 上使用ONTAP Select 的常見遠端辦公室配置。計劃驅動的SnapMirror關係會定期將資料從遠端辦公室複製到位於主資料中心的單一整合工程儲存陣列。</block>
   <block id="91b24599f00a58f1f331382707a0d6f2" category="paragraph">*遠端辦公室到公司資料中心的定期備份*</block>
@@ -2033,10 +2030,8 @@
   <block id="22d02cab0c9108f9f86736e68a4be2de" category="paragraph-title">什麼是MetroCluster SDS？</block>
   <block id="d099d0357fc4b6bd5f674bf948ccd8ef" category="paragraph">MetroCluster SDS 是一種低成本的同步複製選項，屬於NetApp的MetroCluster業務連續性解決方案類別。它僅適用於ONTAP Select，而NetApp MetroCluster則適用於FAS混合快閃記憶體、 AFF和NetApp Private Storage for Cloud。</block>
   <block id="5c13f1d93ecc5cc8fc37b87a8fedb3b7" category="paragraph-title">MetroCluster SDS 與NetApp MetroCluster有何不同？</block>
-  <block id="f782a001664af23a9a479ac7f8af14db" category="paragraph">MetroCluster SDS 提供同步複製解，屬於NetApp MetroCluster解。然而，主要區別在於支援的距離（約 10 公里 vs. 300 公里）和連接類型（僅支援 IP 網絡，不支援 FC 和 IP）。</block>
   <block id="1092371194caad84c750464b682a97f5" category="paragraph-title">雙節點ONTAP Select集群和雙節點ONTAP MetroCluster SDS 之間有什麼區別？</block>
   <block id="e390fc325e0e3f48a60a9e0c68c6a1b2" category="paragraph">雙節點叢集是指兩個節點位於同一資料中心，且彼此相距 300 公尺以內的叢集。通常，兩個節點都透過交換器間連結連接到同一台或一組網路交換器。</block>
-  <block id="e3000fa150dd97eaa370fd81237fc013" category="paragraph">雙節點MetroCluster SDS 是指節點在物理上相互隔離（不同房間、不同建築或不同資料中心）的集群，每個節點的上行鏈路連接到單獨的網路交換器。雖然MetroCluster SDS 不需要專用硬件，但該環境應滿足延遲（5 毫秒 RTT 和 5 毫秒抖動，總延遲不超過 10 毫秒）和物理距離（10 公里）方面的一系列最低要求。</block>
   <block id="b26c3202b91162b023a9725e9e6607b8" category="paragraph">MetroCluster SDS 是一項進階功能，需要 Premium 或 Premium XL 授權。 Premium授權支援建立小型和中型虛擬機器以及 HDD 和 SSD 媒體。所有這些配置均受支援。</block>
   <block id="8cfa2d102770158dc8e70d7e66b373c1" category="paragraph-title">ONTAP MetroCluster SDS 是否需要本地儲存（DAS）？</block>
   <block id="80fc0d552c981807521ad39072587462" category="paragraph">ONTAP MetroCluster SDS 支援所有類型的儲存配置（DAS 和 vNAS）。</block>
@@ -2048,10 +2043,6 @@
   <block id="1490bd5ed0a28c21500eff09d45ae2c7" category="paragraph">不可以，只有具有調解器的雙節點叢集才能配置為MetroCluster SDS。</block>
   <block id="2643662b1523cd419f3e1a430c3d5ca5" category="paragraph-title">ONTAP MetroCluster SDS 有哪些要求？</block>
   <block id="6596d8aee024f01bd6f7082e0f3f3510" category="paragraph">要求如下：</block>
-  <block id="a6224d6ddba5805f1ff843d43f7d2f9d" category="list-text">三個資料中心（一個用於ONTAP Select Deploy Mediator，另一個用於每個節點）。</block>
-  <block id="d197104ead309ddefff131940caf98cb" category="list-text">5ms RTT 和 5ms 抖動，最大總計 10ms， ONTAP Select節點之間的最大物理距離為 10km。</block>
-  <block id="62b01fa16ed3db055815d577d15770ac" category="list-text">ONTAP Select Deploy Mediator 與每個ONTAP Select節點之間的 RTT 為 125ms，頻寬至少為 5Mbps。</block>
-  <block id="662b3058ddf7c74b83c16f281c0f67ff" category="list-text">Premium 或 Premium XL 許可證。</block>
   <block id="17a218f1a33ec9a62075f6e806d197be" category="paragraph-title">ONTAP Select是否支援 vMotion 或 VMware HA？</block>
   <block id="78a6c1f8409fb1b96accc51e1971fbdb" category="paragraph">在 vSAN 資料儲存或外部陣列資料儲存（換句話說，vNAS 部署）上執行的ONTAP Select VM 支援 vMotion、DRS 和 VMware HA 功能。</block>
   <block id="32c62abec281fb2b058ef0af1f973abc" category="paragraph-title">ONTAP Select是否支援 Storage vMotion？</block>
@@ -2561,7 +2552,6 @@
   <block id="91aac4a7f60b41d08a32c5e3e97fd852" category="list-text">驗證所有外部儲存陣列是否盡可能使用可用的冗餘和高可用性 (HA) 功能</block>
   <block id="e3527493b496eac4476a36800671c21b" category="summary">在規劃ONTAP Select部署時，您應該考慮MetroCluster SDS 的幾個要求。</block>
   <block id="61134acc5ec932d98d83e0b1968f4ba0" category="doc">準備ONTAP Select MetroCluster SDS 部署</block>
-  <block id="f32f31f3f65cf8fd06f0af930a71a5a1" category="paragraph">MetroCluster SDS 是建立雙節點ONTAP Select叢集時的一個設定選項。它類似於遠端辦公室/分支機構 (ROBO) 部署，但兩個節點之間的距離最長可達 10 公里。這種增強型雙節點部署提供了更多使用案例場景。在準備部署MetroCluster SDS 時，您應該了解相關要求和限制。</block>
   <block id="fb8668e0bc658a022bb57683502e41f4" category="paragraph">在部署MetroCluster SDS 之前，請先驗證是否符合以下要求。</block>
   <block id="0b9c6eef4e3d3a222eb04e910d252339" category="paragraph-title">授權</block>
   <block id="b06ea299e97a88792e784ae5e265bc85" category="paragraph">每個節點都必須具有高級或更高級別的ONTAP Select許可證。</block>
@@ -3926,4 +3916,15 @@
   <block id="03ac71bebfd40853f4266d059ed25b35" category="list-text">對於 ONTAP Select 9.16.1 及更早版本， SnapLock Select （包括防篡改快照鎖定）可從 <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 取得。</block>
   <block id="d7a5c2d00ea9258a0d2580ffe65ad84c" category="list-text">支援 SnapLock Select</block>
   <block id="3ef41e1838b5f933bc2b06f1eb6efb06" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需詳細資訊，請參閱 <block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>。</block>
+  <block id="8380920f551ca0c124aced59300fc93c" category="paragraph">與MetroCluster不同，ONTAP Select 利用現有網路基礎架構，支援高達 5 毫秒 RTT 的網路延遲和高達 5 毫秒的抖動，總延遲最高為 10 毫秒。市場上的分離要求更多地與物理分離而非實際距離相關。在某些情況下，這可能意味著不同的建築物。在其他情況下，這可能意味著同一建築物內的不同房間。無論實際的實體位置為何，將雙節點叢集定義為MetroCluster SDS 的關鍵在於每個節點都使用獨立的上行鏈路交換器。</block>
+  <block id="558e06b6dd08fae765da42c411221de9" category="paragraph">雙節點 MetroCluster SDS 是指節點之間物理距離超過 300 公尺（位於不同的房間、不同的建築物或不同的資料中心）的叢集。此外，每個節點的上行鏈路都連接到獨立的網路交換器。MetroCluster SDS 不需要專用硬體。但是，環境必須滿足延遲要求（往返時間最大為 5 毫秒，抖動最大為 5 毫秒，總計 10 毫秒）。</block>
+  <block id="c337422f492f6f6f4bce841427686ed5" category="paragraph">由於所有 VMware vSphere 授權均受支援，您可以選擇 vSphere Remote Office Branch Office Standard 或 Advanced 授權，而不是 Enterprise 或 Enterprise Plus 授權。</block>
+  <block id="5b7cd8b10696b50beb601fc04fc9c316" category="paragraph">支援所有 vSphere 和 VSAN 授權。</block>
+  <block id="deceddca193158f1811fc38d701027b9" category="paragraph">MetroCluster SDS 提供同步複寫解決方案，屬於 NetApp MetroCluster 解決方案範疇。然而，一個關鍵區別在於連線類型（僅支援 IP 網路，而非 FC 和 IP）。</block>
+  <block id="935934c167ea2712b32b8d3627eb504b" category="paragraph">雙節點 MetroCluster SDS 是指由實體分離的節點（不同房間、不同建築物或不同資料中心）組成的叢集，每個節點的上行鏈路連線都連接至獨立的網路交換器。雖然 MetroCluster SDS 不需要專用硬體，但環境應符合最低延遲需求（5 毫秒 RTT 和 5 毫秒抖動，總計最多 10 毫秒）。</block>
+  <block id="c00a7b346fd0c188d653090f7d4d0c9d" category="list-text">三個資料中心（一個用於 ONTAP Select Deploy Mediator，每個節點一個）</block>
+  <block id="046bd5bd096bff2b27e500aa8d2dfa80" category="list-text">5 毫秒 RTT 和 5 毫秒抖動，總計最大 10 毫秒</block>
+  <block id="1d6a755bc579447fd7ccaf4c366f016d" category="list-text">ONTAP Select Deploy Mediator 與每個 ONTAP Select 節點之間的往返時間（RTT）為 125 毫秒，最小頻寬為 5 Mbps</block>
+  <block id="2cc135ee22f21247b52a24a050dc5f69" category="list-text">Premium 或 Premium XL 授權</block>
+  <block id="3712f888ec8c939491ff4fe2129b3d6e" category="paragraph">MetroCluster SDS 是建立雙節點 ONTAP Select 叢集時的一個配置選項。它類似於遠端辦公室/分支機構（ROBO）部署。這種增強型雙節點部署提供了更多使用案例場景。在準備部署 MetroCluster SDS 時，您應該了解其要求和限制。</block>
 </blocks>
