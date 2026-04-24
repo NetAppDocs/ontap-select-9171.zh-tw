@@ -3226,7 +3226,6 @@
   <block id="a811207ba17996dc78a58667cd177a13" category="inline-link-macro">主辦單位準備清單</block>
   <block id="3f47eb1c93cfecc035015d51dea43351" category="inline-link-macro">部署實用程式安裝</block>
   <block id="650b54030913723e437a2beaa84f5e95" category="inline-link-macro">ONTAP Select安裝</block>
-  <block id="2eb8006ba6af294cdeda2a87c467fa5c" category="paragraph">跟隨<block ref="98f788baf075ad6e86ad4cdcdcd40ae3" category="inline-link-macro-rx"></block>並審核所需信息<block ref="5f52a4a178eaea2e0c4812fd7a9f2757" category="inline-link-macro-rx"></block>以及<block ref="b3b43e0c3f8f2e7f8b8f596dd2656645" category="inline-link-macro-rx"></block>了解更多。</block>
   <block id="9ee25f36a4c63773203c1547efed4fc1" category="paragraph">您必須在建立新的ONTAP Select叢集之前執行此程序。您也可以執行此程序為現有軟體 RAID NVMe 叢集配置額外的 NVMe 磁碟機。在這種情況下，配置磁碟機後，您必須像新增額外的 SSD 磁碟機一樣透過 Deploy 新增它們。主要差異在於 Deploy 會偵測 NVMe 磁碟機並重新啟動節點。將 NVMe 磁碟機新增至現有叢集時，請注意以下有關重新啟動流程的事項：</block>
   <block id="fd5c5757c7f7041a2e15ed74c2c32432" category="list-text">部署處理重啟編排。</block>
   <block id="668ad5825e6f031e6f06ed116fda245d" category="list-text">HA 接管和交還以有序的方式執行，但重新同步聚合可能非常耗時。</block>
@@ -3927,4 +3926,5 @@
   <block id="1d6a755bc579447fd7ccaf4c366f016d" category="list-text">ONTAP Select Deploy Mediator 與每個 ONTAP Select 節點之間的往返時間（RTT）為 125 毫秒，最小頻寬為 5 Mbps</block>
   <block id="2cc135ee22f21247b52a24a050dc5f69" category="list-text">Premium 或 Premium XL 授權</block>
   <block id="3712f888ec8c939491ff4fe2129b3d6e" category="paragraph">MetroCluster SDS 是建立雙節點 ONTAP Select 叢集時的一個配置選項。它類似於遠端辦公室/分支機構（ROBO）部署。這種增強型雙節點部署提供了更多使用案例場景。在準備部署 MetroCluster SDS 時，您應該了解其要求和限制。</block>
+  <block id="e16080ba1221020cf277f79a62c290d9" category="paragraph">請按照 <block ref="aa150fc2553a8a0c846847314bde8f61" category="inline-link-macro-rx"></block> 操作,並查看 <block ref="5f52a4a178eaea2e0c4812fd7a9f2757" category="inline-link-macro-rx"></block> 和 <block ref="b3b43e0c3f8f2e7f8b8f596dd2656645" category="inline-link-macro-rx"></block> 所需的資訊以了解更多資訊。</block>
 </blocks>
