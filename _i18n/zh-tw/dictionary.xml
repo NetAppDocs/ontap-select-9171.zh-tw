@@ -2170,9 +2170,6 @@
   <block id="9b08665180caa1c2f681ecd893474c76" category="list-text">從十個節點到八個或六個節點</block>
   <block id="fb6ec34800c58ebc5bb6517ce0db74b8" category="list-text">從八個節點到六個節點</block>
   <block id="8c4c7ec85ddc20b785383c7e3b83aaf3" category="list-text">支援SnapMirror雲</block>
-  <block id="8e6364cfe908f51088b3ba968ff3a1ef" category="list-text">從ONTAP Select 9.17.1 開始， ONTAP Select支援SnapMirror雲端。 SnapMirrorSnapMirror是獲得許可的ONTAP功能，在部署ONTAP Select 9.17.1 叢集或將現有ONTAP Select叢集升級到 9.17.1 版本時預設啟用。</block>
-  <block id="138c7cd45c4194bbbdcc248c8d717a95" category="inline-link">了解SnapMirror雲端備份到物件存儲</block>
-  <block id="a674f1954e78adeee48a68d3b46f7329" category="paragraph"><block ref="e78089da9b0e2900996a3bebc3fd1588" category="inline-link-rx"></block>。</block>
   <block id="e9d1284d8df9151f9bec7a163cd5c363" category="list-text">在多節點叢集上支援 vSAN ESA</block>
   <block id="4ba59a7efee785c52f70cdae7fca55c3" category="list-text">從ONTAP Select 9.17.1 開始，對 vSAN Express 儲存架構 (ESA) 的支援擴展，以部署多節點叢集。此增強功能可讓您部署 vSAN ESA 配置。</block>
   <block id="e9c8709140b0de62f90e930862c6b06a" category="paragraph">vSAN ESA 是一種 ESX 特定配置，是 vSphere 8 中引入的 VMware vSAN 的新架構。 vSAN ESA 旨在提供增強的效率、可擴展性和效能，尤其是在使用基於 NVMe 的 TLC 快閃記憶體裝置時。</block>
@@ -3910,11 +3907,8 @@
   <block id="5aa6aa921cf2d6f0b9754a2006c7bc35" category="list-text">KVM on Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="3f83d67e3baa5e5249a6ace7bf94d7b8" category="list-text">Rocky Linux 10.0、9.7、9.6、9.5、9.4、9.3、9.2、9.1、9.0、8.9、8.8、8.7 和 8.6</block>
   <block id="047fc3d7b951880ca6749f6433cfe2bf" category="list-text">SnapLock Select</block>
-  <block id="62d69997b08663dafba848660e7b1cee" category="inline-link-macro">ONTAP SnapLock 文檔</block>
-  <block id="a2c36271189430a9451913aeb53ffe5c" category="paragraph">SnapLock Select 是 ONTAP SnapLock 專為 ONTAP Select 設計的實作，包含 SnapLock Enterprise。但不包含 SnapLock Compliance。如需詳細資訊,請參閱 <block ref="4550ac0e247ddc9f80a43ee81b1b5a95" category="inline-link-macro-rx"></block>。</block>
   <block id="03ac71bebfd40853f4266d059ed25b35" category="list-text">對於 ONTAP Select 9.16.1 及更早版本， SnapLock Select （包括防篡改快照鎖定）可從 <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> 取得。</block>
   <block id="d7a5c2d00ea9258a0d2580ffe65ad84c" category="list-text">支援 SnapLock Select</block>
-  <block id="3ef41e1838b5f933bc2b06f1eb6efb06" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需詳細資訊，請參閱 <block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>。</block>
   <block id="8380920f551ca0c124aced59300fc93c" category="paragraph">與MetroCluster不同，ONTAP Select 利用現有網路基礎架構，支援高達 5 毫秒 RTT 的網路延遲和高達 5 毫秒的抖動，總延遲最高為 10 毫秒。市場上的分離要求更多地與物理分離而非實際距離相關。在某些情況下，這可能意味著不同的建築物。在其他情況下，這可能意味著同一建築物內的不同房間。無論實際的實體位置為何，將雙節點叢集定義為MetroCluster SDS 的關鍵在於每個節點都使用獨立的上行鏈路交換器。</block>
   <block id="558e06b6dd08fae765da42c411221de9" category="paragraph">雙節點 MetroCluster SDS 是指節點之間物理距離超過 300 公尺（位於不同的房間、不同的建築物或不同的資料中心）的叢集。此外，每個節點的上行鏈路都連接到獨立的網路交換器。MetroCluster SDS 不需要專用硬體。但是，環境必須滿足延遲要求（往返時間最大為 5 毫秒，抖動最大為 5 毫秒，總計 10 毫秒）。</block>
   <block id="c337422f492f6f6f4bce841427686ed5" category="paragraph">由於所有 VMware vSphere 授權均受支援，您可以選擇 vSphere Remote Office Branch Office Standard 或 Advanced 授權，而不是 Enterprise 或 Enterprise Plus 授權。</block>
@@ -3927,4 +3921,15 @@
   <block id="2cc135ee22f21247b52a24a050dc5f69" category="list-text">Premium 或 Premium XL 授權</block>
   <block id="3712f888ec8c939491ff4fe2129b3d6e" category="paragraph">MetroCluster SDS 是建立雙節點 ONTAP Select 叢集時的一個配置選項。它類似於遠端辦公室/分支機構（ROBO）部署。這種增強型雙節點部署提供了更多使用案例場景。在準備部署 MetroCluster SDS 時，您應該了解其要求和限制。</block>
   <block id="e16080ba1221020cf277f79a62c290d9" category="paragraph">請按照 <block ref="aa150fc2553a8a0c846847314bde8f61" category="inline-link-macro-rx"></block> 操作,並查看 <block ref="5f52a4a178eaea2e0c4812fd7a9f2757" category="inline-link-macro-rx"></block> 和 <block ref="b3b43e0c3f8f2e7f8b8f596dd2656645" category="inline-link-macro-rx"></block> 所需的資訊以了解更多資訊。</block>
+  <block id="02eaca23acd9bd60cfee240891736083" category="inline-link-macro">FlexCache 使用 ONTAP Select 進行回寫</block>
+  <block id="829a60be78f33e711c960543ff962d08" category="paragraph">ONTAP Select 對 FlexCache 回寫功能的支援有一些限制。如需更多資訊，請參閱<block ref="43b5c38e400537347d857d4ad7b2dd01" category="inline-link-macro-rx"></block>。</block>
+  <block id="38b80c13e49233a5fa3471c364fdc493" category="paragraph">SnapLock Select 是 ONTAP SnapLock 專為 ONTAP Select 設計的實作，包含 SnapLock Enterprise。但不包含 SnapLock Compliance。</block>
+  <block id="af30d81f9a8c2c0f5b25d08da7858ddc" category="inline-link-macro">ONTAP SnapLock</block>
+  <block id="4f187117101edb6221a27ad094532806" category="paragraph">瞭解 <block ref="e5be20e426588130203bae7a7e597f79" category="inline-link-macro-rx"></block></block>
+  <block id="b638d0f1dd4c80d3617cfefeec604c5d" category="inline-link-macro">開啟非技術支援案例</block>
+  <block id="7a3af7c91740e45930119ddce3bf0d83" category="paragraph">您需要 <block ref="edc9445a6277b18c79e0ada4e6ba9f5f" category="inline-link-macro-rx"></block> 以獲得 SnapMirror 雲端授權。</block>
+  <block id="d6e5e04c7b9c56d9515955d288b0e813" category="inline-link-macro">SnapMirror 雲端備份至物件儲存設備</block>
+  <block id="609570e1a92256aa3f9b774f7dbf24fc" category="paragraph">瞭解 <block ref="4ae01b68125388898638ecb3eb2e59b7" category="inline-link-macro-rx"></block></block>
+  <block id="d8818ebf9ca1095fb7a5372f4292243c" category="list-text">從 ONTAP Select 9.17.1 開始，ONTAP Select 支援 SnapMirror cloud。ONTAP Select 預設不提供 SnapMirror cloud 授權。部署 ONTAP Select 9.17.1 叢集或將現有 ONTAP Select 叢集升級至 9.17.1 版本時，您需要申請 SnapMirror cloud 授權。如需更多資訊，請參閱<block ref="721bf771faed6cfbdee5aa217f7b1ff8" category="inline-link-macro-rx"></block>。</block>
+  <block id="142f59b080f0f1bf1136c761bdeb20c0" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需更多資訊，請參閱<block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>。</block>
 </blocks>
