@@ -18,6 +18,7 @@ summary: 確定ONTAP Select適合您的組織後，您可以購買支援生產�
 
 
 
+[[common-licensing-characteristics]]
 == 常見的授權特徵
 
 容量層級和容量池授權模式在多個方面存在很大差異。然而，這兩種授權模式也具有一些共同的特徵，包括：
@@ -35,6 +36,7 @@ summary: 確定ONTAP Select適合您的組織後，您可以購買支援生產�
 
 
 
+[[capacity-tiers-licensing-model]]
 == 容量層級授權模型
 
 容量層許可模式有幾個獨特的特點，包括：
@@ -50,6 +52,7 @@ summary: 確定ONTAP Select適合您的組織後，您可以購買支援生產�
 
 
 
+[[capacity-pools-licensing-model]]
 == 容量池許可模型
 
 容量池授權模式有幾個獨特的特點，包括：

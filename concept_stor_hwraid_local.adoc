@@ -21,6 +21,7 @@ NOTE: ONTAP Select資料聚合配置為使用 RAID 0，因為實體 RAID 控制�
 
 
 
+[[raid-controller-configuration-for-local-attached-storage]]
 == 本機連接儲存的 RAID 控制器配置
 
 所有為ONTAP Select提供後備儲存的本機連線磁碟都必須位於 RAID 控制器後面。大多數商用伺服器提供多種 RAID 控制器選項，涵蓋多個價位，每個選項的功能等級各不相同。我們的目標是盡可能支援這些選項，前提是它們滿足控制器的特定最低要求。
@@ -46,6 +47,7 @@ NOTE: 舊版 ESX 的最大範圍和資料儲存大小為 64 TB，這會影響支
 
 
 
+[[raid-mode]]
 == RAID模式
 
 許多 RAID 控制器支援最多三種操作模式，每種模式都代表寫入請求所採用的資料路徑的顯著差異。這三種模式如下：
@@ -61,6 +63,7 @@ ONTAP Select需要配備備用電池或快閃記憶體單元；因此，我們�
 
 
 
+[[local-disks-shared-between-ontap-select-and-os]]
 == ONTAP Select與作業系統之間共用的本機磁碟
 
 最常見的伺服器配置是所有本機連接的磁碟軸都位於單一 RAID 控制器後面。您應該至少配置兩個 LUN：一個用於虛擬機器管理程序，一個用於ONTAP Select虛擬機。
@@ -77,6 +80,7 @@ image:ST_08.jpg["僅具有 RAID 管理主軸的伺服器 LUN 配置"]
 
 
 
+[[local-disks-split-between-ontap-select-and-os]]
 == 本機磁碟在ONTAP Select和 OS 之間分配
 
 伺服器供應商提供的另一種可能的配置是使用多個 RAID 或磁碟控制器配置系統。在這種配置中，一組磁碟由磁碟控制器管理，該控制器可能提供或不提供 RAID 服務。另一組磁碟由一個硬體 RAID 控制器管理，該控制器能夠提供 RAID 5/6 服務。
@@ -91,12 +95,14 @@ image:ST_09.jpg["混合 RAID/非 RAID 系統上的伺服器 LUN 配置"]
 
 
 
+[[multiple-luns]]
 == 多個 LUN
 
 有兩種情況必須更改單一 RAID 群組/單 LUN 配置。使用 NL-SAS 或 SATA 磁碟機時，RAID 群組大小不得超過 12 個磁碟機。此外，單一 LUN 的大小可能會超過底層虛擬機器管理程式的儲存限制（單一檔案系統擴充區最大大小或總儲存池最大大小）。這時，必須將底層實體儲存拆分為多個 LUN，才能成功建立檔案系統。
 
 
 
+[[vmware-vsphere-virtual-machine-file-system-limits]]
 == VMware vSphere 虛擬機器檔案系統限制
 
 某些版本的 ESX 上資料儲存的最大大小為 64TB。
@@ -126,6 +132,7 @@ VMware 不支援從 VMFS 5 到 VMFS 6 的就地升級。因此，Storage vMotion
 
 
 
+[[ontap-select-virtual-disks]]
 == ONTAP Select虛擬磁碟
 
 ONTAP Select 的核心是為ONTAP提供一組從一個或多個儲存池配置的虛擬磁碟。 ONTAPONTAP取得一組虛擬磁碟，並將其視為實體磁碟，而儲存堆疊的其餘部分則由虛擬機器管理程式抽象化。下圖更詳細地展示了這種關係，突顯了實體 RAID 控制器、虛擬機器管理程式和ONTAP Select虛擬機器之間的關係。
@@ -141,6 +148,7 @@ image:ST_12.jpg["虛擬磁碟到實體磁碟的映射"]
 
 
 
+[[virtual-disk-provisioning]]
 == 虛擬磁碟配置
 
 為了提供更簡化的使用者體驗， ONTAP Select管理工具ONTAP Deploy 會自動從關聯的儲存池配置虛擬磁碟，並將其連接到ONTAP Select虛擬機器。此操作在初始設定和儲存新增操作期間都會自動執行。如果ONTAP Select節點屬於 HA 對，則虛擬磁碟會自動指派給本機和鏡像儲存池。
@@ -154,6 +162,7 @@ NOTE: 在ONTAP Select虛擬機器中新增容量可能會導致 VMDK 大小不�
 
 
 
+[[virtualized-nvram]]
 == 虛擬化NVRAM
 
 NetApp FAS系統傳統上配備實體NVRAM PCI 卡，這是一種包含非揮發性快閃記憶體的高效能卡。該卡使ONTAP能夠立即向客戶端確認傳入的寫入操作，從而顯著提升寫入效能。它還可以安排將已修改的資料塊移回速度較慢的儲存介質，這個過程稱為「降級暫存」。
@@ -164,6 +173,7 @@ NVRAM位於其自己的 VMDK 上。將NVRAM分割到自己的 VMDK 中，可使O
 
 
 
+[[data-path-explained-nvram-and-raid-controller]]
 == 資料路徑解釋： NVRAM和 RAID 控制器
 
 透過遍歷寫入請求進入系統時所採用的資料路徑，可以最好地突出顯示虛擬化NVRAM系統分區和 RAID 控制器之間的交互。

@@ -19,6 +19,7 @@ summary: 目前版本包括幾個特定於ONTAP Select 的新功能或改進。
 
 
 
+[[ontap-select-9-17-1]]
 == ONTAP Select 9.17.1
 
 ONTAP Select 9.17.1 包含多項新功能和改進。
@@ -76,9 +77,9 @@ ONTAP Select Deploy 和ONTAP Select for ESX 支援配置ONTAP Select單節點和
 
 [NOTE]
 ====
-要執行內容庫操作，您需要存取額外的權限等級。如果您使用受限角色，這對於 vSAN ESA 部署是必要的。
+若要執行內容庫操作，您需要存取額外的權限等級。如果您在 vSAN ESA 部署中使用受限角色，則必須擁有此存取權限。
 
-link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html["了解內容庫操作的存取權限級別"^]。
+link:reference_plan_dep_vmware.html#vmware-vcenter-server-considerations["了解內容庫操作的存取權限級別"]。
 
 ====
 --
@@ -105,6 +106,7 @@ link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html["
 
 
 
+[[ontap-select-9-16-1]]
 == ONTAP Select 9.16.1
 
 ONTAP Select 9.16.1 包含多項新功能和改進。
@@ -122,6 +124,7 @@ ONTAP Select 9.16.1 包含多項新功能和改進。
 
 
 
+[[ontap-select-9-15-1]]
 == ONTAP Select 9.15.1
 
 ONTAP Select 9.15.1 包含多項新功能和改進。
@@ -148,6 +151,7 @@ NOTE: 對集群擴展和收縮的支援僅限於 ESX 集群。
 
 
 
+[[ontap-select-9-14-1]]
 == ONTAP Select 9.14.1
 
 ONTAP Select 9.14.1 包含多項新功能和改進。
@@ -160,6 +164,7 @@ ONTAP Select 9.14.1 包含多項新功能和改進。
 
 
 
+[[ontap-select-9-13-1]]
 == ONTAP Select 9.13.1
 
 ONTAP Select 9.13.1 包含多項新功能和改進。
@@ -171,6 +176,7 @@ ONTAP Select 9.13.1 包含多項新功能和改進。
 
 
 
+[[ontap-select-9-12-1]]
 == ONTAP Select 9.12.1
 
 ONTAP Select 9.12.1 受益於核心ONTAP產品目前版本中的大部分新開發功能。它不包含任何特定於ONTAP Select 的新功能或改進。
@@ -179,6 +185,7 @@ ONTAP Select 9.12.1 受益於核心ONTAP產品目前版本中的大部分新開�
 
 
 
+[[ontap-select-9-11-1]]
 == ONTAP Select 9.11.1
 
 ONTAP Select 9.11.1 包含多項新功能和改進。
@@ -209,6 +216,7 @@ NetApp強烈建議客戶規劃並執行從ONTAP Select for KVM 到任何其他ON
 
 
 
+[[ontap-select-9-10-1]]
 == ONTAP Select 9.10.1
 
 ONTAP Select 9.10.1 包含多項新功能和改進。
@@ -236,6 +244,7 @@ KVM 虛擬機器管理程式不再支援:: 從ONTAP Select 9.10.1 開始，您�
 
 
 
+[[ontap-select-9-9-1]]
 == ONTAP Select 9.9.1
 
 ONTAP Select 9.9.1 包含多項新功能和改進。
@@ -253,6 +262,7 @@ ONTAP Select 9.9.1 包含多項新功能和改進。
 
 
 
+[[ontap-select-9-8]]
 == ONTAP Select 9.8
 
 ONTAP Select 9.8 中包含一些新增和變更的功能。

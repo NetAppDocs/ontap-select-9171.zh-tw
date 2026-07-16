@@ -20,6 +20,7 @@ summary: 作為準備在 VMware 環境中部署ONTAP Select叢集的一部分，
 
 
 
+[[cluster-level-information]]
 == 集群級資訊
 
 您必須收集與ONTAP Select集群相關的資訊。
@@ -39,6 +40,7 @@ summary: 作為準備在 VMware 環境中部署ONTAP Select叢集的一部分，
 |===
 
 
+[[host-level-information]]
 == 主機級資訊
 
 您必須收集與ONTAP Select叢集中每個節點相關的資訊。

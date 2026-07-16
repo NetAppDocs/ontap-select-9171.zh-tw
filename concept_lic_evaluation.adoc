@@ -38,6 +38,7 @@ summary: 如果您想在決定購買之前評估ONTAP Select ，可以使用評�
 
 
 
+[[licensing-characteristics]]
 == 許可特徵
 
 ONTAP Select評估許可證具有以下特點：
@@ -53,6 +54,7 @@ ONTAP Select評估許可證具有以下特點：
 
 
 
+[[upgrade-to-a-production-license]]
 == 升級到生產許可證
 
 您可以升級ONTAP Select評估叢集以使用生產許可證。您應該注意以下限制：

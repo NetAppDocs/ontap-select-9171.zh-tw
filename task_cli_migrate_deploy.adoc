@@ -20,6 +20,7 @@ summary: 您可以使用命令列介面將 Deploy 管理公用程式的現有實
 
 
 
+[[step-1back-up-the-deploy-configuration-data]]
 == 步驟 1：備份部署設定數據
 
 在遷移虛擬機器的過程中，您必須建立 Deploy 設定資料的備份。部署ONTAP Select叢集後，您也應該建立備份。資料將保存到加密檔案中，您可以將其下載到本機工作站。
@@ -63,6 +64,7 @@ deploy backup show -detailed
 
 
 
+[[step-2-install-a-new-instance-of-the-deploy-virtual-machine]]
 == 步驟 2：安裝 Deploy 虛擬機器的新實例
 
 您必須建立 Deploy 虛擬機器的新實例，並使用原始虛擬機器的設定資料對其進行更新。
@@ -88,6 +90,7 @@ link:task_install_deploy.html["安裝ONTAP Select Deploy"]
 
 
 
+[[step-3-restore-the-deploy-configuration-data-to-the-new-virtual-machine]]
 == 步驟 3：將部署設定資料還原到新的虛擬機
 
 您必須將設定資料從原始 Deploy 公用程式虛擬機器還原到新的虛擬機器。這些資料位於一個檔案中，您必須從本機工作站上傳該檔案。

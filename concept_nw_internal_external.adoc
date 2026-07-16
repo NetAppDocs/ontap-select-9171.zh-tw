@@ -18,6 +18,7 @@ ONTAP Select內部和外部網路的特性。
 
 
 
+[[ontap-select-internal-network]]
 == ONTAP Select內部網路
 
 內部ONTAP Select網路僅存在於產品的多節點版本中，負責為ONTAP Select叢集提供叢集通訊、HA 互連和同步複製服務。此網路包含以下連接埠和介面：
@@ -49,6 +50,7 @@ NOTE: 僅支援 ESX 標準和分散式 vSwitch。不支援其他虛擬交換器�
 
 
 
+[[internal-network-validation-and-troubleshooting]]
 === 內部網路驗證與故障排除
 
 可以使用網路連接檢查器功能來驗證多節點叢集中的內部網路。可以透過執行 Deploy CLI 來呼叫此函數。 `network connectivity-check start`命令。
@@ -67,6 +69,7 @@ network connectivity-check show --run-id X (X is a number)
 
 
 
+[[ontap-select-external-network]]
 == ONTAP Select外部網絡
 
 ONTAP Select外部網路負責叢集的所有出站通信，因此在單節點和多節點配置中均存在。雖然此網路不像內部網路那樣具有嚴格定義的吞吐量要求，但管理員應注意不要在客戶端和ONTAP虛擬機器之間造成網路瓶頸，因為效能問題可能會被誤認為是ONTAP Select問題。
@@ -99,12 +102,14 @@ NOTE: 與內部流量類似，外部流量可以在 vSwitch 層 (VST) 和外部�
 |===
 
 
+[[nic-teaming]]
 === NIC 組合
 
 為了確保內部和外部網路均具備提供高效能和容錯能力所需的頻寬和彈性特性，建議使用實體網路適配器綁定。支援具有單一 10Gb 連結的雙節點叢集配置。但是， NetApp建議的最佳實務是在ONTAP Select叢集的內部和外部網路上都使用 NIC 綁定。
 
 
 
+[[mac-address-generation]]
 === MAC 位址生成
 
 指派給所有ONTAP Select網路連接埠的 MAC 位址均由隨附的部署公用程式自動產生。此實用程式使用NetApp特有的平台特定組織唯一識別碼 (OUI)，以確保不與FAS系統衝突。之後，此位址的副本將儲存在ONTAP Select安裝虛擬機器 (ONTAP Deploy) 的內部資料庫中，以防止在未來的節點部署過程中意外重新分配。管理員在任何情況下都不應修改已指派的網路連接埠 MAC 位址。

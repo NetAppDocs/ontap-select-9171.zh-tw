@@ -26,6 +26,7 @@ summary: 您可以使用 VMware ESXi 上的 OVF 範本快速部署單節點ONTAP
 
 
 
+[[prepare-the-ontap-select-cluster-host]]
 == 準備ONTAP Select集群主機
 
 請根據以下要求準備部署ONTAP Select叢集的 ESXi 主機。平台描述基於標準或小型實例類型配置，該配置具有使用 VMFS-5 或 VMFS-6 檔案系統格式化的本機直連儲存 (DAS)。
@@ -36,6 +37,7 @@ image:prepare_ESXi_host_requirements.png["準備 ESXi 主機的要求"]
 
 
 
+[[deploy-a-single-node-ontap-select-cluster-using-an-ovf-template]]
 == 使用 OVF 範本部署單節點ONTAP Select集群
 
 在支援的 64 位元 ESXi 主機伺服器上完成下列步驟。

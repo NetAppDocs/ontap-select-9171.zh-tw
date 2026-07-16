@@ -18,6 +18,7 @@ summary: 每個ONTAP Select雙節點叢集均由調解器服務監控，該服�
 
 
 
+[[view-the-status-of-the-mediator-service]]
 == 看中介服務的狀態
 
 您可以查看針對ONTAP Select Deploy 實用程式定義的每個雙節點叢集的調解器服務狀態。

@@ -18,6 +18,7 @@ summary: ONTAP Select 9.6 效能的效能資訊 - 進階 HA 直連 SSD 儲存。
 
 
 
+[[reference-platform]]
 == 參考平台
 
 ONTAP Select (Premium XL) 硬體（每個節點）
@@ -67,6 +68,7 @@ NOTE: 這些性能數字基於ONTAP Select 9.6。
 |===
 
 
+[[64k-sequential-read]]
 === 64K順序讀取
 
 細節：
@@ -82,6 +84,7 @@ NOTE: 這些性能數字基於ONTAP Select 9.6。
 
 
 
+[[64k-sequential-write]]
 === 64K順序寫入
 
 細節：
@@ -97,6 +100,7 @@ NOTE: 這些性能數字基於ONTAP Select 9.6。
 
 
 
+[[8k-random-read]]
 === 8K隨機讀取
 
 細節：
@@ -112,6 +116,7 @@ NOTE: 這些性能數字基於ONTAP Select 9.6。
 
 
 
+[[8k-random-write]]
 === 8K隨機寫入
 
 細節：
@@ -127,6 +132,7 @@ NOTE: 這些性能數字基於ONTAP Select 9.6。
 
 
 
+[[8k-random-50-write-50-read]]
 === 8K 隨機 50% 寫入 50% 讀取
 
 細節：

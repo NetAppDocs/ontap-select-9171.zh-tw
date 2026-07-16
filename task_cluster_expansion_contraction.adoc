@@ -35,6 +35,7 @@ ESXi 和 KVM 主機不支援以下叢集擴充和收縮：
 
 
 
+[[hardware-and-storage-considerations]]
 == 硬體和儲存注意事項
 
 以下 KVM 和 ESXi 虛擬機器管理程式主機支援叢集擴充和收縮功能。
@@ -80,6 +81,7 @@ ESXi 和 KVM 主機不支援以下叢集擴充和收縮：
 ====
 
 
+[[expand-the-cluster]]
 == 擴展集群
 
 使用叢集擴充功能來增加現有 ESXi 或 KVM 叢集的大小。
@@ -145,6 +147,7 @@ link:task_cli_clusters.html["備份ONTAP Select Deploy 配置數據"]。
 
 
 
+[[contract-the-cluster]]
 == 收縮集群
 
 使用群集收縮功能來減少現有 ESXi 或 KVM 群集的大小。

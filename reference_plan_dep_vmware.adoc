@@ -21,6 +21,7 @@ CAUTION: 除非NetApp支援人員指示，否則不應直接修改ONTAP Select�
 
 
 
+[[hypervisor-independent]]
 == 獨立於虛擬機器管理程序
 
 ONTAP Select和ONTAP Select Deploy 管理實用程式皆獨立於虛擬機器管理程式。
@@ -64,6 +65,7 @@ ONTAP Select叢集中的所有主機必須執行相同版本的虛擬機器管�
 
 
 
+[[vmware-hypervisor-environment]]
 == VMware 虛擬機器管理程式環境
 
 在 VMware 環境中安裝ONTAP Select Deploy 實用程式之前，您應該考慮 VMware 環境特有的幾個要求和限制。
@@ -106,13 +108,14 @@ ONTAP Select Deploy 僅支援 IP 版本 4 (IPv4)。不支援 IP 版本 6 (IPv6)�
 
 
 
-== ONTAP Select部署 VMware vCenter 伺服器注意事項
+[[vmware-vcenter-server-considerations]]
+== VMware vCenter 伺服器注意事項
+
+.ESA 的 VMware vSphere 權限
+要在 vCenter 中建立和管理 vSAN Express Storage Architecture (ESA)，您需要以下 vSphere 內容庫權限：
 
 
-
-=== ESA 的 VMware vSphere 權限
-
-以下列出了在 vCenter 中建立和管理 vSAN Express 儲存架構 (ESA) 所需的 vSphere 內容庫的特定權限：
+NOTE: 要存取內容庫權限，管理員需要授予您在 vCenter Server 中存取全域權限的權限。
 
 * 新增庫項目
 * 建立本地庫

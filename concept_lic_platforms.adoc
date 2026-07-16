@@ -18,6 +18,7 @@ summary: 您可以購買三個平台容量等級之一的ONTAP Select容量層�
 
 
 
+[[what-a-platform-license-offering-provides]]
 == 平台授權產品提供什麼
 
 特定的許可證方案決定了虛擬機器管理程式主機在以下兩個方面的功能：
@@ -69,6 +70,7 @@ NOTE: 基於核心的虛擬機器 (KVM) 不支援大型執行個體類型。
 
 
 
+[[compare-hardware-support-for-platform-license-offerings]]
 == 比較平台授權產品的硬體支持
 
 標準版、高級版和高級 XL 授權產品支援多種硬體和軟體。有關硬體和軟體版本的最新信息，請參閱link:https://mysupport.netapp.com/matrix/["互通性矩陣工具"^]。

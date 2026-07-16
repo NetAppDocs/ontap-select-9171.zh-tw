@@ -18,12 +18,14 @@ summary: 雖然 REST 確立了一套通用的技術和最佳實踐，但每個 A
 
 
 
+[[hypervisor-host-versus-ontap-select-node]]
 == 虛擬機器管理程式主機與ONTAP Select節點
 
 _虛擬機器管理程式主機_是託管ONTAP Select虛擬機器的核心硬體平台。當ONTAP Select虛擬機器部署在虛擬機器管理程式主機上並處於活動狀態時，該虛擬機器將被視為 ONTAP Select 節點。在 Deploy REST API 版本 3 中，主機物件和節點物件是獨立且不同的。這允許一對多關係，其中一個或多個ONTAP Select節點可以在同一虛擬機器管理程式主機上運行。
 
 
 
+[[object-identifiers]]
 == 物件標識符
 
 每個資源實例或物件在建立時都會指派一個唯一識別碼。這些標識符在ONTAP Select Deploy 的特定實例中是全域唯一的。在發出建立新物件實例的 API 呼叫後，關聯的 id 值將傳回給呼叫者。 `location` HTTP回應頭。您可以提取標識符，並在後續呼叫中引用資源實例時使用它。
@@ -33,12 +35,14 @@ NOTE: 物件標識符的內容和內部結構可能隨時變更。在引用關�
 
 
 
+[[request-identifiers]]
 == 請求標識符
 
 每個成功的 API 請求都會被指派一個唯一的識別碼。傳回的標識符 `request-id`相關HTTP響應的頭部。您可以使用請求識別碼來統稱單一特定 API 請求-回應事務的活動。例如，您可以根據請求 ID 檢索交易的所有事件訊息。
 
 
 
+[[synchronous-and-asynchronous-calls]]
 == 同步和異步調用
 
 伺服器執行從客戶端收到的 HTTP 請求主要有兩種方式：
@@ -49,6 +53,7 @@ NOTE: 物件標識符的內容和內部結構可能隨時變更。在引用關�
 
 
 
+[[confirm-the-completion-of-a-long-running-job]]
 == 確認長期運行作業的完成
 
 通常，任何需要很長時間才能完成的操作都會使用伺服器上的後台任務非同步處理。使用 Deploy REST API，每個後台任務都由一個 Job 物件固定，該物件追蹤任務並提供資訊（例如當前狀態）。建立後台任務後，HTTP 回應中會傳回一個 Job 物件（包含其唯一識別碼）。
@@ -63,6 +68,7 @@ NOTE: 物件標識符的內容和內部結構可能隨時變更。在引用關�
 
 
 
+[[security]]
 == 安全
 
 Deploy API 使用以下安全技術：

@@ -18,12 +18,14 @@ summary: 每個 Deploy API 呼叫都會以 HTTP 請求的形式傳送到 Deploy 
 
 
 
+[[input-variables-controlling-an-api-request]]
 == 控制 API 請求的輸入變數
 
 您可以透過 HTTP 請求中設定的參數來控制如何處理 API 呼叫。
 
 
 
+[[request-headers]]
 === 請求標頭
 
 您必須在 HTTP 請求中包含幾個標頭，其中包括：
@@ -35,6 +37,7 @@ summary: 每個 Deploy API 呼叫都會以 HTTP 請求的形式傳送到 Deploy 
 
 
 
+[[request-body]]
 === 請求正文
 
 請求主體的內容根據具體呼叫而有所不同。 HTTP請求主體由以下之一組成：
@@ -45,6 +48,7 @@ summary: 每個 Deploy API 呼叫都會以 HTTP 請求的形式傳送到 Deploy 
 
 
 
+[[filter-objects]]
 === 篩選對象
 
 發出使用 GET 的 API 呼叫時，您可以根據任意屬性限製或過濾傳回的物件。例如，您可以指定要符合的精確值：
@@ -85,6 +89,7 @@ summary: 每個 Deploy API 呼叫都會以 HTTP 請求的形式傳送到 Deploy 
 
 
 
+[[selecting-object-fields]]
 === 選擇對象字段
 
 預設情況下，使用 GET 發出 API 呼叫僅傳回唯一標識一個或多個物件的屬性。這組最小欄位將充當每個物件的鍵，並根據物件類型而有所不同。您可以使用 fields 查詢參數透過以下方式選擇其他物件屬性：
@@ -99,6 +104,7 @@ TIP: 作為最佳實踐，您應該始終識別所需的特定欄位。您應僅
 
 
 
+[[sort-objects-in-the-output-set]]
 === 對輸出集中的物件進行排序
 
 資源集合中的記錄將按照物件定義的預設順序傳回。您可以使用 order_by 查詢參數，透過指定欄位名稱和排序方向來變更排序順序，如下所示：
@@ -111,6 +117,7 @@ TIP: 作為最佳實踐，您應該始終識別所需的特定欄位。您應僅
 
 
 
+[[pagination]]
 === 分頁
 
 使用 GET 方式發出 API 呼叫來存取相同類型的物件集合時，預設會傳回所有符合的物件。如有需要，您可以使用請求中的 max_records 查詢參數來限制傳回的記錄數。例如：
@@ -123,12 +130,14 @@ TIP: 作為最佳實踐，您應該始終識別所需的特定欄位。您應僅
 
 
 
+[[interpret-an-api-response]]
 == 解釋 API 回應
 
 每個 API 請求都會產生一個回應傳回給客戶端。您可以檢查該回應以確定請求是否成功，並根據需要檢索其他資料。
 
 
 
+[[http-status-code]]
 === HTTP 狀態碼
 
 下面描述了部署 REST API 使用的 HTTP 狀態碼。
@@ -169,6 +178,7 @@ TIP: 作為最佳實踐，您應該始終識別所需的特定欄位。您應僅
 |===
 
 
+[[response-headers]]
 === 響應標頭
 
 Deploy 伺服器產生的 HTTP 回應中包含幾個標頭，包括：
@@ -179,6 +189,7 @@ Deploy 伺服器產生的 HTTP 回應中包含幾個標頭，包括：
 
 
 
+[[response-body]]
 === 回應正文
 
 與 API 請求相關的回應內容會根據物件、處理類型以及請求的成功或失敗而有所不同。回應主體以 JSON 格式呈現。

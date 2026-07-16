@@ -18,6 +18,7 @@ summary: 在探索特定儲存組件之前，先了解適用於ONTAP Select環�
 
 
 
+[[phases-of-storage-configuration]]
 == 儲存配置階段
 
 ONTAP Select主機儲存的主要配置階段包括以下內容：
@@ -51,12 +52,14 @@ ONTAP Select主機儲存的主要配置階段包括以下內容：
 
 
 
+[[managed-versus-unmanaged-storage]]
 == 託管儲存與非託管存儲
 
 ONTAP Select存取和直接控制的儲存稱為託管儲存。同一虛擬機器管理程式主機上的任何其他儲存空間稱為非託管儲存。
 
 
 
+[[homogeneous-physical-storage]]
 === 同構實體存儲
 
 組成ONTAP Select託管儲存的所有實體磁碟機必須是同構的。也就是說，所有硬體在以下特性方面必須相同：
@@ -67,6 +70,7 @@ ONTAP Select存取和直接控制的儲存稱為託管儲存。同一虛擬機�
 
 
 
+[[illustration-of-the-local-storage-environment]]
 == 本地儲存環境說明
 
 每個虛擬機器管理程式主機都包含本機磁碟和其他可供ONTAP Select使用的邏輯儲存元件。這些儲存組件按分層結構排列，從實體磁碟開始。
@@ -75,6 +79,7 @@ image:ST_01.jpg["本地儲存環境"]
 
 
 
+[[characteristics-of-the-local-storage-components]]
 === 本機儲存組件的特性
 
 有幾個概念適用於ONTAP Select環境中使用的本機儲存組件。在準備ONTAP Select部署之前，您應該熟悉這些概念。這些概念按類別排列：RAID 群組和 LUN、儲存池和虛擬磁碟。
@@ -99,6 +104,7 @@ image:ST_01.jpg["本地儲存環境"]
 
 
 
+[[storage-pool-considerations]]
 === 儲存池注意事項
 
 在準備部署ONTAP Select時，您應該注意與儲存池相關的幾個問題。
@@ -116,6 +122,7 @@ NOTE: 在 VMware 環境中，儲存池與 VMware 資料儲存同義。
 
 
 
+[[manage-the-virtual-disks-on-esxi]]
 === 管理 ESXi 上的虛擬磁碟
 
 在準備部署ONTAP Select時，您應該注意幾個與虛擬磁碟相關的問題。
@@ -141,6 +148,7 @@ ONTAP Select虛擬機器指派有多個虛擬磁碟機。每個虛擬磁碟實�
 
 
 
+[[illustration-of-the-external-storage-environment-on-esxi]]
 == ESXi 上的外部儲存環境圖示
 
 ONTAP Select vNAS 解決方案支援ONTAP Select使用位於虛擬機器管理程式主機外部儲存裝置上的資料儲存體。您可以使用 VMware vSAN 透過網路存取這些資料存儲，也可以直接在外部存儲陣列上存取。
@@ -154,6 +162,7 @@ ONTAP Select可設定為使用虛擬機器管理程式主機外部的下列類�
 
 
 
+[[vsan-datastores]]
 === vSAN 資料存儲
 
 每個 ESXi 主機可以擁有一個或多個本機 VMFS 資料儲存。通常，這些資料儲存只能由本地主機存取。但是，VMware vSAN 允許 ESXi 叢集中的每個主機共用叢集中的所有資料存儲，就像它們是本機資料儲存一樣。下圖說明了 vSAN 如何建立在 ESXi 叢集中的主機之間共用的資料儲存池。
@@ -162,6 +171,7 @@ image:ST_02.jpg["ESXi 集群"]
 
 
 
+[[vmfs-datastore-on-external-storage-array]]
 === 外部儲存陣列上的 VMFS 資料存儲
 
 您可以建立位於外部儲存陣列上的 VMFS 資料儲存。可以使用多種不同的網路協定之一存取該儲存。下圖展示了使用 iSCSI 協定存取的外部儲存陣列上的 VMFS 資料儲存。
@@ -173,6 +183,7 @@ image:ST_03.jpg["ESXi 虛擬機器管理程式主機"]
 
 
 
+[[nfs-datastore-on-external-storage-array]]
 === 外部儲存陣列上的 NFS 資料存儲
 
 您可以建立位於外部儲存陣列上的 NFS 資料儲存。此儲存體使用 NFS 網路協定進行存取。下圖展示了一個位於外部存儲上的 NFS 資料存儲，可透過 NFS 伺服器設備存取。

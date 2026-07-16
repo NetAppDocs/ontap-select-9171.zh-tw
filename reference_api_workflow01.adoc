@@ -26,6 +26,7 @@ summary: 您可以在由 vCenter 管理的 VMware ESXi 主機上部署單節點O
 
 
 
+[[1-register-vcenter-server-credential]]
 == 1.註冊 vCenter 伺服器憑證
 
 部署至由 vCenter 伺服器管理的 ESXi 主機時，必須在註冊主機之前新增憑證。然後，Deploy 管理公用程式可以使用該憑證向 vCenter 進行驗證。
@@ -69,6 +70,7 @@ JSON 輸入（步驟 1）::
 
 
 
+[[2-register-a-hypervisor-host]]
 == 2.註冊虛擬機器管理程式主機
 
 您必須新增一個虛擬機器管理程式主機，其中包含ONTAP Select節點的虛擬機器將在該主機上執行。
@@ -115,6 +117,7 @@ JSON 輸入（步驟 2）::
 
 
 
+[[3-create-a-cluster]]
 == 3.創建集群
 
 建立ONTAP Select叢集時，將註冊基本叢集配置並由 Deploy 自動產生節點名稱。
@@ -154,6 +157,7 @@ JSON 輸入（步驟 3）::
 
 
 
+[[4-configure-the-cluster]]
 == 4.配置集群
 
 在配置叢集時，您必須提供幾個屬性。
@@ -195,6 +199,7 @@ JSON 輸入（步驟 4）::
 
 
 
+[[5-retrieve-the-node-name]]
 == 5.檢索節點名稱
 
 建立叢集時，Deploy 管理公用程式會自動產生節點識別碼和名稱。您必須先檢索已指派的 ID，然後才能設定節點。
@@ -225,6 +230,7 @@ curl -iX GET -u admin:<password> -k 'https://10.21.191.150/api/clusters/CLUSTERI
 
 
 
+[[6-configure-the-nodes]]
 == 6.配置節點
 
 您必須提供節點的基本配置，這是用於配置節點的三個 API 呼叫中的第一個。
@@ -263,6 +269,7 @@ JSON 輸入（步驟 6）:: 您必須提供ONTAP Select節點將運行的主機 
 
 
 
+[[7-retrieve-the-node-networks]]
 == 7.檢索節點網絡
 
 您必須識別單節點叢集中節點使用的資料和管理網路。單節點叢集不使用內部網路。
@@ -293,6 +300,7 @@ curl -iX GET -u admin:<password> -k 'https://10.21.191.150/api/ clusters/CLUSTER
 
 
 
+[[8-configure-the-node-networking]]
 == 8.配置節點網絡
 
 您必須設定資料和管理網路。單節點叢集不使用內部網路。
@@ -329,6 +337,7 @@ JSON 輸入（步驟 8）:: 您需要提供網路的名稱。
 
 
 
+[[9-configure-the-node-storage-pool]]
 == 9.配置節點儲存池
 
 配置節點的最後一步是連接儲存池。您可以透過 vSphere Web Client 或 Deploy REST API 來確定可用的儲存池。
@@ -367,6 +376,7 @@ JSON 輸入（步驟 9）:: 池容量為 2 TB。
 
 
 
+[[10-deploy-the-cluster]]
 == 10.部署叢集
 
 叢集和節點配置完成後，就可以部署叢集了。

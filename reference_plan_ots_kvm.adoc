@@ -18,6 +18,7 @@ summary: 您應考慮幾個與使用 KVM 虛擬機器管理程式相關的規劃
 
 
 
+[[basic-requirements-and-restrictions]]
 == 基本要求和限制
 
 如果將外部陣列用於ONTAP Select儲存池，則適用下列設定限制：
@@ -33,6 +34,7 @@ CAUTION: 您指定的儲存容量必須在外部儲存允許的儲存限制範�
 
 
 
+[[best-practices]]
 == 最佳實踐
 
 您應該遵循以下建議：

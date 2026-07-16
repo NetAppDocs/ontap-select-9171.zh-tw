@@ -26,6 +26,7 @@ SnapMirror軟體支援您在混合雲的ONTAP儲存之間移動數據，以便�
 
 
 
+[[software-defined-storage]]
 == 軟體定義儲存
 
 透過軟體實施和交付 IT 服務，管理員能夠以前所未有的速度和敏捷性快速配置資源。隨著現代資料中心轉向軟體定義基礎架構 (SDI) 架構，您可以將最有價值的 IT 資產與底層實體基礎架構分離，從而提供靈活性、可擴展性和可程式性。
@@ -36,18 +37,21 @@ ONTAP Select是NetApp面向 SDS 市場的解決方案。 ONTAPONTAP Select為軟
 
 
 
+[[two-software-components]]
 == 兩個軟體元件
 
 ONTAP Select由兩個主要軟體元件組成：
 
 
 
+[[ontap-select-node]]
 === ONTAP Select節點
 
 ONTAP Select叢集由一個、兩個、四個、六個或八個節點組成。每個叢集節點都部署為單獨的虛擬機，並運行專門設計的ONTAP 9 軟體版本。
 
 
 
+[[ontap-select-deploy-administration-utility]]
 === ONTAP Select Deploy 管理實用程式
 
 Deploy 管理實用程式打包並安裝為單獨的 Linux 虛擬機器。您必須使用該實用程式在生產環境中部署ONTAP Select叢集。最新版本的ONTAP Select節點映像與 Deploy 實用程式捆綁在一起。
@@ -57,6 +61,7 @@ NOTE: Deploy 管理公用程式未指派單獨的版本號。 Deploy的版本號
 
 
 
+[[illustration-of-a-typical-deployment]]
 == 典型部署的圖示
 
 下圖展示如何使用NetApp ONTAP Select Deploy 管理公用程式來部署和支援四節點ONTAP Select叢集。 Deploy實用程式和ONTAP Select節點在專用虛擬機器管理程式主機上作為單獨的虛擬機器運作。
@@ -65,30 +70,35 @@ image:ots_architecture.png["展示使用 Deploy 管理實用程式建立的ONTAP
 
 
 
+[[compare-ontap-select-and-ontap-9]]
 == 比較ONTAP Select和ONTAP 9
 
 基於硬體的ONTAP和ONTAP Select均提供企業級儲存解決方案。然而，由於它們的設計和實施方式不同，因此各自可以滿足不同的業務需求和使用情境。在規劃ONTAP Select部署之前，您應該熟悉這兩個平台之間的主要差異。
 
 
 
+[[different-ha-architecture]]
 === 不同的 HA 架構
 
 根據您在叢集中定義的節點數， ONTAP Select提供 HA 功能。例如，一個四節點群集由兩個 HA 對組成。ONTAP Select使用的 HA 架構是基於非共用儲存模型。也就是說，HA 對中的一個節點無法直接存取另一個節點擁有的儲存。這種設計可能會影響ONTAP Select 的某些運作特性。
 
 
 
+[[capacity-licensing]]
 === 容量許可
 
 ONTAP Select引進了基於消費的授權模式。在生產環境中部署ONTAP Select叢集時，您必須為每個節點或共用容量池購買一個包含儲存容量的授權。您必須使用 Deploy 公用程式套用用於確定叢集節點儲存容量的授權檔案。
 
 
 
+[[ontap-feature-licensing]]
 === ONTAP功能許可
 
 ONTAP Select叢集中的每個節點都會自動獲得使用多項ONTAP功能的許可。您無需手動安裝或套用這些功能許可證。
 
 
 
+[[ontap-features-not-supported-in-ontap-select]]
 === ONTAP Select不支援的ONTAP功能
 
 ONTAP Select不支援多項ONTAP功能。大多數情況下，這些功能需要虛擬化ONTAP Select環境中不提供的特殊硬體。

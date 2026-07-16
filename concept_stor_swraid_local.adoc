@@ -42,6 +42,7 @@ summary: 軟體 RAID 是在ONTAP軟體堆疊內實作的 RAID 抽象層。它提
 ====
 
 
+[[software-raid-configuration-for-local-attached-storage]]
 == 本機連接儲存的軟體 RAID 配置
 
 使用軟體 RAID 時，理想情況下沒有硬體 RAID 控制器，但是，如果系統確實有現有的 RAID 控制器，則必須遵守以下要求：
@@ -59,6 +60,7 @@ NOTE: 管理員需要追蹤ONTAP Select VM 正在使用的驅動器，並防止�
 
 
 
+[[ontap-select-virtual-and-physical-disks]]
 == ONTAP Select虛擬磁碟和實體磁碟
 
 對於使用硬體 RAID 控制器的配置，實體磁碟冗餘由 RAID 控制器提供。 ONTAPONTAP Select會提供一個或多個 VMDK， ONTAP管理員可以從中配置資料聚合。這些 VMDK 以 RAID 0 格式進行條帶化，因為ONTAP軟體 RAID 冗餘、低效且低效，這是由於硬體層級提供的彈性所致。此外，用於系統磁碟的 VMDK 與用於儲存使用者資料的 VMDK 位於相同資料儲存中。
@@ -98,6 +100,7 @@ ONTAP軟體 RAID 支援下列 RAID 類型：RAID 4、RAID-DP 和RAID-TEC。這�
 
 
 
+[[passthrough-directpath-io-devices-vs-raw-device-maps-rdms]]
 == 直通 (DirectPath IO) 設備與原始設備對映 (RDM)
 
 ESX 和 KVM 虛擬機器管理程式不支援將 NVMe 磁碟用作原始裝置對應 (RDM)。若要允許ONTAP Select直接控制 NVMe 磁碟，您必須在 ESX 或 KVM 中將這些磁碟機配置為直通裝置。將 NVMe 設備配置為直通設備時，需要伺服器 BIOS 支持，並且可能需要重新啟動主機。此外，每個主機可分配的直通設備數量有限制，具體數量可能因平台而異。但是， ONTAP Deploy 將此限制為每個ONTAP Select節點 14 個 NVMe 設備。這意味著 NVMe 配置以犧牲總容量為代價，提供了非常高的 IOP 密度 (IOPs/TB)。或者，如果您需要具有更大儲存容量的高效能配置，建議的配置是：較大的ONTAP Select VM 大小、用於系統磁碟的 INTEL Optane 卡以及用於資料儲存的一定數量的 SSD 磁碟機。
@@ -109,6 +112,7 @@ NOTE: 為了充分利用 NVMe 效能，請考慮較大的ONTAP Select VM 大小�
 
 
 
+[[physical-and-virtual-disk-provisioning]]
 == 實體和虛擬磁碟配置
 
 為了提供更簡化的使用者體驗， ONTAP Deploy 會自動從指定的資料儲存庫（實體系統磁碟）配置系統（虛擬）磁碟，並將其連接到ONTAP Select虛擬機器。此操作會在初始設定期間自動執行，以便ONTAP Select虛擬機器能夠啟動。 RDM會進行分割區，並且會自動建置根聚合。如果ONTAP Select節點屬於 HA 對，則資料分區會自動指派給本機儲存池和鏡像儲存池。此分配操作會在叢集建立操作和儲存新增操作期間自動進行。
@@ -124,6 +128,7 @@ NOTE: 根聚合的 RAID 群組類型取決於可用的磁碟數量。 ONTAPONTAP
 
 
 
+[[match-an-ontap-select-disk-to-the-corresponding-esx-or-kvm-disk]]
 == 將ONTAP Select磁碟與對應的 ESX 或 KVM 磁碟相匹配
 
 ONTAP Select磁碟通常標記為 NET xy您可以使用下列ONTAP指令來取得磁碟 UUID：
@@ -165,6 +170,7 @@ cat /sys/block/<block_device_id>/device/wwid
 ====
 
 
+[[multiple-drive-failures-when-using-software-raid]]
 == 使用軟體 RAID 時出現多個磁碟機故障
 
 系統可能會遇到多個驅動器同時處於故障狀態的情況。系統的行為取決於聚合 RAID 保護和故障磁碟機的數量。
@@ -244,6 +250,7 @@ disk show -broken
 ====
 
 
+[[virtualized-nvram]]
 == 虛擬化NVRAM
 
 NetApp FAS系統傳統上配備實體NVRAM PCI 卡。該卡是一款高效能卡，包含非揮發性閃存，可大幅提升寫入效能。它透過授予ONTAP立即向客戶端確認傳入寫入的能力來實現這一點。它還可以安排將已修改的資料塊移回速度較慢的儲存介質，這個過程稱為「降級暫存」。

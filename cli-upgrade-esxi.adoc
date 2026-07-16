@@ -18,6 +18,7 @@ summary: 如果您在 VMware ESXi 上執行ONTAP Select ，則可以將 ESXi 軟
 
 
 
+[[prepare-to-upgrade-vmware-esxi]]
 == 準備升級 VMware ESXi
 
 在升級託管ONTAP Select叢集的虛擬機器管理程式上的 ESXi 軟體之前，請準備並選擇適合您環境的升級程式。
@@ -61,6 +62,7 @@ TIP: 您應該選擇使用部署管理公用程式的升級過程。
 
 
 
+[[upgrade-a-single-node-cluster-using-deploy]]
 == 使用 Deploy 升級單節點集群
 
 您可以使用 Deploy 管理公用程式作為升級託管ONTAP Select單節點叢集的 VMware ESXi 虛擬機器管理程式的一部分。
@@ -98,6 +100,7 @@ sdot-d200-011d true    true
 
 
 
+[[upgrade-a-multi-node-cluster-using-deploy]]
 == 使用 Deploy 升級多節點集群
 
 您可以使用 Deploy 管理公用程式作為升級託管ONTAP Select多節點叢集的 VMware ESXi 虛擬機器管理程式的一部分。
@@ -152,6 +155,7 @@ sdot-d200-012d true true
 
 
 
+[[upgrade-a-single-node-cluster-without-deploy]]
 == 無需 Deploy 即可升級單節點集群
 
 您可以升級託管ONTAP Select單節點叢集的 VMware ESXi 虛擬機器管理程序，而無需使用 Deploy 管理實用程式。
@@ -188,6 +192,7 @@ sdot-d200-011d true    true
 
 
 
+[[upgrade-a-multi-node-cluster-without-deploy]]
 == 無需 Deploy 即可升級多節點集群
 
 您可以升級託管ONTAP Select多節點叢集的 VMware ESXi 虛擬機器管理程序，而無需使用 Deploy 管理實用程式。

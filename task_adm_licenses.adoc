@@ -18,6 +18,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[manage-the-capacity-tier-licenses]]
 == 管理容量層許可證
 
 您可以根據需要新增、編輯和刪除ONTAP Select Capacity Tier 許可證。
@@ -33,6 +34,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[manage-the-capacity-pool-licenses]]
 == 管理容量池許可證
 
 您可以根據需要新增、編輯和刪除ONTAP Select容量池許可證。
@@ -81,6 +83,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[reinstall-a-capacity-pool-license]]
 == 重新安裝容量池許可證
 
 每個活動的容量池許可證都會鎖定到特定的許可證管理器實例，該實例包含在 Deploy 管理公用程式的實例中。如果您正在使用容量池許可證，然後還原或還原 Deploy 實例，則原始許可證將不再有效。您必須產生新的容量授權文件，然後將該授權安裝到新的 Deploy 執行個體。
@@ -145,6 +148,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[convert-an-evaluation-license-to-a-production-license]]
 == 將評估許可證轉換為生產許可證
 
 您可以升級ONTAP Select評估叢集以使用生產容量層許可證和 Deploy 管理實用程式。
@@ -176,6 +180,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[manage-an-expired-capacity-pool-license]]
 == 管理過期的容量池許可證
 
 通常情況下，許可證過期後不會發生任何反應。但是，由於節點與已過期的授權關聯，因此您無法安裝其他授權。在續約授權之前，請勿執行任何可能導致聚合離線的操作，例如重新啟動或故障轉移操作。建議的操作是加快許可證續約。
@@ -184,6 +189,7 @@ summary: 在管理ONTAP Select許可證的過程中，您可以執行幾個相�
 
 
 
+[[manage-add-on-licenses]]
 == 管理附加許可證
 
 對於ONTAP Select產品，附加許可證直接在ONTAP中應用，無需透過ONTAP Select Deploy 進行管理。看link:https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html["管理許可證概覽（僅限叢集管理員）"^]和link:https://docs.netapp.com/us-en/ontap/task_admin_enable_new_features.html["透過新增許可證密鑰來啟用新功能"^]了解更多。
