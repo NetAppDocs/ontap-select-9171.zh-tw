@@ -50,6 +50,9 @@ SnapLock Select 是 ONTAP SnapLock 專為 ONTAP Select 設計的實作，包含 
 瞭解 link:https://docs.netapp.com/us-en/ontap/snaplock/index.html["ONTAP SnapLock"^]
 
 * SnapMirror
++
+ONTAP Select 不支援非同步 SnapMirror 中的一致性群組。
+
 * SnapRestore
 * SnapVault
 * 儲存虛擬機器災難復原 (SVM DR)

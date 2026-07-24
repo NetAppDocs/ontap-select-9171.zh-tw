@@ -19,7 +19,6 @@ summary: 您可以使用 VMware ESXi 上的 OVF 範本快速部署單節點ONTAP
 .關於此任務
 * 您不需要從NetApp取得序號或儲存容量許可證。
 * 您可以為使用者資料分配與購買的許可證相同數量的儲存空間。
-* 您無法將節點從評估許可證升級到購買許可證。
 * 您只能使用 vCenter 帳戶部署 OVF 範本。目前不支援直接安裝到 ESXi 主機。
 * 您必須使用 vSphere 獨立用戶端或 vSphere Web 用戶端（ESXi 6.5 及更高版本的唯一選項）安裝 OVF 範本（包含在 ova 檔案中）。請勿使用ONTAP Select Deploy 管理實用程式。
 
