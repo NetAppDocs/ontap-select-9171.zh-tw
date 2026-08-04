@@ -3919,8 +3919,6 @@
   <block id="7a3af7c91740e45930119ddce3bf0d83" category="paragraph">您需要 <block ref="edc9445a6277b18c79e0ada4e6ba9f5f" category="inline-link-macro-rx"></block> 以獲得 SnapMirror 雲端授權。</block>
   <block id="d6e5e04c7b9c56d9515955d288b0e813" category="inline-link-macro">SnapMirror 雲端備份至物件儲存設備</block>
   <block id="609570e1a92256aa3f9b774f7dbf24fc" category="paragraph">瞭解 <block ref="4ae01b68125388898638ecb3eb2e59b7" category="inline-link-macro-rx"></block></block>
-  <block id="d8818ebf9ca1095fb7a5372f4292243c" category="list-text">從 ONTAP Select 9.17.1 開始，ONTAP Select 支援 SnapMirror cloud。ONTAP Select 預設不提供 SnapMirror cloud 授權。部署 ONTAP Select 9.17.1 叢集或將現有 ONTAP Select 叢集升級至 9.17.1 版本時，您需要申請 SnapMirror cloud 授權。如需更多資訊，請參閱<block ref="721bf771faed6cfbdee5aa217f7b1ff8" category="inline-link-macro-rx"></block>。</block>
-  <block id="142f59b080f0f1bf1136c761bdeb20c0" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需更多資訊，請參閱<block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>。</block>
   <block id="115b70fb63fe464e7cf86f17b11f1d67" category="paragraph">若要執行內容庫操作，您需要存取額外的權限等級。如果您在 vSAN ESA 部署中使用受限角色，則必須擁有此存取權限。</block>
   <block id="b1689d890e3bfdba864c509e65029ab6" category="inline-link-macro">了解內容庫操作的存取權限級別</block>
   <block id="420c43a81b06eb199719986301b88739" category="paragraph"><block ref="349cc67b5cd523e4bbe7acd476212356" category="inline-link-macro-rx"></block>。</block>
@@ -3934,4 +3932,6 @@
   <block id="972cc139ce081218935961184ceb872f" category="list-text">非同步 SnapMirror 中的一致性群組</block>
   <block id="2dd64bd29dd925332151bac56daee54d" category="list-text">SVM-Migrate</block>
   <block id="191cca9b69f6675fd704265efaee5cd4" category="paragraph">ONTAP Select 不支援非同步 SnapMirror 中的一致性群組。</block>
+  <block id="ea03679c5845e9e1f40829fcdaf3bc30" category="list-text">從 ONTAP Select 9.17.1 開始，ONTAP Select 支援 SnapMirror cloud。ONTAP Select 預設不提供 SnapMirror cloud 授權。部署 ONTAP Select 9.17.1 叢集或將現有 ONTAP Select 叢集升級至 9.17.1 版本時，您需要申請 SnapMirror cloud 授權。如需詳細資訊，請參閱 <block ref="28c3251e8b24ef25ff26a72bc48f57a5" category="inline-link-macro-rx"></block>。</block>
+  <block id="871c41b58ecf644d6cdf9837c16a5826" category="list-text">從 ONTAP Select 9.17.1 開始，新部署會自動授權 SnapLock Select（包括防篡改 Snapshot 鎖定）。若要從 ONTAP Select 9.16.1 及更早版本升級，您可以從<block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>免費下載 SnapLock Select 授權並手動套用。如需詳細資訊，請參閱 <block ref="827b0dd2c2be1d50a24e859246a66363" category="inline-link-macro-rx"></block>。</block>
 </blocks>
